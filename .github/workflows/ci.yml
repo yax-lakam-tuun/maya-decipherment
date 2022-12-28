@@ -31,5 +31,5 @@ jobs:
           cache-to: type=gha,mode=max
 
       - name: Build document
-        run: .docker run --rm -e "tex_file=/opt/sources/maya-hod" -e "build_path=opt/sources/build" -v $GITHUB_WORKSPACE:/opt/sources ${{ env.CONTAINER_TAG }}
+        run: docker run --rm -e "tex_file=/opt/sources/maya-hod" -e "build_path=opt/sources/build" -v $GITHUB_WORKSPACE:/opt/sources ${{ env.CONTAINER_TAG }}
 
