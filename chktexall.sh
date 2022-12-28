@@ -1,4 +1,8 @@
 #!/bin/bash
 
-find . -name '*.tex' | while read LINE; do chktex -q "$LINE" ; done
+find . -name '*.tex' | while read LINE; 
+do 
+    echo "Checking $LINE"
+    chktex -q "$LINE" 
+done
 
