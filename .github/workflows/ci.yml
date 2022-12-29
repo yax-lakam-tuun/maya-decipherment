@@ -49,8 +49,8 @@ jobs:
           -v $GITHUB_WORKSPACE:${{ env.SOURCE_PATH }}
           ${{ env.CONTAINER_TAG }}
           bash -c "\"${{ env.SOURCE_PATH }}/compile.sh\" 
-            --source-path \"${{ env.SOURCE_PATH }}\" 
-            --build-path \"${{ env.BUILD_PATH}}\" 
-            --document-name \"${{ env.DOCUMENT_NAME }}\"
-            \"${{ env.MAIN_PATH }}\""
+          --source-path \"${{ env.SOURCE_PATH }}\" 
+          --build-path \"${{ env.BUILD_PATH}}\" 
+          --document-name \"${{ env.DOCUMENT_NAME }}\"
+          \"${{ env.MAIN_PATH }}\""
 
