@@ -1,13 +1,14 @@
 #!/bin/bash
 
-root_path=$1
+root_path="$1/"
 
 exit_code=0
 tex_files=$(find $root_path -type f -name '*.tex')
 
 while read FILE;
 do
-    echo -n "Checking $FILE"
+    short_path="${FILE#$root_path}"
+    echo -n "Checking $short_path"
     output=$(chktex -q "$FILE" 2>&1)
     if [ $? -eq 0 ]; then
         echo ".....OK"
