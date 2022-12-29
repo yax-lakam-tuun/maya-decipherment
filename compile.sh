@@ -20,46 +20,38 @@ help() {
     echo "  -s, --source-path          Path to source folder"
 }
 
-define_main() {
-    if [ -z "$1" ]; then
-        echo "$source_path/main"
-    else
-        echo "$1"
-    fi
-}
+# replace long options with short equivalents
+args=( )
+for arg in "$@"; do
+    case "$arg" in
+        --help)           args+=( -h ) ;;
+        --source-path)    args+=( -s ) ;;
+        --build-path)     args+=( -b ) ;;
+        --document-name)  args+=( -d ) ;;
+        *)                args+=( "$arg" ) ;;
+    esac
+done
+set -- "${args[@]}"
 
-replace_long_options() {
-    args=( )
-    for arg; do
-        case "$arg" in
-            --help)           args+=( -h ) ;;
-            --source-path)    args+=( -s ) ;;
-            --build-path)     args+=( -b ) ;;
-            --document-name)  args+=( -d ) ;;
-            *)                args+=( "$arg" ) ;;
-        esac
-    done
-    echo ${args[*]}
-}
+# parse arguments
+while getopts "hs:b:d:" OPTION; do
+    : "$OPTION" "$OPTARG"
+    case $OPTION in
+    h)  help; exit 0;;
+    s)  source_path="$OPTARG";;
+    b)  build_path="$OPTARG";;
+    d)  document_name="$OPTARG";;
+    *)  usage; exit 1;;
+    esac
+done
+shift $(( OPTIND - 1 ))
+if [ -z "$1" ]; then
+    main_path="$source_path/main"
+else
+    main_path="$1"
+fi
 
-parse_arguments() {
-    while getopts "hs:b:d:" OPTION; do
-        : "$OPTION" "$OPTARG"
-        case $OPTION in
-        h)  help; exit 0;;
-        s)  source_path="$OPTARG";;
-        b)  build_path="$OPTARG";;
-        d)  document_name="$OPTARG";;
-        *)  usage; exit 1;;
-        esac
-    done
-    shift $(( OPTIND - 1 ))
-    main_path=$(define_main $1)
-}
-
-args=$(replace_long_options $@)
-parse_arguments $args
-
+# print summary
 echo "Compiling to $build_path/$document_name.pdf"
 echo ""
 echo "Settings:"
@@ -70,6 +62,8 @@ echo "  Path to tex file  $main_path"
 echo ""
 echo "Invoking latexmk..."
 echo ""
+
+# go!
 latexmk \
     -synctex=1 \
     -interaction=nonstopmode \
@@ -78,4 +72,4 @@ latexmk \
     -Werror \
     -jobname="$document_name" \
     -outdir="$build_path" \
-    "$tex_file"
+    "$main_path"
