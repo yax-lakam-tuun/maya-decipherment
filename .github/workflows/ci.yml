@@ -41,14 +41,14 @@ jobs:
           docker run --rm 
           -v $GITHUB_WORKSPACE:${{ env.SOURCE_PATH }}
           ${{ env.CONTAINER_TAG }} 
-          bash -c ./chktexall ${{ env.SOURCE_PATH }}
+          bash -c ${{ env.SOURCE_PATH }}/chktexall.sh ${{ env.SOURCE_PATH }}
 
       - name: Compile document
         run: >-
           docker run --rm 
           -v $GITHUB_WORKSPACE:${{ env.SOURCE_PATH }}
           ${{ env.CONTAINER_TAG }}
-          bash -c ./compile 
+          bash -c ${{ env.SOURCE_PATH }}/compile.sh 
             --source-path "${{ env.SOURCE_PATH }}" 
             --build-path "${{ env.BUILD_PATH}}" 
             --document-name ${{ env.DOCUMENT_NAME }}
