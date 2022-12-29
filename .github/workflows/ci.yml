@@ -37,22 +37,20 @@ jobs:
           cache-to: type=gha,mode=max
 
       - name: Check tex files
-        run:
-          - >
-            docker run --rm 
-            -v $GITHUB_WORKSPACE:${{ env.SOURCE_PATH }}
-            ${{ env.CONTAINER_TAG }} 
-            bash -c ./chktexall ${{ env.SOURCE_PATH }}
+        run: >-
+          docker run --rm 
+          -v $GITHUB_WORKSPACE:${{ env.SOURCE_PATH }}
+          ${{ env.CONTAINER_TAG }} 
+          bash -c ./chktexall ${{ env.SOURCE_PATH }}
 
       - name: Compile document
-        run: 
-          - >
-            docker run --rm 
-            -v $GITHUB_WORKSPACE:${{ env.SOURCE_PATH }}
-            ${{ env.CONTAINER_TAG }}
-            bash -c ./compile 
-              --source-path "${{ env.SOURCE_PATH }}" 
-              --build-path "${{ env.BUILD_PATH}}" 
-              --document-name ${{ env.DOCUMENT_NAME }}
-              "${{ env.MAIN_PATH }}"
+        run: >-
+          docker run --rm 
+          -v $GITHUB_WORKSPACE:${{ env.SOURCE_PATH }}
+          ${{ env.CONTAINER_TAG }}
+          bash -c ./compile 
+            --source-path "${{ env.SOURCE_PATH }}" 
+            --build-path "${{ env.BUILD_PATH}}" 
+            --document-name ${{ env.DOCUMENT_NAME }}
+            "${{ env.MAIN_PATH }}"
 
