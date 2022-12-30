@@ -2,8 +2,7 @@
 name: Release
 
 on:
-  push:
-    tags: ['*']
+  workflow_dispatch:
   
 env:
   CONTAINER_TAG: maya/build_document:test
@@ -47,6 +46,17 @@ jobs:
       - name: Determine version
         run: echo "RELEASE_VERSION=$(python3 ahpula.py $(date -I))" >> $GITHUB_ENV
 
+      - name: Create tag
+        run: |
+          echo -n "Checking whether tag '${{ env.RELEASE_VERSION }}' exists..."
+          if [ $(git tag -l "$version") ]; then
+              echo "Tag exists. Skipping creation."
+          else
+              echo "No. Creating tag."
+              git tag ${{ env.RELEASE_VERSION }} HEAD
+              git push origin ${{ env.RELEASE_VERSION }}
+          fi
+
       - name: Create release draft
         uses: ncipollo/release-action@v1
         with:
@@ -54,7 +64,7 @@ jobs:
           draft: true
           prerelease: false
           name: Release ${{ env.RELEASE_VERSION }}
-          tag: ${{ github.ref }}
+          tag: $${{ env.RELEASE_VERSION }}
           bodyFile: CHANGELOG.md
           artifacts: "build/${{ env.DOCUMENT_NAME }}.pdf"
 
