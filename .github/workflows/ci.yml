@@ -13,7 +13,7 @@ env:
   CONTAINER_TAG: maya/build_document:test
   CONTAINER_SOURCE_PATH: /opt/source
   CONTAINER_BUILD_PATH: /opt/source/build
-  MAIN_PATH: /opt/source/main
+  CONTAINER_MAIN_PATH: /opt/source/main
   DOCUMENT_NAME: "Maya Hieroglyphs - The History of Decipherment"
 
 jobs:
@@ -53,5 +53,5 @@ jobs:
           --source-path \"${{ env.CONTAINER_SOURCE_PATH }}\" 
           --build-path \"${{ env.CONTAINER_BUILD_PATH}}\" 
           --document-name \"${{ env.DOCUMENT_NAME }}\"
-          \"${{ env.MAIN_PATH }}\""
+          \"${{ env.CONTAINER_MAIN_PATH }}\""
 
