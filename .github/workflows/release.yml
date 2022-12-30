@@ -12,7 +12,7 @@ env:
   DOCUMENT_NAME: "Maya Hieroglyphs - The History of Decipherment"
 
 jobs:
-  compile_document:
+  create_release:
     runs-on: ubuntu-latest
 
     steps:
@@ -45,7 +45,7 @@ jobs:
 
       - name: Determine version
         run: >-
-          echo "version=$(.python3 ${{ env.CONTAINER_SOURCE_PATH }}.ahpula.py \"$(date -I)\")" 
+          echo "version=$(python3 ${{ env.CONTAINER_SOURCE_PATH }}.ahpula.py \"$(date -I)\")" 
           >> $GITHUB_OUTPUT
         id: version
 
