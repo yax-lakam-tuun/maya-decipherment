@@ -49,7 +49,7 @@ jobs:
       - name: Create tag
         run: |
           echo -n "Checking whether tag '${{ env.RELEASE_VERSION }}' exists..."
-          if [ $(git tag -l ${{ env.RELEASE_VERSION }}) ]; then
+          if git rev-parse "${{ env.RELEASE_VERSION }}" >/dev/null 2>&1; then
               echo "Tag exists. Skipping creation."
           else
               echo "No. Creating tag."
