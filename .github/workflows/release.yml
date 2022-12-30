@@ -64,5 +64,5 @@ jobs:
           name: Release ${{ env.RELEASE_VERSION }}
           tag: $${{ env.RELEASE_VERSION }}
           bodyFile: CHANGELOG.md
-          artifacts: "build/${{ env.DOCUMENT_NAME }}.pdf", ${{ env.SOURCE_BUNDLE_NAME }}
+          artifacts: "build/${{ env.DOCUMENT_NAME }}.pdf, ${{ env.SOURCE_BUNDLE_NAME }}"
 
