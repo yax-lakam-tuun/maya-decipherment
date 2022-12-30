@@ -63,8 +63,8 @@ jobs:
         uses: actions/upload-release-asset@v1
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: build/${{ env.DOCUMENT_NAME}}
-          asset_name: ${{ env.DOCUMENT_NAME}}.pdf
+          asset_path: build/${{ env.DOCUMENT_NAME }}.pdf
+          asset_name: ${{ env.DOCUMENT_NAME }}.pdf
           asset_content_type: application/pdf
         env:
           GITHUB_TOKEN: ${{ github.token }}
