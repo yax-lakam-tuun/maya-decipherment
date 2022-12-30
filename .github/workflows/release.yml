@@ -44,7 +44,7 @@ jobs:
           \"${{ env.CONTAINER_MAIN_PATH }}\""
 
       - name: Determine version
-        run: echo "version=$(python3 ahpula.py \"$(date -I)\")" >> $GITHUB_OUTPUT
+        run: echo "version=$(python3 ahpula.py $(date -I))" >> $GITHUB_OUTPUT
         id: version
 
       - name: Create release draft
