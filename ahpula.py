@@ -1,13 +1,16 @@
 #!/usr/bin/python3
 
 ####################################################################################################
-# ahpula.py  - A script to produce a long count date based from given date string
+# ahpula.py  - A script to produce a long count date in the classic notation from given date string
 #
-# Usage: ahpula.py [DATE]
+# Usage: python3 ahpula.py [DATE]
 # 
 #        DATE
 #           The date has to be given in ISO format (e.g. 2022-12-30).
 #           If date is omitted, today's date is used instead.
+#
+# Sample output: python3 ahpula.py 2022-12-30
+#                13.0.10.2.18
 ####################################################################################################
 
 import datetime
