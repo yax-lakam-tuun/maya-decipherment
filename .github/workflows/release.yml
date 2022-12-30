@@ -2,7 +2,8 @@
 name: Release
 
 on:
-  workflow_dispatch:
+  push:
+    tags: ['*']
   
 env:
   CONTAINER_TAG: maya/build_document:test
@@ -54,7 +55,6 @@ jobs:
           prerelease: false
           name: Release ${{ env.RELEASE_VERSION }}
           tag: ${{ github.ref }}
-          commit: main
           bodyFile: CHANGELOG.md
           artifacts: "build/${{ env.DOCUMENT_NAME }}.pdf"
 
