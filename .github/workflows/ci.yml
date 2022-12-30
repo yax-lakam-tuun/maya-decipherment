@@ -11,8 +11,8 @@ on:
   
 env:
   CONTAINER_TAG: maya/build_document:test
-  SOURCE_PATH: /opt/source
-  BUILD_PATH: /opt/source/build
+  CONTAINER_SOURCE_PATH: /opt/source
+  CONTAINER_BUILD_PATH: /opt/source/build
   MAIN_PATH: /opt/source/main
   DOCUMENT_NAME: "Maya Hieroglyphs - The History of Decipherment"
 
@@ -39,19 +39,19 @@ jobs:
       - name: Check tex files
         run: >-
           docker run --rm 
-          -v $GITHUB_WORKSPACE:${{ env.SOURCE_PATH }}
+          -v $GITHUB_WORKSPACE:${{ env.CONTAINER_SOURCE_PATH }}
           ${{ env.CONTAINER_TAG }} 
-          bash -c "\"${{ env.SOURCE_PATH }}/chktexall.sh\" \"${{ env.SOURCE_PATH }}\""
+          bash -c "\"${{ env.CONTAINER_SOURCE_PATH }}/chktexall.sh\" \"${{ env.CONTAINER_SOURCE_PATH }}\""
 
       - name: Compile document
         run: >-
           docker run --rm 
-          -v $GITHUB_WORKSPACE:${{ env.SOURCE_PATH }}
-          -v $GITHUB_WORKSPACE/build:${{ env.BUILD_PATH }}
+          -v $GITHUB_WORKSPACE:${{ env.CONTAINER_SOURCE_PATH }}
+          -v $GITHUB_WORKSPACE/build:${{ env.CONTAINER_BUILD_PATH }}
           ${{ env.CONTAINER_TAG }}
-          bash -c "\"${{ env.SOURCE_PATH }}/compile.sh\" 
-          --source-path \"${{ env.SOURCE_PATH }}\" 
-          --build-path \"${{ env.BUILD_PATH}}\" 
+          bash -c "\"${{ env.CONTAINER_SOURCE_PATH }}/compile.sh\" 
+          --source-path \"${{ env.CONTAINER_SOURCE_PATH }}\" 
+          --build-path \"${{ env.CONTAINER_BUILD_PATH}}\" 
           --document-name \"${{ env.DOCUMENT_NAME }}\"
           \"${{ env.MAIN_PATH }}\""
 
