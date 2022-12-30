@@ -46,16 +46,10 @@ jobs:
       - name: Determine version
         run: echo "RELEASE_VERSION=$(python3 ahpula.py $(date -I))" >> $GITHUB_ENV
 
-      - name: Create tag
+      - name: Create/override tag
         run: |
-          echo -n "Checking whether tag '${{ env.RELEASE_VERSION }}' exists..."
-          if git rev-parse "${{ env.RELEASE_VERSION }}" >/dev/null 2>&1; then
-              echo "Tag exists. Skipping creation."
-          else
-              echo "No. Creating tag."
-              git tag ${{ env.RELEASE_VERSION }} HEAD
-              git push origin ${{ env.RELEASE_VERSION }}
-          fi
+          git tag -f ${{ env.RELEASE_VERSION }} HEAD
+          git push origin ${{ env.RELEASE_VERSION }}
 
       - name: Create release draft
         uses: ncipollo/release-action@v1
