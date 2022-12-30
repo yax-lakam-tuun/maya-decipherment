@@ -47,6 +47,7 @@ jobs:
         run: >-
           docker run --rm 
           -v $GITHUB_WORKSPACE:${{ env.SOURCE_PATH }}
+          -v $GITHUB_WORKSPACE/build:${{ env.BUILD_PATH }}
           ${{ env.CONTAINER_TAG }}
           bash -c "\"${{ env.SOURCE_PATH }}/compile.sh\" 
           --source-path \"${{ env.SOURCE_PATH }}\" 
