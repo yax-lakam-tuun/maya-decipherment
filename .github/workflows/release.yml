@@ -44,27 +44,21 @@ jobs:
           \"${{ env.CONTAINER_MAIN_PATH }}\""
 
       - name: Determine version
-        run: echo "version=$(.python3 ${{ env.CONTAINER_SOURCE_PATH }}.ahpula.py \"$(date -I)\")" >> $GITHUB_OUTPUT
+        run: >-
+          echo "version=$(.python3 ${{ env.CONTAINER_SOURCE_PATH }}.ahpula.py \"$(date -I)\")" 
+          >> $GITHUB_OUTPUT
         id: version
 
       - name: Create release draft
-        uses: actions/create-release@v1
+        uses: ncipollo/release-action@v1
         id: create_release
         with:
           draft: true
           prerelease: false
-          release_name: ${{ steps.version.outputs.version }}
-          tag_name: ${{ github.ref }}
-          body_path: CHANGELOG.md
+          name: ${{ steps.version.outputs.version }}
+          tag: ${{ github.ref }}
+          bodyFile: CHANGELOG.md
+          artifacts: "build/${{ env.DOCUMENT_NAME }}.pdf"
         env:
           GITHUB_TOKEN: ${{ github.token }}
 
-      - name: Upload document
-        uses: actions/upload-release-asset@v1
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: build/${{ env.DOCUMENT_NAME }}.pdf
-          asset_name: ${{ env.DOCUMENT_NAME }}.pdf
-          asset_content_type: application/pdf
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
