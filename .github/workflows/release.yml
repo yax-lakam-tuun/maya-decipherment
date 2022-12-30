@@ -44,17 +44,17 @@ jobs:
           \"${{ env.CONTAINER_MAIN_PATH }}\""
 
       - name: Determine version
-        run: echo "release_version=$(python3 ahpula.py $(date -I))" >> $GITHUB_OUTPUT
+        run: echo "RELEASE_VERSION=$(python3 ahpula.py $(date -I))" >> $GITHUB_ENV
 
       - name: Create release draft
         uses: ncipollo/release-action@v1
         with:
+          token: ${{ secrets.GITHUB_TOKEN }}
           draft: true
           prerelease: false
-          name: Release ${{ env.release_version }}
+          name: Release ${{ env.RELEASE_VERSION }}
           tag: ${{ github.ref }}
+          commit: main
           bodyFile: CHANGELOG.md
           artifacts: "build/${{ env.DOCUMENT_NAME }}.pdf"
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
 
