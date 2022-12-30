@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
   
 env:
-  CONTAINER_TAG: maya-hod/build_document:test
+  CONTAINER_TAG: maya/build_document:test
   SOURCE_PATH: /opt/source
   BUILD_PATH: /opt/source/build
   MAIN_PATH: /opt/source/main
