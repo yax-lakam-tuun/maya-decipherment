@@ -10,14 +10,18 @@ env:
   CONTAINER_BUILD_PATH: /opt/source/build
   CONTAINER_MAIN_PATH: /opt/source/main
   DOCUMENT_NAME: "Maya Hieroglyphs - The History of Decipherment"
+  SOURCE_BUNDLE_NAME: sources.zip
 
 jobs:
-  create_release:
+  create_release_draft:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout sources
         uses: actions/checkout@v3
+
+      - name: Bundle sources
+        run: zip -r ${{ env.SOURCE_BUNDLE_NAME }} . -x ".git/*" ".github/*"
       
       - name: Set up docker buildx
         uses: docker/setup-buildx-action@v1
@@ -46,9 +50,9 @@ jobs:
       - name: Determine version
         run: echo "RELEASE_VERSION=$(python3 ahpula.py $(date -I))" >> $GITHUB_ENV
 
-      - name: Create/override tag
+      - name: Create tag
         run: |
-          git tag -f ${{ env.RELEASE_VERSION }} HEAD
+          git tag ${{ env.RELEASE_VERSION }} HEAD
           git push origin ${{ env.RELEASE_VERSION }}
 
       - name: Create release draft
@@ -60,5 +64,5 @@ jobs:
           name: Release ${{ env.RELEASE_VERSION }}
           tag: $${{ env.RELEASE_VERSION }}
           bodyFile: CHANGELOG.md
-          artifacts: "build/${{ env.DOCUMENT_NAME }}.pdf"
+          artifacts: "build/${{ env.DOCUMENT_NAME }}.pdf", ${{ env.SOURCE_BUNDLE_NAME }}
 
