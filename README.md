@@ -1,10 +1,30 @@
 
 
 # Purpose of this project
+The Maya hieroglyphs and the Maya script have been a mystery for centuries.
+Scholars from all over world tried to crack the `Mayan Code' since the early 1830s.
+But it took almost 150 years until scholars made significant progress in the decipherment until to
+this very day.
+This project has the goal to collect all the breakthroughs in the decipherment of Maya hieroglyphs
+and illustrate them with examples of inscriptions and other write-ups.
 
 # Basic idea
+The basic idea is to write a document which covers as much as possible from the history of 
+decipherment of the Maya hieroglyphs.
+Every piece of decipherment is backed up and cited with the corresponding scientific paper, book
+or article.
+The document derived from all the insights from all the scholars from all over the world over
+so many decades shall be a good starting point for basically everyone interested in reading
+the hieroglyphs to understand the long process it took to read the writings of the old Maya (again).
+The document should be roughly written in a chronological way.
+Since the decipherment process is not a linear process, this won't be possible for everything.
+But the genneral guideline (aka rule of thumb) should be, to start from the early stages of 
+decipherment until to today.
 
 # Why is it open source?
+The project is open source and free.
+Knowledge should be free and accessible to everyone.
+
 
 # Who can contribute?
 
