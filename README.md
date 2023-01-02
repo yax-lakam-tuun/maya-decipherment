@@ -1,9 +1,7 @@
-
-
 # Purpose of this project
 The Maya hieroglyphs and the Maya script have been a mystery for centuries.
 Scholars from all over world tried to crack the `Mayan Code' since the early 1830s.
-But it took almost 150 years until scholars made significant progress in the decipherment until to
+But it took many decades until scholars made significant progress in the decipherment until to
 this very day.
 This project has the goal to collect all the breakthroughs in the decipherment of Maya hieroglyphs
 and illustrate them with examples of inscriptions and other write-ups.
@@ -24,11 +22,28 @@ decipherment until to today.
 # Why is it open source?
 The project is open source and free.
 Knowledge should be free and accessible to everyone.
-
+TODO
 
 # Who can contribute?
+Any help is greatly appreciated.
+If you find problems within the document of any kind, please feel free create issues
+which address your findings.
+This will greatly help to improve the project.
 
-# How can I contribute?
+## How can I contribute?
+If you would like to become part of the project, you are more than welcome to do so.
+Please get in touch.
+The one important thing is, that you have an account on GitHub.
+Then, it's easy to become a collaborator and join the project.
+
+## Authoring
+If you would like to become a writer for the project, then this part is for you.
+Once you are a collaborator, you can create a branch and work on the document as much as you like.
+Whether it is small change or maybe some major refactoring is totally up to you.
+However, in order to get applied to the document, a review by at least one or two reviewers is necessary.
+So, when you are done with your changes, one has to open a pull request for the `main` branch.
+After the reviewers give their okay and the continuous integration is green, your contribution will be
+part of the project.
 
 # Why LaTeX?
 LaTeX is a mark-up language which allows creating big scalable documents by writing
@@ -47,7 +62,30 @@ It's even possible to define your own commands which enables one to program and 
 extensive tasks and simplifies the way one writes text.
 See the [project site of LaTeX](https://www.latex-project.org//) for more information.
 
-# Who owns the project?
+# Trunk-based development and Continuous Integration
+The whole idea of trunk-based development is, that there is basically one branch the whole work
+resides on.
+Every version (aka release) is based on this branch.
+Historically, this branch has been called `trunk` (therefore the name).
+Nowadays, it is usually called `main`.
+So, all releases are done from `main`.
+(Unfinished) work which should come into the next release, resides on branches from `main`.
+After the work has been reviewed and checked on so-called pull requests, the work eventually makes
+its way to `main`.
+The `main` branch is protected, so the only way for code to get merged, is via pull requests.
+The pull requests include a review process.
+The idea is, that work should be checked independently of the original writer to make sure there
+the text is correct and matches to the rest of the document.
+Additionally, the pull request checks if a PDF document can be generated and whether
+LaTeX problems arose during the process.
+If there are problems, the branch is blocked from being merged until all issues have been resolved.
+That is the so-called `continuous integration` workflow.
+If everything is fine, the pull request can be merged.
+For more information on trunk-based development and the git branch model can be found 
+[here](https://trunkbaseddevelopment.com/).
+
+# How to build
+## VSCode and docker
 
 # Changelog
 The changelog format is based on [Keep a Changelog](http://keepachangelog.com/)
