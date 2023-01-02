@@ -38,8 +38,10 @@ This will greatly help to improve the project.
 
 ## How can I contribute?
 If you would like to become part of the project, you are more than welcome to do so.
-Please get in touch.
+Please get in touch with and reach me via academia.edu 
+[here](https://independent.academia.edu/SebastianBauer16).
 The one important thing is, that you have an account on GitHub.
+You can easily create one for free if you don't have one yet.
 Then, it's easy to become a collaborator and join the project.
 
 ## Authoring
