@@ -22,7 +22,10 @@ decipherment until to today.
 # Why is it open source?
 The project is open source and free.
 Knowledge should be free and accessible to everyone.
-TODO
+The history of deciperment of Maya hieroglyphs should be readable and understandable to anyone
+interested in this manner.
+All texts, images and illustrations should be publicly available, so that the great
+process of decipherment can be shared with everyone around the world. 
 
 # Who can contribute?
 Any help is greatly appreciated.
@@ -85,7 +88,19 @@ For more information on trunk-based development and the git branch model can be 
 [here](https://trunkbaseddevelopment.com/).
 
 # How to build
+You need a LaTeX distribution installed and available in your terminal.
+The shell script `compile.sh` will compile the document.
+The location of the build files etc. can be configured via command line arguments.
+Alternatively, one can use a docker container to compile.
+
 ## VSCode and docker
+[VSCode](https://code.visualstudio.com/) is a source code editor and development tool.
+It has the opportunity to be used in conjunction with docker containers 
+(see [devcontainers](https://code.visualstudio.com/docs/devcontainers/containers)).
+This project fully supports docker containers as it is also used during 
+the continuous integration cycle.
+It's an easy and isolated way to create a LaTeX environment and everything a consumer or writer
+needs to compile the final PDF file.
 
 # Changelog
 The changelog format is based on [Keep a Changelog](http://keepachangelog.com/)
