@@ -45,15 +45,16 @@ jobs:
 
       - name: Check ahpula
         run: |
-          [ $(python3 ahpula.py 0790-07-20)                          == "9.17.19.13.16" ]                       || echo "invalid output from ahpula"
-          [ $(python3 ahpula.py 2022-12-30)                          == "13.0.10.2.18" ]                        || echo "invalid output from ahpula"
-          [ $(python3 ahpula.py -cr 2022-12-30)                      == "13.0.10.2.18 9 Etz'nab' 11 K'ank'in" ] || echo "invalid output from ahpula"
-          [ $(python3 ahpula.py --calendar-round 2022-12-30)         == "13.0.10.2.18 9 Etz'nab' 11 K'ank'in" ] || echo "invalid output from ahpula"
-          [ $(python3 ahpula.py --no-long-count -cr 2022-12-30)      == "9 Etz'nab' 11 K'ank'in" ]              || echo "invalid output from ahpula"
-          [ $(python3 ahpula.py --tzolkin 2022-12-30)                == "13.0.10.2.18 9 Etz'nab" ]              || echo "invalid output from ahpula"
-          [ $(python3 ahpula.py --no-long-count -tzolkin 2022-12-30) == "19 Etz'nab" ]                          || echo "invalid output from ahpula"
-          [ $(python3 ahpula.py --haab 2022-12-30)                   == "13.0.10.2.18 11 K'ank'in" ]            || echo "invalid output from ahpula"
-          [ $(python3 ahpula.py --no-long-count --haab 2022-12-30)   == "11 K'ank'in" ]                         || echo "invalid output from ahpula"
+          [ $(python3 ahpula.py 0790-07-20)                           == "9.17.19.13.16" ]                       || echo "invalid output from ahpula"
+          [ $(python3 ahpula.py 2022-12-30)                           == "13.0.10.2.18" ]                        || echo "invalid output from ahpula"
+          [ $(python3 ahpula.py -cr 2022-12-30)                       == "13.0.10.2.18 9 Etz'nab' 11 K'ank'in" ] || echo "invalid output from ahpula"
+          [ $(python3 ahpula.py --calendar-round 2022-12-30)          == "13.0.10.2.18 9 Etz'nab' 11 K'ank'in" ] || echo "invalid output from ahpula"
+          [ $(python3 ahpula.py --no-long-count -cr 2022-12-30)       == "9 Etz'nab' 11 K'ank'in" ]              || echo "invalid output from ahpula"
+          [ $(python3 ahpula.py --tzolkin 2022-12-30)                 == "13.0.10.2.18 9 Etz'nab" ]              || echo "invalid output from ahpula"
+          [ $(python3 ahpula.py --no-long-count --tzolkin 2022-12-30) == "19 Etz'nab" ]                          || echo "invalid output from ahpula"
+          [ $(python3 ahpula.py --haab 2022-12-30)                    == "13.0.10.2.18 11 K'ank'in" ]            || echo "invalid output from ahpula"
+          [ $(python3 ahpula.py --no-long-count --haab 2022-12-30)    == "11 K'ank'in" ]                         || echo "invalid output from ahpula"
+        shell: bash
 
 
       - name: Compile document
