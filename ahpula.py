@@ -3,7 +3,7 @@
 ####################################################################################################
 # ahpula.py  - A script to produce a long count date in the classic notation from given date string
 #
-# usage: ahpula.py [-h] [--long-count | --no-long-count] [--tzolkin | --no-tzolkin] [--haab | --no-haab] [date]
+# usage: ahpula.py [-h] [--long-count | --no-long-count] [--tzolkin | --no-tzolkin] [--haab | --no-haab] [--calendar-round] [date]
 # 
 # Ahpula Maya date script
 # 
@@ -17,6 +17,8 @@
 #   --tzolkin, --no-tzolkin
 #                         print Tzolk'in date (default: False)
 #   --haab, --no-haab     print Haab' date (default: False)
+#   --calendar-round, -cr
+#                         print calendar round
 #
 # Sample output: python3 ahpula.py 2022-12-30
 #                13.0.10.2.18
