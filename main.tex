@@ -1,5 +1,36 @@
-\documentclass[12pt]{article}
+\documentclass[pdftex,a4paper,headsepline,oneside]{scrreprt}
+
+% import preamble file (preamble.sty)
+\usepackage{preamble}
+
+% declare some pdf header stuff
+\newcommand{\worktitle}{Maya Hieroglyphs --- The History of Decipherment}
+\newcommand{\authorlist}{Sebastian Bauer} % add here your name when authored some content
+
+\title{\worktitle}
+\author{\authorlist}
+\date{\today}
+\hypersetup{
+	pdfauthor={\authorlist},
+    % TODO: some more keywords might be nice
+	pdfkeywords={history, decipherment, Maya, hieroglyphs, writing, inscriptions},
+	pdftitle={\worktitle},
+	pdfsubject={\worktitle}
+}
+
+% actual beginning of document
 \begin{document}
-Hello world!
-$Hello world$ %math mode 
+    Hello world!
+    $Hello world$ %math mode
+	
+	\pagenumbering{roman}
+	\linespread{1.25}
+
+	% table of contents
+	\tableofcontents
+	\newpage
+	\pagenumbering{arabic}
+
+	%chapters
+	
 \end{document}

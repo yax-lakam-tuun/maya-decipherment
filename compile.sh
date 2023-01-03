@@ -64,6 +64,7 @@ echo "Invoking latexmk..."
 echo ""
 
 # go!
+cd $source_path
 latexmk \
     -synctex=1 \
     -interaction=nonstopmode \

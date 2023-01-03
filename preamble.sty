@@ -1,0 +1,13 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{preamble}[Things which are needed for literally all tex files in this project]
+
+\RequirePackage{subfiles}                       % allows subfolders
+\RequirePackage{hyperref}        				% creates links in table of contents
+
+% stuff for headline and footer
+\RequirePackage{scrlayer-scrpage}
+\pagestyle{scrheadings}
+\clearpairofpagestyles
+\automark[]{chapter}
+\ohead[]{\rightmark}
+\ofoot[\pagemark]{\pagemark}
