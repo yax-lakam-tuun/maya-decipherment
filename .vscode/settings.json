@@ -1,0 +1,6 @@
+{
+    "latex-workshop.latex.outDir": "build/",
+    "editor.rulers": [
+        100
+    ]
+}
