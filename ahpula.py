@@ -90,6 +90,8 @@ def parse_arguments(args):
                         default=False, help="print Tzolk'in date")
     parser.add_argument('--haab', dest='haab', action=argparse.BooleanOptionalAction,
                         default=False, help="print Haab' date")
+    parser.add_argument('--calendar-round', '-cr', dest='calendar_round', action='store_true',
+                        default=False, help="print calendar round")
     return parser.parse_args(args[1:])
 
 
@@ -105,11 +107,11 @@ def main(args):
     if settings.long_count:
         dates.append(f"{long_count_notation(long_count)}")
 
-    if settings.tzolkin:
+    if settings.tzolkin or settings.calendar_round:
         number, day = tzolkin_date_from_maya_number(maya_number)
         dates.append(f"{number} {day}")
 
-    if settings.haab:
+    if settings.haab or settings.calendar_round:
         day, month = haab_date_from_maya_number(maya_number)
         dates.append(f"{day} {month}")
 
