@@ -43,6 +43,18 @@ jobs:
           ${{ env.CONTAINER_TAG }} 
           bash -c "\"${{ env.CONTAINER_SOURCE_PATH }}/chktexall.sh\" \"${{ env.CONTAINER_SOURCE_PATH }}\""
 
+      - name: Check ahpula
+        run: |
+          [ $(python3 $GITHUB_WORKSPACE/ahpula.py 0790-07-20)                     == "9.17.19.13.16" ]                       || echo "invalid output from ahpula"
+          [ $(python3 $GITHUB_WORKSPACE/ahpula.py 2022-12-30)                     == "13.0.10.2.18" ]                        || echo "invalid output from ahpula"
+          [ $(python3 $GITHUB_WORKSPACE/ahpula.py -cr 2022-12-30)                 == "13.0.10.2.18 9 Etz'nab' 11 K'ank'in" ] || echo "invalid output from ahpula"
+          [ $(python3 $GITHUB_WORKSPACE/ahpula.py --no-long-count -cr 2022-12-30) == "9 Etz'nab' 11 K'ank'in" ]              || echo "invalid output from ahpula"
+          [ $(python3 $GITHUB_WORKSPACE/ahpula.py -t 2022-12-30)                  == "13.0.10.2.18 9 Etz'nab" ]              || echo "invalid output from ahpula"
+          [ $(python3 $GITHUB_WORKSPACE/ahpula.py --no-long-count -t 2022-12-30)  == "19 Etz'nab" ]                          || echo "invalid output from ahpula"
+          [ $(python3 $GITHUB_WORKSPACE/ahpula.py -h 2022-12-30)                  == "13.0.10.2.18 11 K'ank'in" ]            || echo "invalid output from ahpula"
+          [ $(python3 $GITHUB_WORKSPACE/ahpula.py --no-long-count -h 2022-12-30)  == "11 K'ank'in" ]                         || echo "invalid output from ahpula"
+
+
       - name: Compile document
         run: >-
           docker run --rm 
