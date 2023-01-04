@@ -1,13 +1,31 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{preamble}[Things which are needed for literally all tex files in this project]
 
-\RequirePackage{subfiles}                       % allows subfolders
 \RequirePackage{hyperref}        				% creates links in table of contents
+\RequirePackage{graphicx}					    % for pictures etc.
+\RequirePackage[abspath]{currfile}              % provides \currfiledir used in graphicspath
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % stuff for headline and footer
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \RequirePackage{scrlayer-scrpage}
 \pagestyle{scrheadings}
 \clearpairofpagestyles
 \automark[]{chapter}
 \ohead[]{\rightmark}
 \ofoot[\pagemark]{\pagemark}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Subfiles support
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\RequirePackage{subfiles}
+% redefine subfile command to make sure 'maya/img' folder in all sub folders are found
+\makeatletter
+\let\org@subfile\subfile
+\renewcommand*{\subfile}[1]{%
+ \filename@parse{#1}% LaTeX's file name parser
+ \expandafter
+ \graphicspath\expandafter{{maya/}\expandafter{\filename@area img/}}%
+ \org@subfile{#1}%
+}
+\makeatother
