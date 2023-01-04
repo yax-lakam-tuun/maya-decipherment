@@ -1,6 +1,10 @@
 #!/bin/bash
 
-root_path="$1/"
+if [ -z "$1" ]; then
+    root_path="."
+else
+    root_path="$1"
+fi
 
 exit_code=0
 tex_files=$(find $root_path -type f -name '*.tex')
