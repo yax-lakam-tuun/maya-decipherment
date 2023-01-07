@@ -1,9 +1,5 @@
 #!/bin/bash
 
-document_name="document"
-source_path="."
-build_path="$source_path/build"
-
 usage() { 
     echo "See '$0' --help" 1>&2; 
 }
@@ -46,9 +42,20 @@ while getopts "hs:b:d:" OPTION; do
 done
 shift $(( OPTIND - 1 ))
 if [ -z "$1" ]; then
-    main_path="$source_path/main"
+    main_path="main"
 else
     main_path="$1"
+fi
+
+# define final settings
+if [ -z "$document_name" ]; then
+    document_name="$(basename $main_path .tex)"
+fi
+if [ -z "$source_path" ]; then
+    source_path="$(dirname $main_path)"
+fi
+if [ -z "$build_path" ]; then
+    build_path="$source_path/build"
 fi
 
 # print summary
@@ -63,8 +70,9 @@ echo ""
 echo "Invoking latexmk..."
 echo ""
 
-# go!
-cd $source_path
+# go !
+repo_root=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+cd "$repo_root"
 latexmk \
     -synctex=1 \
     -interaction=nonstopmode \
