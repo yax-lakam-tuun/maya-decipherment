@@ -5,6 +5,7 @@
 # type 'python3 ahpula.py --help' for more information
 # Sample output: python3 ahpula.py 2022-12-30
 #                13.0.10.2.18
+# Update document-version.tex: python3 ahpula.py --mode latex > document-version.tex
 ####################################################################################################
 
 import datetime
