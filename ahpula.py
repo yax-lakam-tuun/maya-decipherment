@@ -228,7 +228,7 @@ def print_json(gregorian_date: datetime.datetime, maya_date: MayaDate):
     print(json.dumps(json_data, indent=4))
 
 def print_latex(gregorian_date: datetime.datetime, maya_date: MayaDate, prefix: str):
-    iso_date = gregorian_date.strftime("%Y-%m-%d")
+    iso_date = gregorian_date.strftime("%Y--%m--%d")
     print(f"\\newcommand{{\{prefix}gregoriandate}}{{{iso_date}}}")
     print(f"\\newcommand{{\{prefix}longcount}}{{{maya_date.long_count.standard_notation()}}}")
     print(f"\\newcommand{{\{prefix}tzolkin}}{{{maya_date.tzolkin.standard_notation()}}}")
