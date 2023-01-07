@@ -83,73 +83,153 @@ class LongCountDate:
         return ret
 
 class TzolkinDate:
-    day_names = [
-        "Imix", "Ik'", "Ak'b'al", "K'an",
-        "Chicchan", "Kimi", "Manik'", "Lamat",
-        "Muluk", "Ok", "Chuwen", "Eb'",
-        "B'en", "Ix", "Men", "Kib'",
-        "Kab'an", "Etz'nab'", "Kawak", "Ajaw"
-    ]
+    class DayName:
+        MAX_ID = 20
 
-    TRECENA_NUMBER_MIN = 1
-    TRECENA_NUMBER_MAX = 13
-    TRECENA_NUMBER_COUNT = TRECENA_NUMBER_MAX - TRECENA_NUMBER_MIN + 1
+        def __init__(self, id: int) -> None:
+            if id not in range(self.MAX_ID):
+                raise Exception(f"Invalid day name: {id}")
+            self._id = id
+
+        def ordinal(self) -> int:
+            return 1 + self._id
+
+        def standard(self):
+            STANDARD_NAMES = [
+                "Imix", "Ik'", "Ak'b'al", "K'an",
+                "Chicchan", "Kimi", "Manik'", "Lamat",
+                "Muluk", "Ok", "Chuwen", "Eb'",
+                "B'en", "Ix", "Men", "Kib'",
+                "Kab'an", "Etz'nab'", "Kawak", "Ajaw"
+            ]
+            return STANDARD_NAMES[self._id]
+
+    IMIX = DayName(0)
+    IK = DayName(1)
+    AKBAL = DayName(2)
+    KAN = DayName(3)
+    CHICCHAN = DayName(4)
+    KIMI = DayName(5)
+    MANIK = DayName(6)
+    LAMAT = DayName(7)
+    MULUK = DayName(8)
+    OK = DayName(9)
+    CHUWEN = DayName(10)
+    EB = DayName(11)
+    BEN = DayName(12)
+    IX = DayName(13)
+    MEN = DayName(14)
+    KIB = DayName(15)
+    KABAN = DayName(16)
+    ETZNAB = DayName(17)
+    KAWAK = DayName(18)
+    AJAW = DayName(19)
+
+    TRECENA_DAY_MIN = 1
+    TRECENA_DAY_MAX = 13
+    TRECENA_DAY_COUNT = TRECENA_DAY_MAX - TRECENA_DAY_MIN + 1
     TOTAL_DAYS = 260
-
-    @staticmethod
-    def four_ajaw():
-        return TzolkinDate() + DistanceNumber(159)
+    DAY_NAMES_COUNT = 20
 
     @staticmethod
     def from_maya_number(maya_number: MayaNumber):
-        return TzolkinDate.four_ajaw() + DistanceNumber(maya_number.days)
+        base = TzolkinDate.from_trecena_day_name(4, TzolkinDate.AJAW)
+        return base + DistanceNumber(maya_number.days)
 
-    def __init__(self) -> None:
-        self._index = 0 # 1 Imix
+    @staticmethod
+    def from_trecena_day_name(trecena_day: int, day_name: DayName):
+        if trecena_day not in range(TzolkinDate.TRECENA_DAY_MIN, TzolkinDate.TRECENA_DAY_MAX+1):
+            raise Exception(f"Invalid trecena day: {trecena_day}")
+        trecena_day0 = trecena_day - TzolkinDate.TRECENA_DAY_MIN
+        day_name0 = day_name.ordinal() - 1
+        index = (day_name0 * (-3) * 13 + trecena_day0 * 2 * 20) % 260
+        return TzolkinDate(index)
+
+    def __init__(self, index: int) -> None:
+        if index not in range(TzolkinDate.TOTAL_DAYS):
+            raise Exception(f"Invalid index: {index}")
+        self._index = index
 
     def standard_notation(self):
-        return f"{self.trecena_number()} {self.day_name()}"
+        return f"{self.trecena_day()} {self.day_name().standard()}"
 
     def ordinal_day(self) -> int:
         return 1 + self._index
 
-    def trecena_number(self) -> int:
-        return TzolkinDate.TRECENA_NUMBER_MIN + self._index % TzolkinDate.TRECENA_NUMBER_COUNT
-
-    def day_name_number(self) -> int:
-        return 1 + (self._index % len(TzolkinDate.day_names))
+    def trecena_day(self) -> int:
+        return TzolkinDate.TRECENA_DAY_MIN + self._index % TzolkinDate.TRECENA_DAY_COUNT
 
     def day_name(self) -> str:
-        return TzolkinDate.day_names[self.day_name_number() - 1]
+        return TzolkinDate.DayName(self._index % TzolkinDate.DAY_NAMES_COUNT)
 
     def __add__(self, other: DistanceNumber):
         new_index = (self._index + other.days) % TzolkinDate.TOTAL_DAYS
-        ret = TzolkinDate()
-        ret._index = new_index
-        return ret
+        return TzolkinDate(new_index)
 
 class HaabDate:
-    months = [
-        "Pop", "Wo'", "Sip", "Sotz'", "Sek", "Xul", "Yaxk'in", "Mol", "Ch'en",
-        "Yax", "Sak'", "Keh", "Mak", "K'ank'in", "Muwan", "Pax", "K'ayab'", "Kumk'u", "Wayeb"
-    ]
+    class Month:
+        MAX_ID = 19
 
+        def __init__(self, id: int) -> None:
+            if id not in range(self.MAX_ID):
+                raise Exception(f"Invalid month: {id}")
+            self._id = id
+
+        def ordinal(self) -> int:
+            return 1 + self._id
+
+        def standard(self) -> str:
+            MONTHS = [
+                "Pop", "Wo'", "Sip", "Sotz'", "Sek", "Xul", "Yaxk'in", "Mol", "Ch'en",
+                "Yax", "Sak'", "Keh", "Mak", "K'ank'in", "Muwan", "Pax", "K'ayab'", "Kumk'u", "Wayeb"
+            ]
+            return MONTHS[self._id]
+
+    POP = Month(0)
+    WO = Month(1)
+    SIP = Month(2)
+    SOTZ = Month(3)
+    SEK = Month(4)
+    XUL = Month(5)
+    YAXKIN = Month(6)
+    MOL = Month(7)
+    CHEN = Month(8)
+    YAX = Month(9)
+    SAK = Month(10)
+    KEH = Month(11)
+    MAK = Month(12)
+    KANKIN = Month(13)
+    MUWAN = Month(14)
+    PAX = Month(15)
+    KAYAB = Month(16)
+    KUMKU = Month(17)
+    WAYEB = Month(18)
+    
     WINAL_DAYS = 20
+    WAYEB_DAYS = 5
     TOTAL_DAYS = 365
 
     @staticmethod
-    def eight_kumku():
-        return HaabDate() + DistanceNumber(347)
-
-    @staticmethod
     def from_maya_number(maya_number: MayaNumber):
-        return HaabDate.eight_kumku() + DistanceNumber(maya_number.days)
+        base = HaabDate.from_day_month(8, HaabDate.KUMKU)
+        return base + DistanceNumber(maya_number.days)
 
-    def __init__(self) -> None:
-        self._index = 0 # 1 Pop
+    def from_day_month(day: int, month: Month):
+        if day not in range(HaabDate.WAYEB_DAYS if month.ordinal() == 19 else HaabDate.WINAL_DAYS):
+            raise Exception(f"Invalid day: {day}")
+        day0 = day - 1
+        month0 = month.ordinal() - 1
+        index = day0 + HaabDate.WINAL_DAYS * month0
+        return HaabDate(index)
+
+    def __init__(self, index: int) -> None:
+        if index not in range(HaabDate.TOTAL_DAYS):
+            raise Exception(f"Invalid index: {index}")
+        self._index = index
 
     def standard_notation(self):
-        return f"End of {self.month_name()}" if self.day() == HaabDate.WINAL_DAYS else f"{self.day()} {self.month_name()}"
+        month_name = self.month().standard()
+        return f"End of {month_name()}" if self.day() == HaabDate.WINAL_DAYS else f"{self.day()} {month_name}"
 
     def ordinal_day(self) -> int:
         return 1 + self._index
@@ -158,16 +238,11 @@ class HaabDate:
         return 1 + (self._index % HaabDate.WINAL_DAYS)
 
     def month(self) -> int:
-        return 1 + self._index // HaabDate.WINAL_DAYS
-
-    def month_name(self) -> int:
-        return HaabDate.months[self.month() - 1]
+        return HaabDate.Month(self._index // HaabDate.WINAL_DAYS)
 
     def __add__(self, other: DistanceNumber):
         new_index = (self._index + other.days) % HaabDate.TOTAL_DAYS
-        ret = HaabDate()
-        ret._index = new_index
-        return ret
+        return HaabDate(new_index)
 
 def parse_arguments(args):
     parser = argparse.ArgumentParser(description='Ahpula Maya date script')
@@ -205,25 +280,29 @@ def print_plain(maya: MayaDate, long_count: bool, tzolkin: bool, haab: bool):
     print(' '.join(dates))
 
 def print_json(gregorian_date: datetime.datetime, maya_date: MayaDate):
+    long_count = maya_date.long_count
+    tzolkin = maya_date.tzolkin
+    haab = maya_date.haab
+
     json_data = {
         "gregorian-date": gregorian_date.strftime("%Y-%m-%d"),
         "long-count": {
-            "standardNotation": maya_date.long_count.standard_notation(),
-            "digits": maya_date.long_count.digits()
+            "standardNotation": long_count.standard_notation(),
+            "digits": long_count.digits()
         },
         "tzolkin": {
-            "standardNotation": maya_date.tzolkin.standard_notation(),
-            "trecenaNumber": maya_date.tzolkin.trecena_number(),
-            "dayName": maya_date.tzolkin.day_name(),
-            "dayNameNumber": maya_date.tzolkin.day_name_number(),
-            "ordinalDay": maya_date.tzolkin.ordinal_day(),
+            "standardNotation": tzolkin.standard_notation(),
+            "trecenaDay": tzolkin.trecena_day(),
+            "dayName": tzolkin.day_name().standard(),
+            "dayNameOrdinal": tzolkin.day_name().ordinal(),
+            "ordinalDay": tzolkin.ordinal_day(),
         },
         "haab": {
-            "standardNotation": maya_date.haab.standard_notation(),
-            "day": maya_date.haab.day(),
-            "monthName": maya_date.haab.month_name(),
-            "month": maya_date.haab.month(),
-            "ordinalDay": maya_date.haab.ordinal_day(),
+            "standardNotation": haab.standard_notation(),
+            "day": haab.day(),
+            "monthName": haab.month().standard(),
+            "month": haab.month().ordinal(),
+            "ordinalDay": haab.ordinal_day(),
         }
     }
     print(json.dumps(json_data, indent=4))
