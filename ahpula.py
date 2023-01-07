@@ -90,10 +90,10 @@ class TzolkinDate:
         "Kab'an", "Etz'nab'", "Kawak", "Ajaw"
     ]
 
-    trecena_number_min = 1
-    trecena_number_max = 13
-    trecena_number_count = trecena_number_max - trecena_number_min + 1
-    total_days = 260
+    TRECENA_NUMBER_MIN = 1
+    TRECENA_NUMBER_MAX = 13
+    TRECENA_NUMBER_COUNT = TRECENA_NUMBER_MAX - TRECENA_NUMBER_MIN + 1
+    TOTAL_DAYS = 260
 
     @staticmethod
     def four_ajaw():
@@ -113,7 +113,7 @@ class TzolkinDate:
         return 1 + self._index
 
     def trecena_number(self) -> int:
-        return TzolkinDate.trecena_number_min + self._index % TzolkinDate.trecena_number_count
+        return TzolkinDate.TRECENA_NUMBER_MIN + self._index % TzolkinDate.TRECENA_NUMBER_COUNT
 
     def day_name_number(self) -> int:
         return 1 + (self._index % len(TzolkinDate.day_names))
@@ -122,7 +122,7 @@ class TzolkinDate:
         return TzolkinDate.day_names[self.day_name_number() - 1]
 
     def __add__(self, other: DistanceNumber):
-        new_index = (self._index + other.days) % TzolkinDate.total_days
+        new_index = (self._index + other.days) % TzolkinDate.TOTAL_DAYS
         ret = TzolkinDate()
         ret._index = new_index
         return ret
@@ -133,8 +133,8 @@ class HaabDate:
         "Yax", "Sak'", "Keh", "Mak", "K'ank'in", "Muwan", "Pax", "K'ayab'", "Kumk'u", "Wayeb"
     ]
 
-    winal_days = 20
-    total_days = 365
+    WINAL_DAYS = 20
+    TOTAL_DAYS = 365
 
     @staticmethod
     def eight_kumku():
@@ -148,22 +148,22 @@ class HaabDate:
         self._index = 0 # 1 Pop
 
     def standard_notation(self):
-        return f"End of {self.month_name()}" if self.day() == HaabDate.winal_days else f"{self.day()} {self.month_name()}"
+        return f"End of {self.month_name()}" if self.day() == HaabDate.WINAL_DAYS else f"{self.day()} {self.month_name()}"
 
     def ordinal_day(self) -> int:
         return 1 + self._index
 
     def day(self) -> int:
-        return 1 + (self._index % HaabDate.winal_days)
+        return 1 + (self._index % HaabDate.WINAL_DAYS)
 
     def month(self) -> int:
-        return 1 + self._index // HaabDate.winal_days
+        return 1 + self._index // HaabDate.WINAL_DAYS
 
     def month_name(self) -> int:
         return HaabDate.months[self.month() - 1]
 
     def __add__(self, other: DistanceNumber):
-        new_index = (self._index + other.days) % HaabDate.total_days
+        new_index = (self._index + other.days) % HaabDate.TOTAL_DAYS
         ret = HaabDate()
         ret._index = new_index
         return ret
@@ -227,7 +227,9 @@ def print_json(gregorian_date: datetime.datetime, maya_date: MayaDate):
     }
     print(json.dumps(json_data, indent=4))
 
-def print_latex(maya_date: MayaDate, prefix: str):
+def print_latex(gregorian_date: datetime.datetime, maya_date: MayaDate, prefix: str):
+    iso_date = gregorian_date.strftime("%Y-%m-%d")
+    print(f"\\newcommand{{\{prefix}gregoriandate}}{{{iso_date}}}")
     print(f"\\newcommand{{\{prefix}longcount}}{{{maya_date.long_count.standard_notation()}}}")
     print(f"\\newcommand{{\{prefix}tzolkin}}{{{maya_date.tzolkin.standard_notation()}}}")
     print(f"\\newcommand{{\{prefix}haab}}{{{maya_date.haab.standard_notation()}}}")
@@ -248,7 +250,7 @@ def main(args):
         print_json(gregorian_date, maya_date)
 
     if settings.mode == 'latex':
-        print_latex(maya_date, prefix="documentversion")
+        print_latex(gregorian_date, maya_date, prefix="documentversion")
 
 if __name__ == '__main__':
     main(sys.argv)
