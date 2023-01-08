@@ -229,7 +229,7 @@ class HaabDate:
 
     def standard_notation(self):
         month_name = self.month().standard()
-        return f"End of {month_name()}" if self.day() == HaabDate.WINAL_DAYS else f"{self.day()} {month_name}"
+        return f"End of {month_name}" if self.day() == HaabDate.WINAL_DAYS else f"{self.day()} {month_name}"
 
     def ordinal_day(self) -> int:
         return 1 + self._index
