@@ -44,18 +44,11 @@ jobs:
           bash -c "\"${{ env.CONTAINER_SOURCE_PATH }}/chktexall.sh\" \"${{ env.CONTAINER_SOURCE_PATH }}\""
 
       - name: Check ahpula
-        run: |
-          OUTPUT=$(python3 ahpula.py 0790-07-20);                           [[ $OUTPUT == "9.17.19.13.16" ]]                           || echo "test #01: invalid output from ahpula: $OUTPUT"
-          OUTPUT=$(python3 ahpula.py 0790-07-20);                           [[ $OUTPUT == "9.17.19.13.16" ]]                           || echo "test #02: invalid output from ahpula: $OUTPUT"
-          OUTPUT=$(python3 ahpula.py 2022-12-30);                           [[ $OUTPUT == "13.0.10.2.18" ]]                            || echo "test #03: invalid output from ahpula: $OUTPUT"
-          OUTPUT=$(python3 ahpula.py -cr 2022-12-30);                       [[ $OUTPUT == "13.0.10.2.18 9 Etz'nab' 11 K'ank'in" ]]     || echo "test #04: invalid output from ahpula: $OUTPUT"
-          OUTPUT=$(python3 ahpula.py -cr 2023-01-08);                       [[ $OUTPUT == "13.0.10.2.18 9 Etz'nab' End of K'ank'in" ]] || echo "test #04: invalid output from ahpula: $OUTPUT"
-          OUTPUT=$(python3 ahpula.py --calendar-round 2022-12-30) ;         [[ $OUTPUT == "13.0.10.2.18 9 Etz'nab' 11 K'ank'in" ]]     || echo "test #05: invalid output from ahpula: $OUTPUT"
-          OUTPUT=$(python3 ahpula.py --no-long-count -cr 2022-12-30);       [[ $OUTPUT == "9 Etz'nab' 11 K'ank'in" ]]                  || echo "test #06: invalid output from ahpula: $OUTPUT"
-          OUTPUT=$(python3 ahpula.py --tzolkin 2022-12-30);                 [[ $OUTPUT == "13.0.10.2.18 9 Etz'nab'" ]]                 || echo "test #07: invalid output from ahpula: $OUTPUT"
-          OUTPUT=$(python3 ahpula.py --no-long-count --tzolkin 2022-12-30); [[ $OUTPUT == "9 Etz'nab'" ]]                              || echo "test #08: invalid output from ahpula: $OUTPUT"
-          OUTPUT=$(python3 ahpula.py --haab 2022-12-30);                    [[ $OUTPUT == "13.0.10.2.18 11 K'ank'in" ]]                || echo "test #09: invalid output from ahpula: $OUTPUT"
-          OUTPUT=$(python3 ahpula.py --no-long-count --haab 2022-12-30);    [[ $OUTPUT == "11 K'ank'in" ]]                             || echo "test #10: invalid output from ahpula: $OUTPUT"
+        run: >-
+          docker run --rm 
+          -v $GITHUB_WORKSPACE:${{ env.CONTAINER_SOURCE_PATH }}
+          ${{ env.CONTAINER_TAG }} 
+          bash -c "\"${{ env.CONTAINER_SOURCE_PATH }}/check-ahpula.sh\" 
 
       - name: Compile document
         run: >-
