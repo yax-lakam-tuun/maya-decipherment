@@ -9,14 +9,23 @@
 
 	// Set *default* container specific settings.json values on container create.
 	"settings": { 
-		"terminal.integrated.shell.linux": "/bin/bash",
 		"terminal.integrated.profiles.linux": {
 			"bash": {
 				"path": "bash",
 				"icon": "terminal-bash"
+			},
+			"zsh": {
+				"path": "zsh",
+				"args": [
+					"--login"
+				]
 			}
 		},
-		"terminal.integrated.defaultProfile.linux": "bash",
+		"terminal.integrated.defaultProfile.linux": "zsh",
+		"terminal.integrated.allowChords": false,
+		"terminal.integrated.drawBoldTextInBrightColors": false,
+		"terminal.integrated.experimentalLinkProvider": false,
+		"terminal.integrated.rendererType": "auto",
 		"lldb.executable": "/usr/bin/lldb",
 		// VS Code don't watch files under ./target
 		"files.watcherExclude": {
