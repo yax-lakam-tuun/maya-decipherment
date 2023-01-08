@@ -48,7 +48,7 @@ jobs:
           docker run --rm 
           -v $GITHUB_WORKSPACE:${{ env.CONTAINER_SOURCE_PATH }}
           ${{ env.CONTAINER_TAG }} 
-          bash -c "\"${{ env.CONTAINER_SOURCE_PATH }}/check-ahpula.sh\" 
+          bash -c "\"${{ env.CONTAINER_SOURCE_PATH }}/check-ahpula.sh\""
 
       - name: Compile document
         run: >-
@@ -61,4 +61,13 @@ jobs:
           --build-path \"${{ env.CONTAINER_BUILD_PATH}}\" 
           --document-name \"${{ env.DOCUMENT_NAME }}\"
           \"${{ env.CONTAINER_MAIN_PATH }}\""
+
+      - name: Check document
+        run: >-
+          docker run --rm 
+          -v $GITHUB_WORKSPACE:${{ env.CONTAINER_SOURCE_PATH }}
+          ${{ env.CONTAINER_TAG }} 
+          bash -c "\"${{ env.CONTAINER_SOURCE_PATH }}/check-document.sh\" 
+          \"${{ env.CONTAINER_BUILD_PATH }}\" 
+          \"${{ env.DOCUMENT_NAME }}\""
 
