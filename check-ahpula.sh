@@ -8,13 +8,13 @@ test_case() {
     nominal=$3
 
     cmd="python3 $ahpula_path $arguments"
-    echo -n "Testing \"$cmd\"...."
+    echo -n "Testing \"$cmd\"....."
     actual=$($cmd)
 
     if [[ $actual == $nominal ]]; then
-        echo " OK!"
+        echo "OK"
     else
-        echo " FAILED!"
+        echo "FAILED"
         echo "       Expected: $nominal"
         echo "       Actual  : $actual"
         exit_code=1
