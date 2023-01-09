@@ -28,7 +28,7 @@ test_case "$ahpula_path" "0790-07-20" "9.17.19.13.16"
 test_case "$ahpula_path" "0790-07-20" "9.17.19.13.16"
 test_case "$ahpula_path" "2022-12-30" "13.0.10.2.18"
 test_case "$ahpula_path" "-cr 2022-12-30" "13.0.10.2.18 9 Etz'nab' 11 K'ank'in"
-test_case "$ahpula_path" "-cr 2023-01-08" "13.0.10.2.18 9 Etz'nab' End of K'ank'in"
+test_case "$ahpula_path" "-cr 2023-01-08" "13.0.10.3.7 5 Manik' End of K'ank'in"
 test_case "$ahpula_path" "--calendar-round 2022-12-30" "13.0.10.2.18 9 Etz'nab' 11 K'ank'in"
 test_case "$ahpula_path" "--no-long-count -cr 2022-12-30" "9 Etz'nab' 11 K'ank'in"
 test_case "$ahpula_path" "--tzolkin 2022-12-30" "13.0.10.2.18 9 Etz'nab'"
@@ -36,7 +36,7 @@ test_case "$ahpula_path" "--no-long-count --tzolkin 2022-12-30" "9 Etz'nab'"
 test_case "$ahpula_path" "--haab 2022-12-30" "13.0.10.2.18 11 K'ank'in"
 test_case "$ahpula_path" "--no-long-count --haab 2022-12-30" "11 K'ank'in"
 
-if [ ! $exit_code ]; then
+if [[ $exit_code -eq 0 ]]; then
     echo "All tests passed!"
 fi
 
