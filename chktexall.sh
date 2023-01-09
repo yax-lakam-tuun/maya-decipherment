@@ -12,12 +12,12 @@ tex_files=$(find $root_path -type f -name '*.tex')
 while read FILE;
 do
     short_path="${FILE#$root_path}"
-    echo -n "Checking $short_path"
+    echo -n "Checking $short_path....."
     output=$(chktex -q "$FILE" 2>&1)
     if [ $? -eq 0 ]; then
-        echo ".....OK"
+        echo "OK"
     else
-        echo ""
+        echo "FAILED"
         echo "$output"
         exit_code=1
     fi
