@@ -1,12 +1,10 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{preamble}[Things which are needed for literally all tex files in this project]
 
-\RequirePackage{hyperref}        				% creates links in table of contents
-\RequirePackage{graphicx}					    % for pictures etc.
-\RequirePackage[abspath]{currfile}              % provides \currfiledir used in graphicspath
-\RequirePackage{xspace}				    	    % for spaces in commands
+\RequirePackage[backend=biber,style=alphabetic]{biblatex} % bibliography
 
-\RequirePackage{maya}                           % our own stuff everything maya located maya.sty
+% add references
+\addbibresource{references.bib}
 
 % get document version
 \input{document-version.tex}
