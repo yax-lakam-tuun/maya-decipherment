@@ -2,7 +2,7 @@
 {
 	"name": "Maya Hieroglyphs - The History of Decipherment",
 	"build": {
-		"dockerfile": "Dockerfile"
+		"dockerfile": "../container/Dockerfile"
 	},
 	"settings": { 
 		"terminal.integrated.profiles.linux": {
