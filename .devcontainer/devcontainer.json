@@ -27,5 +27,5 @@
 	],
 	// Use command below to sync ssh keys with local keys
 	//"initializeCommand": "find ~/.ssh/ -type f -exec grep -l 'PRIVATE' {} \\; | xargs ssh-add",
-	"remoteUser": "vscode"
+	"containerUser": "ajtzib"
 }

@@ -19,7 +19,7 @@ RUN apt-get -qq install texlive-full chktex
 RUN apt-get -qq install git git-lfs inkscape python3 vim zsh curl wget
 
 # Devcontainers need a pre-defined user called 'vscode'
-ARG user_name="vscode"
+ARG user_name="ajtzib"
 RUN useradd -m -k /etc/skel -d /home/$user_name $user_name
 
 # Install ohmyzsh for vscode user
