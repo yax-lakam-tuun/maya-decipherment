@@ -58,12 +58,12 @@ class MayaNumber:
         return MayaNumber(self.days + other.days)
 
 class LongCountDate:
-    def __init__(self) -> None:
-        self._maya_number = MayaNumber(0)
+    def __init__(self, maya_number: MayaNumber) -> None:
+        self._maya_number = maya_number
 
     @staticmethod
     def from_maya_number(maya_number: MayaNumber):
-        return LongCountDate() + DistanceNumber(maya_number.days)
+        return LongCountDate(maya_number)
 
     def digits(self):
         ret = [i for i in self._maya_number.long_count_digits()]
@@ -244,6 +244,22 @@ class HaabDate:
         new_index = (self._index + other.days) % HaabDate.TOTAL_DAYS
         return HaabDate(new_index)
 
+
+class SupplementarySeries:
+    def __init__(self, maya_number: MayaNumber) -> None:
+        self.maya_number = maya_number
+
+    @staticmethod
+    def from_maya_number(maya_number: MayaNumber):
+        return SupplementarySeries(maya_number)
+
+    def underworldGod(self) -> str:
+        index = self.maya_number.days % 9
+        return f"G{index if index != 0 else 9}"
+
+    def standard_notation(self):
+        return self.underworldGod()
+
 def parse_arguments(args):
     parser = argparse.ArgumentParser(description='Ahpula Maya date script')
     parser.add_argument('date', nargs='?', help="date in ISO format (YYYY-MM-DD)")
@@ -255,6 +271,9 @@ def parse_arguments(args):
                         default=False, help="print Haab' date")
     parser.add_argument('--calendar-round', '-cr', dest='calendar_round', action='store_true',
                         default=False, help="print calendar round")
+
+    parser.add_argument('--supplementary-series', '-s', dest='supplementary_series', action='store_true',
+                        default=False, help="print supplementary series")
     parser.add_argument('--mode', choices=['plain', 'json', 'latex'], dest='mode', default='plain')
     return parser.parse_args(args[1:])
 
@@ -264,8 +283,9 @@ class MayaDate:
         self.long_count = LongCountDate.from_maya_number(maya_number)
         self.tzolkin = TzolkinDate.from_maya_number(maya_number)
         self.haab = HaabDate.from_maya_number(maya_number)
+        self.supplementary_series = SupplementarySeries.from_maya_number(maya_number)
 
-def print_plain(maya: MayaDate, long_count: bool, tzolkin: bool, haab: bool):
+def print_plain(maya: MayaDate, long_count: bool, tzolkin: bool, haab: bool, supplementary_series: bool):
     dates = []
 
     if long_count:
@@ -277,12 +297,16 @@ def print_plain(maya: MayaDate, long_count: bool, tzolkin: bool, haab: bool):
     if haab:
         dates.append(f"{maya.haab.standard_notation()}")
 
+    if supplementary_series:
+        dates.append(f"{maya.supplementary_series.standard_notation()}")
+
     print(' '.join(dates))
 
 def print_json(gregorian_date: datetime.datetime, maya_date: MayaDate):
     long_count = maya_date.long_count
     tzolkin = maya_date.tzolkin
     haab = maya_date.haab
+    supplementary_series = maya.supplementary_series
 
     json_data = {
         "gregorian-date": gregorian_date.strftime("%Y-%m-%d"),
@@ -303,7 +327,8 @@ def print_json(gregorian_date: datetime.datetime, maya_date: MayaDate):
             "monthName": haab.month().standard(),
             "month": haab.month().ordinal(),
             "ordinalDay": haab.ordinal_day(),
-        }
+        },
+        "god-of-the-underworld": supplementary_series.underworldGod()
     }
     print(json.dumps(json_data, indent=4))
 
@@ -324,7 +349,8 @@ def main(args):
             maya_date,
             long_count=settings.long_count,
             tzolkin=settings.tzolkin or settings.calendar_round,
-            haab=settings.haab or settings.calendar_round)
+            haab=settings.haab or settings.calendar_round,
+            supplementary_series=settings.supplementary_series)
     
     if settings.mode == 'json':
         print_json(gregorian_date, maya_date)
