@@ -1,24 +1,32 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{preamble}[Things which are needed for literally all tex files in this project]
 
-\RequirePackage{hyperref}                                 % creates links in table of contents
-\RequirePackage{graphicx}                                 % for pictures etc.
-\RequirePackage[abspath]{currfile}                        % provides \currfiledir used in graphicspath
-\RequirePackage{xspace}                                   % for spaces in commands
-\RequirePackage[backend=biber,style=alphabetic]{biblatex} % bibliography
-\RequirePackage{csquotes}                                 % for citing with in texts (e.g. \textcsquote)
+% creates links in table of contents
+\RequirePackage{hyperref}
 
-\RequirePackage{caption}                                  % figures/subfigures
-\RequirePackage{subcaption}                               % figures/subfigures
+% for pictures etc.
+\RequirePackage{graphicx}
 
-\RequirePackage{maya}                                     % our own stuff everything maya located maya.sty
+% provides \currfiledir used in graphicspath
+\RequirePackage[abspath]{currfile}
 
+% for spaces in commands
+\RequirePackage{xspace}
 
-% add references
-\addbibresource{references.bib}
+% quoting and bibliography
+\RequirePackage[backend=biber,style=alphabetic]{biblatex}
+\RequirePackage{csquotes}
 
-% get document version
-\input{document-version.tex}
+% figures/subfigures
+% hypcap=false disables non-useful warning "Warning: The option hypcap=true will be ignored for this"
+\RequirePackage[hypcap=false]{caption}
+\RequirePackage{subcaption} 
+
+% our own stuff everything maya located maya.sty
+\RequirePackage{maya}                                     % 
+
+% disable non-useful warning: "PDF inclusion: multiple pdfs with page group included in a single page"
+\pdfsuppresswarningpagegroup=1
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % stuff for headline and footer
@@ -44,3 +52,9 @@
  \org@subfile{#1}%
 }
 \makeatother
+
+% add references
+\addbibresource{\subfix{references.bib}}
+
+% get document version
+\input{document-version.tex}
