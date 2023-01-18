@@ -306,7 +306,7 @@ def print_json(gregorian_date: datetime.datetime, maya_date: MayaDate):
     long_count = maya_date.long_count
     tzolkin = maya_date.tzolkin
     haab = maya_date.haab
-    supplementary_series = maya.supplementary_series
+    supplementary_series = maya_date.supplementary_series
 
     json_data = {
         "gregorian-date": gregorian_date.strftime("%Y-%m-%d"),
@@ -328,7 +328,9 @@ def print_json(gregorian_date: datetime.datetime, maya_date: MayaDate):
             "month": haab.month().ordinal(),
             "ordinalDay": haab.ordinal_day(),
         },
-        "god-of-the-underworld": supplementary_series.underworldGod()
+        "supplementary_series": {
+            "god-of-the-underworld": supplementary_series.underworldGod()
+        }
     }
     print(json.dumps(json_data, indent=4))
 
