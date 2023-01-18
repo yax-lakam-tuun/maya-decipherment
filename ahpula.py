@@ -245,6 +245,7 @@ class HaabDate:
         return HaabDate(new_index)
 
 
+# TODO: add more data here
 class SupplementarySeries:
     def __init__(self, maya_number: MayaNumber) -> None:
         self.maya_number = maya_number
