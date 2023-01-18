@@ -1,5 +1,10 @@
 \documentclass[pdftex,a4paper,headsepline,oneside]{scrreprt}
 
+% Avoid warning non-useful warnings of our own maya and preamble package
+\usepackage{silence}
+\WarningFilter{latex}{You have requested package `..//preamble',}
+\WarningFilter{latex}{You have requested package `..//maya',}
+
 % import preamble file (preamble.sty)
 \usepackage{preamble}
 
