@@ -8,6 +8,15 @@
 % import preamble file (preamble.sty)
 \usepackage{preamble}
 
+% add references
+\addbibresource{\subfix{references.bib}}
+
+% Print bibliography at end of each subfile when compiling separately,
+% but also in main document when compiling together
+\AtEndDocument{%
+    \printbibliography
+}
+
 % declare some pdf header stuff
 \newcommand{\worktitle}{Maya Hieroglyphs --- The History of Decipherment}
 \newcommand{\authorlist}{Sebastian Bauer} % add here your name when authored some content
