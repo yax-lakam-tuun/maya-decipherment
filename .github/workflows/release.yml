@@ -8,7 +8,7 @@ env:
   CONTAINER_TAG: maya/build_document:test
   CONTAINER_SOURCE_PATH: /opt/source
   CONTAINER_BUILD_PATH: /opt/source/build
-  CONTAINER_MAIN_PATH: /opt/source/main
+  CONTAINER_MAIN_PATH: main
   DOCUMENT_NAME: "Maya Hieroglyphs - The History of Decipherment"
   SOURCE_BUNDLE_NAME: sources.zip
 
