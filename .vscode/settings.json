@@ -1,6 +1,9 @@
 {
     "latex-workshop.latex.outDir": "build/",
     "editor.rulers": [
-        100
+        {
+            "column": 100,
+            "color": "#ff00ff"
+        }
     ]
 }
