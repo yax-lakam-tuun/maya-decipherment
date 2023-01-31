@@ -14,7 +14,7 @@
 % Print bibliography at end of each subfile when compiling separately,
 % but also in main document when compiling together
 \AtEndDocument{%
-    \printbibliography
+	\printbibliography[title={References},heading=bibintoc]
 }
 
 % declare some pdf header stuff
@@ -50,7 +50,4 @@
 
 	%chapters
 	\subfile{introduction/introduction}
-
-	% last chapter shall be the bibliography
-	\printbibliography[title={References},heading=bibintoc]
 \end{document}
