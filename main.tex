@@ -1,7 +1,21 @@
 \documentclass[pdftex,a4paper,headsepline,oneside]{scrreprt}
 
+% Avoid warning non-useful warnings of our own maya and preamble package
+\usepackage{silence}
+\WarningFilter{latex}{You have requested package `..//preamble',}
+\WarningFilter{latex}{You have requested package `..//maya',}
+
 % import preamble file (preamble.sty)
 \usepackage{preamble}
+
+% add references
+\addbibresource{\subfix{references.bib}}
+
+% Print bibliography at end of each subfile when compiling separately,
+% but also in main document when compiling together
+\AtEndDocument{%
+	\printbibliography[title={References},heading=bibintoc]
+}
 
 % declare some pdf header stuff
 \newcommand{\worktitle}{Maya Hieroglyphs --- The History of Decipherment}
@@ -19,8 +33,9 @@
 }
 
 % actual beginning of document
+% LTeX: enabled=false
 \begin{document}
-    % title page	
+	\pagenumbering{Alph}	
 	\begin{titlepage}	
 		\subfile{title/title}
 	\end{titlepage}
@@ -34,4 +49,5 @@
 	\pagenumbering{arabic}
 
 	%chapters
+	\subfile{introduction/introduction}
 \end{document}

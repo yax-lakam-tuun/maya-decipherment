@@ -9,10 +9,13 @@ help() {
     echo ""
     echo "Compiles tex project into pdf"
     echo ""
+    echo "TEX_FILE: Path to main tex file."
+    echo "          Must be relative to source path if specified."
+    echo "          If source path is not specified, tex file must be relative to $0"
+    echo ""
     echo "Options:"
     echo "  -b, --build-path           Path to output folder"
-    echo "  -d, --document-path        Name of the final document"
-    echo "  -m, --main-path            Path to main tex file"
+    echo "  -d, --document-name        Name of the final document"
     echo "  -s, --source-path          Path to source folder"
 }
 
@@ -51,11 +54,17 @@ fi
 if [ -z "$document_name" ]; then
     document_name="$(basename $main_path .tex)"
 fi
+
 if [ -z "$source_path" ]; then
-    source_path="$(dirname $main_path)"
+    repo_root=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+    source_path="$repo_root"
 fi
+
+outdir_path=$build_path
 if [ -z "$build_path" ]; then
-    build_path="$source_path/build"
+    main_root="$(dirname $main_path)"
+    build_path="$source_path/$main_root/build"
+    outdir_path="build"
 fi
 
 # print summary
@@ -65,20 +74,20 @@ echo "Settings:"
 echo "  Name of document: $document_name"
 echo "  Source path:      $source_path"
 echo "  Build_path:       $build_path"
-echo "  Path to tex file  $main_path"
+echo "  Tex file:         $main_path"
 echo ""
 echo "Invoking latexmk..."
 echo ""
 
 # go !
-repo_root=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
-cd "$repo_root"
+cd "$source_path"
 latexmk \
+    -cd \
     -synctex=1 \
     -interaction=nonstopmode \
     -file-line-error \
     -pdf \
     -Werror \
     -jobname="$document_name" \
-    -outdir="$build_path" \
+    -outdir="$outdir_path" \
     "$main_path"

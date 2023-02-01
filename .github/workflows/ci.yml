@@ -13,7 +13,7 @@ env:
   CONTAINER_TAG: maya/build_document:test
   CONTAINER_SOURCE_PATH: /opt/source
   CONTAINER_BUILD_PATH: /opt/source/build
-  CONTAINER_MAIN_PATH: /opt/source/main
+  CONTAINER_MAIN_PATH: main.tex
   DOCUMENT_NAME: "Maya Hieroglyphs - The History of Decipherment"
 
 jobs:
@@ -30,7 +30,7 @@ jobs:
       - name: Build docker container
         uses: docker/build-push-action@v2
         with:
-          context: .devcontainer
+          context: container
           load: true
           tags: ${{ env.CONTAINER_TAG }}
           cache-from: type=gha

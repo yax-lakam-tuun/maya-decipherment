@@ -1,12 +1,32 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{preamble}[Things which are needed for literally all tex files in this project]
 
-\RequirePackage{hyperref}        				% creates links in table of contents
-\RequirePackage{graphicx}					    % for pictures etc.
-\RequirePackage[abspath]{currfile}              % provides \currfiledir used in graphicspath
+% creates links in table of contents
+\RequirePackage{hyperref}
 
-% get document version
-\input{document-version.tex}
+% for pictures etc.
+\RequirePackage{graphicx}
+
+% provides \currfiledir used in graphicspath
+\RequirePackage[abspath]{currfile}
+
+% for spaces in commands
+\RequirePackage{xspace}
+
+% quoting and bibliography
+\RequirePackage[backend=biber,style=alphabetic]{biblatex}
+\RequirePackage{csquotes}
+
+% figures/subfigures
+% hypcap=false disables non-useful warning "Warning: The option hypcap=true will be ignored for this"
+\RequirePackage[hypcap=false]{caption}
+\RequirePackage{subcaption} 
+
+% our own stuff everything maya located maya.sty
+\RequirePackage{maya}                                     % 
+
+% disable non-useful warning: "PDF inclusion: multiple pdfs with page group included in a single page"
+\pdfsuppresswarningpagegroup=1
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % stuff for headline and footer
@@ -32,3 +52,6 @@
  \org@subfile{#1}%
 }
 \makeatother
+
+% get document version
+\input{document-version.tex}

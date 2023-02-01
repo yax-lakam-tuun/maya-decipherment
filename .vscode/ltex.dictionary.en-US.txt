@@ -7,3 +7,17 @@ devcontainers
 VSCode
 deciperment
 stela
+undeciphered
+logographic
+Knorosov
+stelas
+Decipherment
+Troano
+Grolier
+Chilam
+Tizimin
+Balam
+Yucatec
+calendrical
+Roys
+Norweb
