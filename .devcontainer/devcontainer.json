@@ -4,27 +4,31 @@
 	"build": {
 		"dockerfile": "../container/Dockerfile"
 	},
-	"settings": { 
-		"terminal.integrated.profiles.linux": {
-			"bash": {
-				"path": "bash",
-				"icon": "terminal-bash"
-			},
-			"zsh": {
-				"path": "zsh",
-				"args": [
-					"--login"
-				]
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"mathematic.vscode-latex",
+				"James-Yu.latex-workshop",
+				"valentjn.vscode-ltex",
+				"ms-python.python"
+			],
+			"settings": {
+				"terminal.integrated.profiles.linux": {
+					"bash": {
+						"path": "bash",
+						"icon": "terminal-bash"
+					},
+					"zsh": {
+						"path": "zsh",
+						"args": [
+							"--login"
+						]
+					}
+				},
+				"terminal.integrated.defaultProfile.linux": "zsh"
 			}
-		},
-		"terminal.integrated.defaultProfile.linux": "zsh"
+		}
 	},
-	"extensions": [
-		"mathematic.vscode-latex",
-		"James-Yu.latex-workshop",
-		"valentjn.vscode-ltex",
-		"ms-python.python"
-	],
 	// Use command below to sync ssh keys with local keys
 	//"initializeCommand": "find ~/.ssh/ -type f -exec grep -l 'PRIVATE' {} \\; | xargs ssh-add",
 	"containerUser": "ajtzib"
