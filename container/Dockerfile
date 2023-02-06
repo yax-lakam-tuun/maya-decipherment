@@ -29,3 +29,6 @@ RUN sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/inst
     
 # Github runners run as root by default, so let's switch back here to avoid perimission problems
 USER root
+
+# Compile document when container is executed with defaults
+CMD ["/bin/bash", "-c", "/opt/sources/compile.sh"]
