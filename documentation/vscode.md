@@ -8,6 +8,9 @@ Please refer to VSCode's website for more information: https://code.visualstudio
 It is a useful tool to edit TeX files which is important in this project here.
 With its capabilities to install extensions such as LaTeX, it is quite convenient to compile a PDF document while continuing writing texts.
 Of course, any other tools even with more sophisticated UIs such as TeXmaker or TeXnicCenter are available and should work with this project as-well.
+Another adventage is its seamlessly integration of git.
+This make it easy to author new files, alter existing ones etc. and afterwards commit and push them to the working branch.
+The UI and an integrated file browser makes it easy to manage the changes being applied to the project.
 
 ## Dev Container
 VSCode has the opportunity to be used in conjunction with docker containers 
