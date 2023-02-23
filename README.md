@@ -24,7 +24,7 @@ But the general guideline (aka rule of thumb) should be, to start from the early
 decipherment until to today.
 
 # Current document
-
+TODO
 
 # How to build
 You need a LaTeX distribution installed and available in your terminal.
@@ -37,6 +37,9 @@ Alternatively, one can use a docker container to compile.
 
 # Why LaTeX?
 [Latex](documentation/latex.md)
+
+# What is GIT?
+TODO
 
 # Trunk-based development and Continuous Integration
 [CI](documentation/continuous-integration.md)
