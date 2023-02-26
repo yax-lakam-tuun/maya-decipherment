@@ -23,8 +23,10 @@ And maybe it makes more sense in some parts to jump back and forth in time for e
 But the general guideline (aka rule of thumb) should be, to start from the early stages of 
 decipherment until to today.
 
-# Current document
-TODO
+# Releases
+All releases of the document can be found here: https://github.com/yax-lakam-tuun/maya-decipherment/releases
+Every release contains the source code the document is based on, a changelog with a description of the all changes which have been made and final document as PDF.
+Please see  [Version scheme, changelog and releases](documentation/releases.md) for more information.
 
 # How to build
 You need a LaTeX distribution installed and available in your terminal.
@@ -32,23 +34,35 @@ The shell script `compile.sh` will compile the document.
 The location of the build files etc. can be configured via command line arguments.
 Alternatively, one can use a docker container to compile.
 
-# Why is it open source?
-[Open source](documentation/open-source.md)
+# Open source
+This document is open source which means everybody can work with it, contribute to it, improve it and give feedback.
+Please see [Open source](documentation/open-source.md) chapter for more information.
 
-# Why LaTeX?
-[Latex](documentation/latex.md)
+# LaTeX
+LaTeX is a mark-up language which allows creating big scalable documents by writing
+plain-old text using commands to enrich the text, embed images and tables, cite and reference
+other sources like papers, books and websites scientifically.
+This project used LaTeX to compile the final document.
+Please see [Latex](documentation/latex.md) chapter for more information.
 
-# What is GIT?
+# Source cntrol management
 To keep track of all changes being applied to the project, it is useful to have a standard tool which allows to store and manage the folder structure of the project.
 One way to approach this, is to use an Source Code Management(SCM).
 It is a tool which allows to maintain the project and keeps track of all the changes being applied to it.
 If you want to know, you can, for instance, look at the introduction of Atlassian: https://www.atlassian.com/git/tutorials/source-code-management
 
-# Trunk-based development and Continuous Integration
-[CI](documentation/continuous-integration.md)
+# Trunk-based development and continuous integration
+This project uses a trunk-based development approach.
+All changes have to be pushed to the `main` branch in order to be compiled in to the final document.
+The process which controls and manages is alled `Continuous Integration`.
+Please see [CI](documentation/continuous-integration.md) chapter for more information.
 
-# VSCode and docker
-[VSCode](documentation/vscode.md)
+# VSCode
+VSCode is an Integrated Development Editor(IDE).
+It can be used to edit this project.
+Please see the [VSCode](documentation/vscode.md) chapter for more information.
 
-# Releases
-[Version scheme, changelog and releases](documentation/releases.md)
+# Docker
+This project utilizes Docker to virtualize the LaTeX environment used during the development process when VSCode is used in a devcontainer and in the continuous integration workflow.
+Please see the [Docker] chapter for more information about this technology and how it is used.
+
