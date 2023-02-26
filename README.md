@@ -39,7 +39,10 @@ Alternatively, one can use a docker container to compile.
 [Latex](documentation/latex.md)
 
 # What is GIT?
-TODO
+To keep track of all changes being applied to the project, it is useful to have a standard tool which allows to store and manage the folder structure of the project.
+One way to approach this, is to use an Source Code Management(SCM).
+It is a tool which allows to maintain the project and keeps track of all the changes being applied to it.
+If you want to know, you can, for instance, look at the introduction of Atlassian: https://www.atlassian.com/git/tutorials/source-code-management
 
 # Trunk-based development and Continuous Integration
 [CI](documentation/continuous-integration.md)
@@ -47,5 +50,5 @@ TODO
 # VSCode and docker
 [VSCode](documentation/vscode.md)
 
-# Changelog
+# Releases
 [Version scheme, changelog and releases](documentation/releases.md)
