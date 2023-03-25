@@ -28,45 +28,45 @@ decipherment until to today.
 All releases of the document can be found here: 
 https://github.com/yax-lakam-tuun/maya-decipherment/releases
 Every release contains the source code the document is based on, a changelog with a description 
-of the all changes which have been made and final document as PDF.
+of the all changes which have been made and the final document as PDF.
 Please see [version scheme, changelog and releases](documentation/releases.md) 
 for more information.
 
-# How to build
-You need a LaTeX distribution installed and available in your terminal.
-The shell script `compile.sh` will compile the document.
-The location of the build files etc. can be configured via command line arguments.
-Alternatively, one can use a docker container to compile.
+# LaTeX
+This project is based LaTeX - a mark-up language which allows creating big scalable documents 
+by writing plain-old text using commands to enrich the text, embed images and tables, cite and 
+reference other sources like papers, books and websites scientifically.
+That means, a LaTeX environment must be available on your system in order to generally compile 
+a PDF document from any given LateX source.
+If you have a LaTeX distribution (e.g. TeXLive) available in your terminal, you can execute
+the provided shell script `compile.sh` which will compile the document.
+For more information on how to setup and use LaTeX, 
+please have a look at chapter [LaTeX](documentation/latex.md).
 
 # Open source
 This document is open source which means everybody can work with it, improve it and give feedback.
 Please see [Open source](documentation/open-source.md) chapter for more information.
 
-# LaTeX
-LaTeX is a mark-up language which allows creating big scalable documents by writing
-plain-old text using commands to enrich the text, embed images and tables, cite and reference
-other sources like papers, books and websites scientifically.
-This project used LaTeX to compile the final document.
-Please see [Latex](documentation/latex.md) chapter for more information.
-
-# Source cntrol management
+# Source control management
 To keep track of all changes being applied to the project, it is useful to have a standard tool 
-which allows to store and manage the folder structure of the project.
+which allows to store and manage the folder structure and development of the project.
 One way to approach this, is to use an Source Code Management(SCM).
 It is a tool which allows to maintain the project and keeps track of all the changes 
 being applied to it.
+[Github](github.com) uses GIT for that purpose.
 If you want to know, you can, for instance, look at the introduction of Atlassian: 
 https://www.atlassian.com/git/tutorials/source-code-management
+https://www.atlassian.com/git/tutorials/what-is-git
 
 # Trunk-based development and continuous integration
-This project uses a trunk-based development approach.
+This project also uses a trunk-based development approach.
 All changes have to be pushed to the `main` branch in order to be compiled in to the final document.
 The process which controls and manages is called `Continuous Integration`.
 Please see [CI](documentation/continuous-integration.md) chapter for more information.
 
 # VSCode
 VSCode is an Integrated Development Editor(IDE).
-It can be used to edit this project.
+It is one way to work with this this project.
 Please see the [VSCode](documentation/vscode.md) chapter for more information.
 
 # Docker
