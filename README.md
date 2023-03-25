@@ -4,8 +4,8 @@ Scholars from all over world tried to crack the `Mayan Code' since the early 183
 But it took many decades until scholars made significant progress in the decipherment until to
 this very day.
 This project has the goal to collect all the breakthroughs in the decipherment of Maya hieroglyphs
-and illustrate them with examples from all available hieroglyphic sources 
-(e.g. from the great stela and stone inscriptions).
+and illustrate them with examples from all available hieroglyphic sources like the great stela and 
+stone inscriptions, the handwritings on pottery or the Maya books etc.
 
 # Basic idea
 The basic idea is to write a document which covers as much as possible from the history of 
@@ -19,7 +19,8 @@ Maya (again).
 The document should be roughly written in a chronological way.
 Since the decipherment process is not a linear process, this won't be possible for everything 
 though. 
-And maybe it makes more sense in some parts to jump back and forth in time for educational purposes.
+Sometimes it will make more sense in some parts to jump back and forth in time for 
+educational purposes.
 But the general guideline (aka rule of thumb) should be, to start from the early stages of 
 decipherment until to today.
 
@@ -28,7 +29,7 @@ All releases of the document can be found here:
 https://github.com/yax-lakam-tuun/maya-decipherment/releases
 Every release contains the source code the document is based on, a changelog with a description 
 of the all changes which have been made and final document as PDF.
-Please see  [Version scheme, changelog and releases](documentation/releases.md) 
+Please see [version scheme, changelog and releases](documentation/releases.md) 
 for more information.
 
 # How to build
@@ -60,7 +61,7 @@ https://www.atlassian.com/git/tutorials/source-code-management
 # Trunk-based development and continuous integration
 This project uses a trunk-based development approach.
 All changes have to be pushed to the `main` branch in order to be compiled in to the final document.
-The process which controls and manages is alled `Continuous Integration`.
+The process which controls and manages is called `Continuous Integration`.
 Please see [CI](documentation/continuous-integration.md) chapter for more information.
 
 # VSCode
