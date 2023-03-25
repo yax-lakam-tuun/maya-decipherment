@@ -55,21 +55,24 @@ It is a tool which allows to maintain the project and keeps track of all the cha
 being applied to it.
 [Github](github.com) uses GIT for that purpose.
 If you want to know, you can, for instance, look at the introduction of Atlassian: 
-https://www.atlassian.com/git/tutorials/source-code-management
-https://www.atlassian.com/git/tutorials/what-is-git
+* https://www.atlassian.com/git/tutorials/source-code-management
+* https://www.atlassian.com/git/tutorials/what-is-git
 
 # Trunk-based development and continuous integration
 This project also uses a trunk-based development approach.
 All changes have to be pushed to the `main` branch in order to be compiled in to the final document.
-The process which controls and manages is called `Continuous Integration`.
+The process which controls and manages that is called `Continuous Integration`.
 Please see [CI](documentation/continuous-integration.md) chapter for more information.
 
-# VSCode
+# IDE
 VSCode is an Integrated Development Editor(IDE).
 It is one way to work with this this project.
-Please see the [VSCode](documentation/vscode.md) chapter for more information.
+However, there are many alternatives out there.
+Even a basic text editor is enough.
+If you would like to know more about VSCode, please see the [VSCode](documentation/vscode.md) chapter for more information.
 
 # Docker
-This project utilizes Docker to virtualize the LaTeX environment used during the development 
-process when VSCode is used in a devcontainer and in the continuous integration workflow.
+This project utilizes Docker to virtualize the LaTeX environment.
+It is used by the infrastructure of the continuous integration process.
+It can also be used as a so-called devcontainer when being combined with VSCode.
 Please see the [Docker] chapter for more information about this technology and how it is used.
