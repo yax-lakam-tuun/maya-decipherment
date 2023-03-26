@@ -50,8 +50,8 @@ All texts, images and illustrations should be publicly available, so that the gr
 process of decipherment can be shared with everyone around the world. 
 
 # How can I send feedback?
-If you find problems within the document of any kind, please feel free create issues
-which address your findings.
+If you find problems within the document of any kind or with the infrastructure of this project, 
+please feel free to create issues which address your findings.
 This will greatly help to improve the project.
 Any help is greatly appreciated.
 You can either create an issue on github directly.
