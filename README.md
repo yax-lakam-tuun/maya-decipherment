@@ -25,8 +25,7 @@ But the general guideline (aka rule of thumb) should be, to start from the early
 decipherment until to today.
 
 # Releases
-All releases of the document can be found here: 
-https://github.com/yax-lakam-tuun/maya-decipherment/releases
+All releases of the document can be found [here](releases).
 Every release contains the source code the document is based on, a changelog with a description 
 of the all changes which have been made and the final document as PDF.
 Please see the chapter about [releases](documentation/releases.md) for more information.
@@ -68,7 +67,8 @@ VSCode is an Integrated Development Editor(IDE).
 It is one way to work with this this project.
 However, there are many alternatives out there.
 Even a basic text editor is enough.
-If you would like to know more about VSCode, please see the [VSCode](documentation/vscode.md) chapter for more information.
+If you would like to know more about VSCode, 
+please see the [VSCode](documentation/vscode.md) chapter for more information.
 
 # Docker
 This project utilizes Docker to virtualize the LaTeX environment.
