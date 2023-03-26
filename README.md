@@ -44,7 +44,20 @@ please have a look at chapter [LaTeX](documentation/latex.md).
 
 # Open source
 This document is open source which means everybody can work with it, improve it and give feedback.
-Please see [Open source](documentation/open-source.md) chapter for more information.
+The history of deciperment of Maya hieroglyphs should be readable and understandable to anyone
+interested in this manner.
+All texts, images and illustrations should be publicly available, so that the great
+process of decipherment can be shared with everyone around the world. 
+
+# How can I send feedback?
+If you find problems within the document of any kind, please feel free create issues
+which address your findings.
+This will greatly help to improve the project.
+Any help is greatly appreciated.
+You can either create an issue on github directly.
+This requires a GitHub account.
+You can also get in touch with via academia.edu 
+[here](https://independent.academia.edu/SebastianBauer16).
 
 # Source control management
 To keep track of all changes being applied to the project, it is useful to have a standard tool 
@@ -53,7 +66,7 @@ One way to approach this, is to use an Source Code Management(SCM).
 It is a tool which allows to maintain the project and keeps track of all the changes 
 being applied to it.
 [Github](github.com) uses GIT for that purpose.
-If you want to know, you can, for instance, look at the introduction of Atlassian: 
+If you want to know more, you can look at some introduction of Atlassian: 
 * https://www.atlassian.com/git/tutorials/source-code-management
 * https://www.atlassian.com/git/tutorials/what-is-git
 
