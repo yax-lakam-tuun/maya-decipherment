@@ -17,7 +17,6 @@ For example, `2022-12-30` would be written as `13.0.10.2.18`.
 # Changelog
 The changelog format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to a variant of [Calendar Versioning](https://calver.org/).
-
 Every changelog entry consists of the long count date and its Gregorian equivalent 
 (using ISO format YYYY-MM-DD). Here's an example: 
 
