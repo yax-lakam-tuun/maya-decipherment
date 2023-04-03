@@ -33,12 +33,12 @@ Please see the chapter about [releases](documentation/releases.md) for more info
 
 # LaTeX
 This project is based LaTeX - a mark-up language which allows creating big scalable documents 
-by writing plain-old text using commands to enrich the text, embed images and tables, cite and 
-reference other sources like papers, books and websites scientifically.
+by writing plain-old text using commands to enrich texts, embed images and tables, cite and 
+reference other sources like papers, books and websites scientifically and so on.
 That means, a LaTeX environment must be available on your system in order to generally compile 
 a PDF document from any given LateX source.
 If you have a LaTeX distribution (e.g. TeXLive) available in your terminal, you can execute
-the provided shell script `compile.sh` which will compile the document.
+the provided script [compile.sh](compile.sh) which will generate the document.
 For more information on how to setup and use LaTeX, 
 please have a look at chapter [LaTeX](documentation/latex.md).
 
@@ -46,7 +46,7 @@ please have a look at chapter [LaTeX](documentation/latex.md).
 This document is open source which means everybody can work with it, improve it and give feedback.
 The history of deciperment of Maya hieroglyphs should be readable and understandable to anyone
 interested in this manner.
-All texts, images and illustrations should be publicly available, so that the great
+All texts, images and illustrations are be publicly available, so that the great
 process of decipherment can be shared with everyone around the world. 
 
 # How can I send feedback?
