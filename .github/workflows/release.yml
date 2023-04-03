@@ -48,7 +48,7 @@ jobs:
           \"${{ env.CONTAINER_MAIN_PATH }}\""
 
       - name: Determine version
-        run: echo "RELEASE_VERSION=$(python3 ahpula.py $(date -I))" >> $GITHUB_ENV
+        run: echo "RELEASE_VERSION=$(python3 ahpula.py $(python3 document-version.py document-version.tex))" >> $GITHUB_ENV
 
       - name: Create tag
         run: |
