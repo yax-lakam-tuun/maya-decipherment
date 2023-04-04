@@ -61,8 +61,8 @@ If you find problems within the document of any kind or with the infrastructure 
 please feel free to create issues which address your findings.
 This will greatly help to improve the project.
 Any help is greatly appreciated.
-You can either create an issue on github directly.
-This requires a GitHub account.
+You can create an issue on GitHub directly. 
+This requires a GitHub account though.
 You can also get in touch with via academia.edu 
 [here](https://independent.academia.edu/SebastianBauer16).
 
