@@ -60,8 +60,7 @@ the texts etc. the way they want as long as they credit this project.
 If you find problems within the document of any kind or with the infrastructure of this project, 
 please feel free to create issues which address your findings.
 This will greatly help to improve the project.
-Any help is greatly appreciated.
-You can create an issue on GitHub directly. 
+You can create issues on GitHub directly to report problems you have found. 
 This requires a GitHub account though.
 You can also get in touch with via academia.edu 
 [here](https://independent.academia.edu/SebastianBauer16).
