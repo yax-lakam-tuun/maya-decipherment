@@ -3,7 +3,7 @@ The Maya hieroglyphs and the Maya script have been a mystery for centuries.
 Scholars from all over world tried to crack the `Mayan Code' since the early 1830s.
 But it took many decades until scholars made significant progress in the decipherment until to
 this very day.
-This process is not complete as roughly 30% of all hieroglyphic signs still eludes decipherment 
+This process is not complete as roughly 30% of all hieroglyphic signs still elude decipherment 
 and even where the signs are linguistically readable, the texts partially elude our 
 understanding because Classic Maya has died out.
 Yet, the great success of decipherment in the last decades made it possible to read many
@@ -20,14 +20,14 @@ or article.
 The document derived from all the insights from all the scholars from all over the world over
 so many decades shall be a good starting point for basically everyone interested in reading
 the hieroglyphs and to understand the long process it took to read the writings of the old 
-Maya (again).
+Maya again.
 The document should be roughly written in a chronological way.
 Since the decipherment process is not a linear process, this won't be possible for everything 
 though. 
 Sometimes it will make more sense in some parts to jump back and forth in time for 
 educational purposes.
 But the general guideline (aka rule of thumb) should be, to start from the early stages of 
-decipherment until to today.
+decipherment until today.
 
 # Releases
 All releases of the document can be found 
@@ -54,7 +54,7 @@ interested in this manner.
 All texts, images and illustrations are be publicly available, so that the great
 process of decipherment can be shared with everyone around the world. 
 The project uses the [MIT license](LICENSE) which basically allows everyone to use the code, 
-the texts etc. the they want as long as they credit the project.
+the texts etc. the way they want as long as they credit this project.
 
 # How can I send feedback?
 If you find problems within the document of any kind or with the infrastructure of this project, 
