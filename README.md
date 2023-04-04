@@ -3,6 +3,11 @@ The Maya hieroglyphs and the Maya script have been a mystery for centuries.
 Scholars from all over world tried to crack the `Mayan Code' since the early 1830s.
 But it took many decades until scholars made significant progress in the decipherment until to
 this very day.
+This process is not complete as roughly 30% of all hieroglyphic signs still eludes decipherment 
+and even where the signs are linguistically readable, the texts partially elude our 
+understanding because Classic Maya has died out.
+Yet, the great success of decipherment in the last decades made it possible to read many
+texts to such an extent that Mayan history was brought back to life again.
 This project has the goal to collect all the breakthroughs in the decipherment of Maya hieroglyphs
 and illustrate them with examples from all available hieroglyphic sources like the great stela and 
 stone inscriptions, the handwritings on pottery or the Maya books etc.
