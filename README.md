@@ -51,7 +51,6 @@ process of decipherment can be shared with everyone around the world.
 The project uses the [MIT license](LICENSE) which basically allows everyone to use the code, 
 the texts etc. the they want as long as they credit the project.
 
-
 # How can I send feedback?
 If you find problems within the document of any kind or with the infrastructure of this project, 
 please feel free to create issues which address your findings.
@@ -91,4 +90,5 @@ please see the [VSCode](documentation/vscode.md) chapter for more information.
 This project utilizes Docker to virtualize the LaTeX environment.
 It is used by the infrastructure of the continuous integration process.
 It can also be used as a so-called devcontainer when being combined with VSCode.
-Please see the [Docker] chapter for more information about this technology and how it is used.
+Please see the [Docker](container/README.md) chapter for more information 
+about this technology and how it is used.
