@@ -48,6 +48,9 @@ The history of deciperment of Maya hieroglyphs should be readable and understand
 interested in this manner.
 All texts, images and illustrations are be publicly available, so that the great
 process of decipherment can be shared with everyone around the world. 
+The project uses the [MIT license](LICENSE) which basically allows everyone to use the code, 
+the texts etc. the they want as long as they credit the project.
+
 
 # How can I send feedback?
 If you find problems within the document of any kind or with the infrastructure of this project, 
