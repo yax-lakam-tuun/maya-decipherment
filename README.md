@@ -64,6 +64,9 @@ You can create issues on GitHub directly to report problems you have found.
 This requires a GitHub account though.
 You can also get in touch with via academia.edu 
 [here](https://independent.academia.edu/SebastianBauer16).
+It should be mentioned that it is preferred that every issue should cover a single problem.
+Create issues for each problem separatly.
+This makes it easier to manage, respond and improve the project incrementally.
 
 # Source control management
 To keep track of all changes being applied to the project, it is useful to have a standard tool 
