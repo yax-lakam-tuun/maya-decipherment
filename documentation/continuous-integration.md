@@ -35,4 +35,21 @@ After the PR has been reviewed and built successfully, it is ready to be merged.
 The PR can then be manually merged, afterwards all changes made their way onto `main`.
 
 ## GitHub workflows
+Workflows for this project are defined in the [.github/workflows](.github/workflows).
+More general information about GitHub workflows can be found here: 
+https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions.
+There are two workflows in this project:
+* [CI](ci.yml)
+* [release](release.yml)
+
+### CI
+The CI workflow defines the jobs which are triggered for every pull request.
+It contains information on how to build the documet and has some additional checks for the
+source code including a LaTeX check stage.
+The CI jobs are triggered when new changes are pushed to a feature branch or a pull request
+has been triggered.
+It can also be triggered manually.
+
+### Release
+
 TODO
