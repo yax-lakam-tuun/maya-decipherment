@@ -24,11 +24,11 @@ See the [project site of LaTeX](https://www.latex-project.org//) for more inform
 
 # Installation
 There are many guides out there which explain in detail how to install LaTeX on your system.
-This [article](https://www.scijournal.org/articles/latex-installation-guide), for example,
-is helpful to install MiKTeX (one distribution for LaTeX) on Windows and macOS.
-LaTeX is supported by the tree main platforms, namely Windows, Linux and macOS.
+LaTeX is usually shipped in so-called distributions.
+MikTex is one of them and is available for Windows, Linux and macOS.
 Fully integrated editors with syntax highlighting and auto completiom are also available.
 (for example TeXstudio or TEXMAKER).
+Integrated Development Editors(IDE) like [VSCode](vscode.md) can be used in conjunction with LaTeX extensions.
 Despite the claims above that LaTeX is written in plain text, there are indeed WYSIWYG editors
 available (for example LyX).
 
@@ -39,18 +39,23 @@ please see chapter [Docker](../container/README.md) and [VSCode](vscode.md).
 
 # Folder structure
 All LateX code is written in files ending with `.tex`.
+Some code also resides in `.sty` files, but that's just a small portion of LaTeX projects.
 In less complex projects, it can be sufficient to have all the text in one single tex file.
 But for bigger projects, it makes sense to split the content to more files.
-This is useful to keep the context as clean as possible and also it makes editing much easier.
+This is useful to keep the context as clean as possible.
+It also makes editing much easier.
 Therefore, this project is also split in many different files.
+
+## Chapters
 Every chapter resides in a separate sub folder.
 The chapter's tex file is named after the chapter's title 
 (e.g. introduction.tex for the introduction chapter).
 The advantage is that with this approach every chapter can be compiled separatly. 
 This greatly reduces compilation times and it might be useful to ``publish'' 
 single chapters if necessary.
-The main document [main.tex](../main.tex) combines then all chapters by 
+Then, the main document [main.tex](../main.tex) combines all chapters by 
 including the according subfolders.
+If necessary, a chapter can also be split into two or more sub folders.
 
 ## Graphics
 Images are put into a separate subfolder named 'img' next to the tex file.
