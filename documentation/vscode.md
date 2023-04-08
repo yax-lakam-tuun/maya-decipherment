@@ -5,6 +5,7 @@ VSCode has a text editor with syntax highlighting, auto completion and spell che
 In addition, it integrates terminals like Bash, ZSH or powershell and many more. 
 to run commands, applications and scripts.
 Please refer to VSCode's website for more information: https://code.visualstudio.com/
+
 It is a useful tool to edit TeX files which is important in this project here.
 With its capabilities to install extensions such as LaTeX, it is quite convenient to compile a PDF document while continuing writing texts.
 Of course, any other tools even with more sophisticated UIs such as TeXmaker or TeXnicCenter are available and should work with this project as-well.
