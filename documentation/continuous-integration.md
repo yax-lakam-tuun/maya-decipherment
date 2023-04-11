@@ -40,16 +40,18 @@ More general information about GitHub workflows can be found here:
 https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions.
 There are two workflows in this project:
 * [CI](ci.yml)
-* [release](release.yml)
+* [Release](release.yml)
 
 ### CI
-The CI workflow defines the jobs which are triggered for every pull request.
+The CI workflow ([CI](ci.yml))  defines the jobs which are triggered for every pull request.
 It contains information on how to build the documet and has some additional checks for the
 source code including a LaTeX check stage.
 The CI jobs are triggered when new changes are pushed to a feature branch or a pull request
 has been triggered.
-It can also be triggered manually.
+It can also be triggered manually (useful in cases something unexpected went wrong).
 
 ### Release
-
-TODO
+The Release workflow ([Release](release.yml)) compiles the document and creates release draft
+afterwards.
+Th draft can then be reviewed and if everything is fine, a new release can be created from that.
+This workflow is always triggered manually when the maintainer decides to publish a new version.
