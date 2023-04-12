@@ -6,9 +6,9 @@ containers.
 Unlike the host system, everything which can be installed and executed remains in the container and 
 cannot alter the configuration of the host in any way.
 
-The container used in this project contains everything needed to compile a TeX project.
+The container used in this project contains everything needed to compile a LaTeX project.
 It includes a complete TeX Live installation and several tools such as git or inkscape.
-When the container is executed, it tries to compile the TeX project in a well-defined folder.
+When the container is executed, it tries to compile the LaTeX project in a well-defined folder.
 The output is a PDF file of the project.
 See more in the section about 'How to use it'.
 
@@ -50,7 +50,7 @@ To run the container, please enter the following line:
 In this project, a volume is used to map all files, documents, images etc. into the container.
 The container works directly with the files on the host.
 That means, once the git project is cloned locally, the docker container can interact with the 
-checked out folder structure and run TeX completely independent from the host.
+checked out folder structure and run LaTeX completely independent from the host.
 Everything outside the specied folder (aka volume) cannot be touched (or even be seen) though.
 
 # Usage in continuous integration
