@@ -1,6 +1,6 @@
 # Purpose of this project
 The Maya hieroglyphs and the Maya script have been a mystery for centuries.
-Scholars from all over world tried to crack the `Mayan Code' since the early 1830s.
+Scholars from all over the world tried to crack the `Mayan Code' since the early 1830s.
 But it took many decades until scholars made significant progress in the decipherment until to
 this very day.
 This process is not complete as roughly 30% of all hieroglyphic signs still elude decipherment 
@@ -37,13 +37,13 @@ of the all changes which have been made and the final document as PDF.
 Please see the chapter about [releases](documentation/releases.md) for more information.
 
 # LaTeX
-This project is based LaTeX - a mark-up language which allows creating big scalable documents 
-by writing plain-old text using commands to enrich texts, embed images and tables, cite and 
+This project is written in LaTeX - a mark-up language which allows creating big scalable documents 
+by writing unformatted text using commands to enrich texts, embed images and tables, cite and 
 reference other sources like papers, books and websites scientifically and so on.
 That means, a LaTeX environment must be available on your system in order to generally compile 
 a PDF document from any given LateX source.
 If you have a LaTeX distribution (e.g. TeXLive) available in your terminal, you can execute
-the provided script [compile.sh](compile.sh) which will generate the document.
+the provided script [compile.sh](compile.sh) which in turn will generate the document.
 For more information on how to setup and use LaTeX, 
 please have a look at chapter [LaTeX](documentation/latex.md).
 
@@ -62,7 +62,7 @@ please feel free to create issues which address your findings.
 This will greatly help to improve the project.
 You can create issues on GitHub directly to report problems you have found. 
 This requires a GitHub account though.
-You can also get in touch with via academia.edu 
+You can also get in touch via academia.edu 
 [here](https://independent.academia.edu/SebastianBauer16).
 It should be mentioned that it is preferred that every issue should cover a single problem.
 Create issues for each problem separatly.
