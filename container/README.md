@@ -29,6 +29,7 @@ executing docker containers.
 Using a docker container usually consists of two steps.
 * Creating the container from a so-called recipe (aka `Dockerfile`)
 * Container execution (similar to launching an application or script)
+
 Upon creation, Docker assigns every container a tag - a unique name which can be anything 
 human-readable.
 This tag is unique and cannot be used by more than one container.
@@ -72,8 +73,8 @@ The docker container is based on Ubuntu - a free Linux distribution.
 The container uses the same architecture of the host.
 For instance, if the host is an Apple Silicon M1 machine, the docker container runs an 
 Ubuntu ARM64 while x64 machines use Ubuntu AMD64.
-Even though, one can specify this independently, the emulation is quite slow and the 
-experience rather unpleasant.
+Even though, one can specify this independently, using a non-native architecture requires
+emulation which is usually quite slow and the experience rather unpleasant.
 
 # Troubleshooting
 Sometimes, it can happpen that the container hangs or is broken for some unknown reason.
