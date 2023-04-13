@@ -18,7 +18,7 @@ RUN apt-get -qq install texlive-full chktex
 # Install tools and other useful gadgets
 RUN apt-get -qq install git git-lfs inkscape python3 vim zsh curl wget
 
-# Devcontainers need a pre-defined user called 'vscode'
+# Dev Containers need a pre-defined user called 'vscode'
 ARG user_name="ajtzib"
 RUN useradd -m -k /etc/skel -d /home/$user_name $user_name
 
@@ -29,3 +29,6 @@ RUN sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/inst
     
 # Github runners run as root by default, so let's switch back here to avoid perimission problems
 USER root
+
+# Compile document when container is executed with defaults
+CMD ["/bin/bash", "-c", "/opt/sources/compile.sh"]

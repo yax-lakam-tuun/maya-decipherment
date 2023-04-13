@@ -1,10 +1,16 @@
 # Purpose of this project
 The Maya hieroglyphs and the Maya script have been a mystery for centuries.
-Scholars from all over world tried to crack the `Mayan Code' since the early 1830s.
+Scholars from all over the world tried to crack the `Mayan Code' since the early 1830s.
 But it took many decades until scholars made significant progress in the decipherment until to
 this very day.
+This process is not complete as roughly 30% of all hieroglyphic signs still elude decipherment 
+and even where the signs are linguistically readable, the texts partially elude our 
+understanding because Classic Maya has died out.
+Yet, the great success of decipherment in the last decades made it possible to read many
+texts to such an extent that Mayan history was brought back to life again.
 This project has the goal to collect all the breakthroughs in the decipherment of Maya hieroglyphs
-and illustrate them with examples of the great stela and stone inscriptions and other write-ups.
+and illustrate them with examples from all available hieroglyphic sources like the great stela and 
+stone inscriptions, the handwritings on pottery or the Maya books etc.
 
 # Basic idea
 The basic idea is to write a document which covers as much as possible from the history of 
@@ -14,127 +20,82 @@ or article.
 The document derived from all the insights from all the scholars from all over the world over
 so many decades shall be a good starting point for basically everyone interested in reading
 the hieroglyphs and to understand the long process it took to read the writings of the old 
-Maya (again).
+Maya again.
 The document should be roughly written in a chronological way.
 Since the decipherment process is not a linear process, this won't be possible for everything 
 though. 
-And maybe it makes more sense in some parts to jump back and forth in time for educational purposes.
+Sometimes it will make more sense in some parts to jump back and forth in time for 
+educational purposes.
 But the general guideline (aka rule of thumb) should be, to start from the early stages of 
-decipherment until to today.
+decipherment until today.
 
-# Why is it open source?
-The project is open source and free.
-Knowledge should be free and accessible to everyone.
+# Releases
+All releases of the document can be found 
+[here](https://github.com/yax-lakam-tuun/maya-decipherment/releases).
+Every release contains the source code the document is based on, a changelog with a description 
+of the all changes which have been made and the final document as PDF.
+Please see the chapter about [releases](documentation/releases.md) for more information.
+
+# LaTeX
+This project is written in LaTeX - a mark-up language which allows creating big scalable documents 
+by writing unformatted text using commands to enrich texts, embed images and tables, cite and 
+reference other sources like papers, books and websites scientifically and so on.
+That means, a LaTeX environment must be available on your system in order to generally compile 
+a PDF document from any given LateX source.
+If you have a LaTeX distribution (e.g. TeX Live) available in your terminal, you can execute
+the provided script [compile.sh](compile.sh) which in turn will generate the document.
+For more information on how to setup and use LaTeX, 
+please have a look at chapter [LaTeX](documentation/latex.md).
+
+# Open source
+This document is open source which means everybody can work with it, improve it and give feedback.
 The history of deciperment of Maya hieroglyphs should be readable and understandable to anyone
 interested in this manner.
-All texts, images and illustrations should be publicly available, so that the great
+All texts, images and illustrations are be publicly available, so that the great
 process of decipherment can be shared with everyone around the world. 
+The project uses the [MIT license](LICENSE) which basically allows everyone to use the code, 
+the texts etc. the way they want as long as they credit this project.
 
-# Who can contribute?
-Any help is greatly appreciated.
-If you find problems within the document of any kind, please feel free create issues
-which address your findings.
+# How can I send feedback?
+If you find problems within the document of any kind or with the infrastructure of this project, 
+please feel free to create issues which address your findings.
 This will greatly help to improve the project.
-
-## How can I contribute?
-If you would like to become part of the project, you are more than welcome to do so.
-Please get in touch with and reach me via academia.edu 
+You can create issues on GitHub directly to report problems you have found. 
+This requires a GitHub account though.
+You can also get in touch via academia.edu 
 [here](https://independent.academia.edu/SebastianBauer16).
-The one important thing is, that you have an account on GitHub.
-You can easily create one for free if you don't have one yet.
-Then, it's easy to become a collaborator and join the project.
+It should be mentioned that it is preferred that every issue should cover a single problem.
+Create issues for each problem separately.
+This makes it easier to manage, respond and improve the project incrementally.
 
-## Authoring
-If you would like to become a writer for the project, then this part is for you.
-Once you are a collaborator, you can create a branch and work on the document as much as you like.
-Whether it is small change or maybe some major refactoring is totally up to you.
-However, in order to get applied to the document, a review by at least one or two reviewers is necessary.
-So, when you are done with your changes, one has to open a pull request for the `main` branch.
-After the reviewers give their okay and the continuous integration is green, your contribution will be
-part of the project.
+# Source control management
+To keep track of all changes being applied to the project, it is useful to have a standard tool 
+which allows to store and manage the folder structure and development of the project.
+One way to approach this, is to use an Source Code Management(SCM).
+It is a tool which allows to maintain the project and keeps track of all the changes 
+being applied to it.
+[Github](github.com) uses GIT for that purpose.
+If you want to know more, you can look at some introduction of Atlassian: 
+* https://www.atlassian.com/git/tutorials/source-code-management
+* https://www.atlassian.com/git/tutorials/what-is-git
 
-# Why LaTeX?
-LaTeX is a mark-up language which allows creating big scalable documents by writing
-plain-old text using commands to enrich the text, embed images and tables, cite and reference
-other sources like papers, books and websites scientifically.
-The project is then compiled by so-called Tex distribution (e.g. Tex Live) to produce the final
-document, usually a PDF file.
-One writes in the mark-up language in a text editor of choice and generates the document afterwards.
-In this way it's not a WYSIWYG-style of writing like for example in Word.
-The document regardless whether it is a book, article etc. can be split in different files
-including subfolders.
-Therefore, it is possible to create structure of folders and files to separate several concerns
-like chapters, paragraphs or appendixes.
-It has several packages which deals with many aspects of writing (e.g. graphics, math symbols).
-It's even possible to define your own commands which enables one to program and automate
-extensive tasks and simplifies the way one writes text.
-See the [project site of LaTeX](https://www.latex-project.org//) for more information.
+# Trunk-based development and continuous integration
+This project also uses a trunk-based development approach.
+All changes have to be pushed to the `main` branch in order to be compiled in to the final document.
+The process which controls and manages that is called `Continuous Integration`.
+Please see [CI](documentation/continuous-integration.md) chapter for more information.
 
-# Trunk-based development and Continuous Integration
-The whole idea of trunk-based development is, that there is basically one branch the whole work
-resides on.
-Every version (aka release) is based on this branch.
-Historically, this branch has been called `trunk` (therefore the name).
-Nowadays, it is usually called `main`.
-So, all releases are done from `main`.
-(Unfinished) work which should come into the next release, resides on branches from `main`.
-After the work has been reviewed and checked on so-called pull requests, the work eventually makes
-its way to `main`.
-The `main` branch is protected, so the only way for code to get merged, is via pull requests.
-The pull requests include a review process.
-The idea is, that work should be checked independently of the original writer to make sure there
-the text is correct and matches to the rest of the document.
-Additionally, the pull request checks if a PDF document can be generated and whether
-LaTeX problems arose during the process.
-If there are problems, the branch is blocked from being merged until all issues have been resolved.
-That is the so-called `continuous integration` workflow.
-If everything is fine, the pull request can be merged.
-For more information on trunk-based development and the git branch model can be found 
-[here](https://trunkbaseddevelopment.com/).
+# IDE
+VSCode is an Integrated Development Editor(IDE).
+It is one way to work with this this project.
+However, there are many alternatives out there.
+Even a basic text editor is enough.
+If you would like to know more about VSCode, 
+please see the [VSCode](documentation/vscode.md) chapter for more information.
 
-# How to build
-You need a LaTeX distribution installed and available in your terminal.
-The shell script `compile.sh` will compile the document.
-The location of the build files etc. can be configured via command line arguments.
-Alternatively, one can use a docker container to compile.
-
-## VSCode and docker
-[VSCode](https://code.visualstudio.com/) is a source code editor and development tool.
-It has the opportunity to be used in conjunction with docker containers 
-(see [devcontainers](https://code.visualstudio.com/docs/devcontainers/containers)).
-This project fully supports docker containers as it is also used during 
-the continuous integration cycle.
-It's an easy and isolated way to create a LaTeX environment and everything a consumer or writer
-needs to compile the final PDF file.
-
-# Changelog
-The changelog format is based on [Keep a Changelog](http://keepachangelog.com/)
-and this project adheres to a variant of [Calendar Versioning](https://calver.org/).
-
-Version scheme:
-
-The version of the document is basically the date of the release. 
-The release date is converted to a Maya Long Count date using the Martin-Skidmore 
-correlation (584286) and then written out in the standard Long Count notation.
-For example, `2022-12-30` would be written as `13.0.10.2.18`.
-
-Every changelog entry consists of the version string and the Gregorian release date 
-using ISO format YYYY-MM-DD. Here's an example: 
-
-    ## [<long count of release date>] - <release date in ISO format>
-    
-    ### Added
-    - New reading of some hieroglyph
-    - Some insights on Palenque inscriptions
-
-    ### Changed
-    - Refactored long count chapter
-    - Improved some lintel drawings of Yaxchilan
-
-    ### Removed
-    - Cleaned up some unsure readings of TXYZ
-    - Some unused images from chapter XYZ
-
-    ### Fixed
-    - Fixed some wrong spellings
-    - Updated some old transcriptions regarding Dresden codex p.XY
+# Docker
+This project utilizes Docker to virtualize the LaTeX environment.
+It is used by the infrastructure of the continuous integration process.
+It can also be used as a so-called Dev Container when being combined with VSCode.
+Please see the [Docker](container/README.md) chapter for more information 
+about this technology and how it is used.

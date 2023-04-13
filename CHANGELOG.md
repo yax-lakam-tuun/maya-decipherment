@@ -4,7 +4,7 @@
 
 ### Added
 - Initial project setup
-- Support for development in docker container 
+- Support for development in Docker container 
 - Main LaTeX file
 - Workflows for continuous integration (CI) and releases
 
