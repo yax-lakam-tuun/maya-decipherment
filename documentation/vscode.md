@@ -10,11 +10,15 @@ It is a useful tool to manage folder and file based structures.
 With its capabilities to install extensions such as LaTeX, 
 it is quite convenient to compile a PDF document while continuing writing texts.
 
-Some useful LateX extensions are:
+Some useful extensions for this project are:
 * Markdown+Math
+    * Previewer for *.md files (e.g. README.md)
 * LaTeX Workshop by James Yu
+    * Compiling and create PDFs from LaTeX code
+    * LaTeX autocompletion, snippets etc.
 * LTeX – LanguageTool grammar/spell checking
-    * Doesn't work on Apple M1/M2 as this extension doesn't support ARM architectures (yet?)
+    * Offline spell and grammar checker for markup languages like LaTeX, BibTex and XHTML
+    * Caveat: Doesn't work on Apple M1/M2 as this extension doesn't support ARM architectures (yet?)
 
 Another advantage is its seamlessly integration of git.
 This make it easy to author new files, alter existing ones etc. and 
