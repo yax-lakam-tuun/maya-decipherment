@@ -7,25 +7,23 @@
 	"customizations": {
 		"vscode": {
 			"extensions": [
+				"ms-azuretools.vscode-docker",
 				"mathematic.vscode-latex",
 				"James-Yu.latex-workshop",
 				"valentjn.vscode-ltex",
-				"ms-python.python"
+				"ms-vscode.powershell"
 			],
 			"settings": {
 				"terminal.integrated.profiles.linux": {
+					"PowerShell": {
+						"path": "pwsh"
+					},
 					"bash": {
 						"path": "bash",
 						"icon": "terminal-bash"
-					},
-					"zsh": {
-						"path": "zsh",
-						"args": [
-							"--login"
-						]
 					}
 				},
-				"terminal.integrated.defaultProfile.linux": "zsh"
+				"terminal.integrated.defaultProfile.linux": "PowerShell"
 			}
 		}
 	},

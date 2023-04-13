@@ -16,19 +16,31 @@ RUN apt-get -qq install locales && \
 RUN apt-get -qq install texlive-full chktex
 
 # Install tools and other useful gadgets
-RUN apt-get -qq install git git-lfs inkscape python3 vim zsh curl wget
+RUN apt-get -qq install \
+        git git-lfs \
+        inkscape vim \
+        curl wget \
+        apt-transport-https software-properties-common
+
+# Install PowerShell
+ARG TARGETPLATFORM
+RUN curl -L -o /tmp/powershell.tar.gz https://github.com/PowerShell/PowerShell/releases/download/v7.3.3/powershell-7.3.3-$(echo "$TARGETPLATFORM" | sed 's/\//-/g').tar.gz && \
+    mkdir -p /opt/microsoft/powershell/7 && \
+    tar zxf /tmp/powershell.tar.gz -C /opt/microsoft/powershell/7 && \
+    chmod +x /opt/microsoft/powershell/7/pwsh && \
+    ln -s /opt/microsoft/powershell/7/pwsh /usr/bin/pwsh
+
+# Git support in PowerShell
+RUN pwsh -Command "Install-Module posh-git -Scope AllUsers -Force" && \
+    pwsh -Command "Add-PoshGitToProfile -AllUsers -AllHosts"
 
 # Dev Containers need a pre-defined user called 'vscode'
 ARG user_name="ajtzib"
 RUN useradd -m -k /etc/skel -d /home/$user_name $user_name
-
-# Install ohmyzsh for vscode user
-USER $user_name
-RUN sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" && \
-    cp /home/$user_name/.oh-my-zsh/templates/zshrc.zsh-template /home/$user_name/.zshrc
-    
-# Github runners run as root by default, so let's switch back here to avoid perimission problems
+ 
+# Github runners run as root by default to avoid perimission problems
 USER root
 
 # Compile document when container is executed with defaults
-CMD ["/bin/bash", "-c", "/opt/sources/compile.sh"]
+SHELL [ "pwsh" ]
+CMD ["pwsh", "-c", "/opt/sources/Compile-Document.ps1"]
