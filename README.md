@@ -42,7 +42,7 @@ by writing unformatted text using commands to enrich texts, embed images and tab
 reference other sources like papers, books and websites scientifically and so on.
 That means, a LaTeX environment must be available on your system in order to generally compile 
 a PDF document from any given LateX source.
-If you have a LaTeX distribution (e.g. TeXLive) available in your terminal, you can execute
+If you have a LaTeX distribution (e.g. TeX Live) available in your terminal, you can execute
 the provided script [compile.sh](compile.sh) which in turn will generate the document.
 For more information on how to setup and use LaTeX, 
 please have a look at chapter [LaTeX](documentation/latex.md).
@@ -65,7 +65,7 @@ This requires a GitHub account though.
 You can also get in touch via academia.edu 
 [here](https://independent.academia.edu/SebastianBauer16).
 It should be mentioned that it is preferred that every issue should cover a single problem.
-Create issues for each problem separatly.
+Create issues for each problem separately.
 This makes it easier to manage, respond and improve the project incrementally.
 
 # Source control management
@@ -96,6 +96,6 @@ please see the [VSCode](documentation/vscode.md) chapter for more information.
 # Docker
 This project utilizes Docker to virtualize the LaTeX environment.
 It is used by the infrastructure of the continuous integration process.
-It can also be used as a so-called devcontainer when being combined with VSCode.
+It can also be used as a so-called Dev Container when being combined with VSCode.
 Please see the [Docker](container/README.md) chapter for more information 
 about this technology and how it is used.

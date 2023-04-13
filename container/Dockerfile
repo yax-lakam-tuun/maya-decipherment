@@ -18,7 +18,7 @@ RUN apt-get -qq install texlive-full chktex
 # Install tools and other useful gadgets
 RUN apt-get -qq install git git-lfs inkscape python3 vim zsh curl wget
 
-# Devcontainers need a pre-defined user called 'vscode'
+# Dev Containers need a pre-defined user called 'vscode'
 ARG user_name="ajtzib"
 RUN useradd -m -k /etc/skel -d /home/$user_name $user_name
 

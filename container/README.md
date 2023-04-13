@@ -62,7 +62,7 @@ See [Continuous Integration](../documentation/continuous-integration.md) for mor
 
 # Usage in VSCode
 VSCode is able to run a virtual environment session in a 
-Docker container - a so-called "Devcontainer".
+Docker container - a so-called Dev Container.
 This project uses the very same container for this purpose.
 The configuration and several enhancements like extensions are defined in 
 [devcontainer.json](../.devcontainer/devcontainer.json).
