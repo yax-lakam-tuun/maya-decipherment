@@ -7,7 +7,7 @@ Unlike the host system, everything which can be installed and executed remains i
 cannot alter the configuration of the host in any way.
 
 The container used in this project contains everything needed to compile a LaTeX project.
-It includes a complete TeX Live installation and several tools such as git or inkscape.
+It includes a complete TeX Live installation and several tools such as Git or Inkscape.
 When the container is executed, it tries to compile the LaTeX project in a well-defined folder.
 The output is a PDF file of the project.
 See more in the section about 'How to use it'.
@@ -17,7 +17,7 @@ For more information about Docker in general, please refer to the official
 
 # Docker installation
 Docker is supported for Windows, macOS and Linux.
-To install Docker, plase see the 
+To install Docker, please see the 
 [installation instructions](https://docs.docker.com/engine/install/) for further information.
 Docker Desktop is usually quite easy to install as it comes with a GUI and easy to 
 use installation wizard.
@@ -51,10 +51,10 @@ In this project, a volume is used to map all files, documents, images etc. into 
 The container works directly with the files on the host.
 That means, once the git project is cloned locally, the Docker container can interact with the 
 checked out folder structure and run LaTeX completely independent from the host.
-Everything outside the specied folder (aka volume) cannot be touched (or even be seen) though.
+Everything outside the specified folder (aka volume) cannot be touched (or even be seen) though.
 
 # Usage in continuous integration
-The container is used to power the github workflows.
+The container is used to power the GitHub workflows.
 Those workflows are used to run the continuous integration pipelines and the release pipeline.
 In both cases the pipeline produces a PDF file which is used to determine the state of the project 
 and to create a (draft) release for the end-user.
@@ -77,7 +77,7 @@ Even though, one can specify this independently, using a non-native architecture
 emulation which is usually quite slow and the experience rather unpleasant.
 
 # Troubleshooting
-Sometimes, it can happpen that the container hangs or is broken for some unknown reason.
+Sometimes, it can happen that the container hangs or is broken for some unknown reason.
 In that case, it can be useful to erase all Docker images and re-create it again.
 Erasing all images can be done in a terminal like this:
 

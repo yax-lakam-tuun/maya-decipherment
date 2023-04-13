@@ -20,7 +20,7 @@ Some useful extensions for this project are:
     * Offline spell and grammar checker for markup languages like LaTeX, BibTex and XHTML
     * Caveat: Doesn't work on Apple M1/M2 as this extension doesn't support ARM architectures (yet?)
 
-Another advantage is its seamlessly integration of git.
+Another advantage is its seamlessly integration of Git.
 This make it easy to author new files, alter existing ones etc. and 
 afterwards commit and push them to the working branch.
 The UI and an integrated file browser makes it easy to manage the changes being applied 
