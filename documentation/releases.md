@@ -3,8 +3,8 @@ All releases can be found [here](../releases).
 Every release contains the source code the document is based on, a changelog with a description 
 of the all changes which have been made and the final document as PDF.
 The document itself will never really be completed as the decipherment is an ongoing 
-process with no forseeable ending.
-Therefore, there will be a contineous stream of releases once in a while.
+process with no foreseeable ending.
+Therefore, there will be a continuous stream of releases once in a while.
 This also means that a release is always a snapshot of what has been condensed from the past 
 and the state the decipherment process is currently in.
 

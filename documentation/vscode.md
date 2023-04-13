@@ -15,7 +15,7 @@ Some useful extensions for this project are:
     * Previewer for *.md files (e.g. README.md)
 * LaTeX Workshop by James Yu
     * Compiling and create PDFs from LaTeX code
-    * LaTeX autocompletion, snippets etc.
+    * LaTeX auto completion, snippets etc.
 * LTeX – LanguageTool grammar/spell checking
     * Offline spell and grammar checker for markup languages like LaTeX, BibTex and XHTML
     * Caveat: Doesn't work on Apple M1/M2 as this extension doesn't support ARM architectures (yet?)

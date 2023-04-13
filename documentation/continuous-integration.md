@@ -44,7 +44,7 @@ There are two workflows in this project:
 
 ### CI
 The CI workflow ([CI](ci.yml))  defines the jobs which are triggered for every pull request.
-It contains information on how to build the documet and has some additional checks for the
+It contains information on how to build the document and has some additional checks for the
 source code including a LaTeX check stage.
 The CI jobs are triggered when new changes are pushed to a feature branch or a pull request
 has been triggered.
