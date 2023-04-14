@@ -27,7 +27,9 @@
 			}
 		}
 	},
-	// Use command below to sync ssh keys with local keys
-	//"initializeCommand": "find ~/.ssh/ -type f -exec grep -l 'PRIVATE' {} \\; | xargs ssh-add",
+	"mounts": [
+		// Use SSH keys from host
+		{ "source": "${localEnv:HOME}${localEnv:USERPROFILE}/.ssh", "target": "/home/ajtzib/.ssh", "type": "bind" }
+	],
 	"containerUser": "ajtzib"
 }
