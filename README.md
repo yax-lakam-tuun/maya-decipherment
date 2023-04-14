@@ -43,7 +43,8 @@ reference other sources like papers, books and websites scientifically and so on
 That means, a LaTeX environment must be available on your system in order to generally compile 
 a PDF document from any given LateX source.
 If you have a LaTeX distribution (e.g. TeX Live) available in your terminal, you can execute
-the provided script [compile.sh](compile.sh) which in turn will generate the document.
+the provided PowerShell script [Compile-Document.ps1](Compile-Document.ps1) which in turn will 
+generate the document.
 For more information on how to setup and use LaTeX, 
 please have a look at chapter [LaTeX](documentation/latex.md).
 

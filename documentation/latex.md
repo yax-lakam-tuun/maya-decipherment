@@ -98,7 +98,7 @@ Simple tree structure featuring two chapters namely Introduction and reading ord
 # Files
 There are some files like scripts which have a special function inside the project.
 Here's a short summary:
-* [compile.sh](../compile.sh): Script to compile PDF from given LaTeX source
+* [Compile-Document.ps1](Compile-Document.ps1): Script to compile PDF from given LaTeX source
 * [svg2pdf.sh](../svg2pdf.sh): Utility script to convert a given SVG file to PDF
 * [chktexall.sh](../chktexall.sh): Script to check for LaTeX errors 
   (see [CI](continuous-integration))
