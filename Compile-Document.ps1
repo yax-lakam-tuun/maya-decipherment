@@ -3,28 +3,45 @@
 <#
     .SYNOPSIS
     Compiles TeX project into PDF document.
+
+    .DESCRIPTION
+    This script can be used to compile the LaTeX project.
+    The main TeX file, the build directory and the name of the document can be specified.
+    If parameters are omitted, useful defaults are taken (see parameter description).
+    Even sub folders can be compiled into separate PDF file by specifying 
+    the sub folders's TeX file.
+    If the build path is not specified, a build folder named "build" will be created next to the
+    TeX file.
+
+    .INPUTS
+    None
+
+    .OUTPUTS
+    None
+
+    .LINK
+    https://github.com/yax-lakam-tuun/maya-decipherment
 #>
 
 param (
     [string]
-
-    [Parameter(HelpMessage="Enter LaTeX file to compile.")]
     # The TeX file to be compiled.
+    [Parameter(HelpMessage="Enter LaTeX file to compile.")]
     $TexFile = "main.tex",
 
     [string]
     # The path to the TeX source files. Usually the root of a TeX project.
     [Parameter(HelpMessage="Enter path in which LaTeX sources are located.")]
-    $SourcePath="$PSScriptRoot",
+    $SourcePath="$(Resolve-Path -Path $PSScriptRoot)",
 
     [string]
     # The path to the output directory. The final document will be placed there, too.
     [Parameter(HelpMessage="Enter path in which output files can be stored.")]
-    $BuildPath="$SourcePath/build",
+    $BuildPath="$((Get-Item $TexFile).Directory)/build",
 
     [string]
-    [Parameter(HelpMessage="Enter name of the final PDF document.")]
     # The file name of the PDF document.
+    [Parameter(HelpMessage="Enter name of the final PDF document.")]
     $DocumentName="$((Get-Item $TexFile).BaseName)"
 )
 
@@ -42,7 +59,7 @@ function Write-Summary {
 }
 
 function Invoke-LaTeX {
-    Set-Location "$SourcePath"
+    Set-Location -Path "$SourcePath"
     latexmk `
         -cd `
         -synctex=1 `
