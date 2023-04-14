@@ -23,6 +23,7 @@
     https://github.com/yax-lakam-tuun/maya-decipherment
 #>
 
+[CmdletBinding()]
 param (
     [string]
     # The TeX file to be compiled.
