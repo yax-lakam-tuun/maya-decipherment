@@ -24,14 +24,12 @@ RUN apt-get -qq install \
 
 # Install PowerShell
 ARG TARGETPLATFORM
-RUN curl -L -o /tmp/powershell.tar.gz https://github.com/PowerShell/PowerShell/releases/download/v7.3.3/powershell-7.3.3-$(echo "$TARGETPLATFORM" | sed 's/\//-/g').tar.gz && \
+RUN curl -L -o /tmp/powershell.tar.gz https://github.com/PowerShell/PowerShell/releases/download/v7.3.4/powershell-7.3.4-$(echo "$TARGETPLATFORM" | sed 's/\//-/g').tar.gz && \
     mkdir -p /opt/microsoft/powershell/7 && \
     tar zxf /tmp/powershell.tar.gz -C /opt/microsoft/powershell/7 && \
     chmod +x /opt/microsoft/powershell/7/pwsh && \
-    ln -s /opt/microsoft/powershell/7/pwsh /usr/bin/pwsh
-
-# Git support in PowerShell
-RUN pwsh -Command "Install-Module posh-git -Scope AllUsers -Force" && \
+    ln -s /opt/microsoft/powershell/7/pwsh /usr/bin/pwsh && \
+    pwsh -Command "Install-Module posh-git -Scope AllUsers -Force" && \
     pwsh -Command "Add-PoshGitToProfile -AllUsers -AllHosts"
 
 # Dev Containers need a pre-defined user called 'vscode'
