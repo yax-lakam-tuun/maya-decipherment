@@ -2,7 +2,8 @@
 {
 	"name": "Maya Hieroglyphs - The History of Decipherment",
 	"build": {
-		"dockerfile": "../container/Dockerfile"
+		"dockerfile": "../container/Dockerfile",
+		"args": {"user_name": "ajtzib"}
 	},
 	"customizations": {
 		"vscode": {
