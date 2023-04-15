@@ -8,6 +8,14 @@ param (
     $CalendarRound
 )
 
+function Get-Remainder() {
+    param (
+        [int] $Number,
+        [int] $Divisor
+    )
+    return (($Number % $Divisor) + $Divisor) % $Divisor
+}
+
 class DistanceNumber {
     [int] $Days = 0
 
@@ -37,19 +45,19 @@ class LongCountDate {
         $NextWeight = 20
         $Result = @()
         
-        while($Days -ne 0) {
-            $LowerPart = $Days % $NextWeight
+        while($Days -Ne 0) {
+            $LowerPart = Get-Remainder -Number $Days -Divisor $NextWeight
             $Result += $LowerPart / $CurrentWeight
 
             $Days = $Days - $LowerPart
             $CurrentWeight = $NextWeight
-            $NextWeight = ($NextWeight -eq 20) ? 360 : 20 * $NextWeight
+            $NextWeight = ($NextWeight -Eq 20) ? 360 : 20 * $NextWeight
         }
         $this.Digits = $Result
     }
 
     [string] StandardNotation() {
-        $StringDigits = $this.Digits -as [string[]]
+        $StringDigits = $this.Digits -As [string[]]
         [array]::Reverse($StringDigits)
         return $StringDigits -Join "."
     }
@@ -59,7 +67,7 @@ class LongCountDate {
         $Sum = 0
         foreach($Digit in $this.Digits) {
             $Sum += $Digit * $Weight
-            $Weight = ($Weight -eq 20) ? 360 : 20 * $Weight
+            $Weight = ($Weight -Eq 20) ? 360 : 20 * $Weight
         }
         return [MayaNumber]::new($Sum)
     }
@@ -113,20 +121,25 @@ class TzolkinDate {
     }
 
     [string] StandardNotation() {
-        return Get-StandardName($this.DayName)
+        return Get-StandardName -DayName $this.DayName
+    }
+
+    [int] OrdinalDay() {
+        $X = $this.DayName * (-3) * 13 + ($this.TrecendaDay - 1) * 2 * 20
+        return Get-Remainder -Number $X -Divisor 260
     }
 
     [TzolkinDate] AddDays([int] $Days) {
         return [TzolkinDate]::new(
-            1 + (($this.TrecendaDay - 1 + $Days) % 13),
-            ($this.DayName + $Days) % 20
+            1 + ($this.TrecendaDay - 1 + $Days) % 13,
+            ($this.DayName + $Days % 20)
         )
     }
 }
 
 $PocoUinicDate = [DateTime]::ParseExact("0790-07-20", "yyyy-MM-dd", $null) # julian date 16 July 790
 $Date = [DateTime]::ParseExact($IsoDate, "yyyy-MM-dd", $null)
-$Delta = NEW-TIMESPAN –Start $PocoUinicDate –End $Date
+$Delta = New-TimeSpan –Start $PocoUinicDate –End $Date
 Write-Output $Delta
 
 $lc = [LongCountDate]::new((16, 13, 19, 17, 9))
@@ -135,8 +148,9 @@ Write-Output $lc.StandardNotation()
 Write-Output $lc.MayaNumber()
 
 $t = [TzolkinDate]::new(1, [TzolkinDayName]::Ajaw).AddDays(20)
+#$t = [TzolkinDate]::new(1, [TzolkinDayName]::Imix)
 Write-Output $t
-Write-Output $(Get-StandardName([TzolkinDayName]::Akbal))
+Write-Output $t.OrdinalDay()
 
 
 #poco_uinic_eclipse_long_count = [16, 13, 19, 17, 9]
