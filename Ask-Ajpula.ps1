@@ -96,7 +96,7 @@ enum TzolkinDayName {
     Ajaw
 }
 
-function Get-StandardName() {
+function Get-TzolkinDayStandardName() {
     param (
         [TzolkinDayName] $DayName
     )
@@ -121,7 +121,9 @@ class TzolkinDate {
     }
 
     [string] StandardNotation() {
-        return Get-StandardName -DayName $this.DayName
+        $TrecendaDayString = $this.TrecendaDay -As [string]
+        $DayNameString = Get-TzolkinDayStandardName -DayName $this.DayName
+        return $TrecendaDayString + " " + $DayNameString
     }
 
     [int] OrdinalDay() {
