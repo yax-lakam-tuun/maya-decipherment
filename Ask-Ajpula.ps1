@@ -115,6 +115,13 @@ class TzolkinDate {
     [string] StandardNotation() {
         return Get-StandardName($this.DayName)
     }
+
+    [TzolkinDate] AddDays([int] $Days) {
+        return [TzolkinDate]::new(
+            1 + (($this.TrecendaDay - 1 + $Days) % 13),
+            ($this.DayName + $Days) % 20
+        )
+    }
 }
 
 $PocoUinicDate = [DateTime]::ParseExact("0790-07-20", "yyyy-MM-dd", $null) # julian date 16 July 790
@@ -127,7 +134,7 @@ $lc = [LongCountDate]::new([MayaNumber]::new(1412618))
 Write-Output $lc.StandardNotation()
 Write-Output $lc.MayaNumber()
 
-$t = [TzolkinDate]::new(0, [TzolkinDayName]::Ajaw)
+$t = [TzolkinDate]::new(1, [TzolkinDayName]::Ajaw).AddDays(20)
 Write-Output $t
 Write-Output $(Get-StandardName([TzolkinDayName]::Akbal))
 
