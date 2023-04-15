@@ -131,8 +131,8 @@ class TzolkinDate {
 
     [TzolkinDate] AddDays([int] $Days) {
         return [TzolkinDate]::new(
-            1 + ($this.TrecendaDay - 1 + $Days) % 13,
-            ($this.DayName + $Days % 20)
+            $(Get-Remainder -Number (1 + ($this.TrecendaDay - 1 + $Days)) -Divisor 13),
+            $(Get-Remainder -Number ($this.DayName + $Days) -Divisor 20)
         )
     }
 }
@@ -147,7 +147,7 @@ $lc = [LongCountDate]::new([MayaNumber]::new(1412618))
 Write-Output $lc.StandardNotation()
 Write-Output $lc.MayaNumber()
 
-$t = [TzolkinDate]::new(1, [TzolkinDayName]::Ajaw).AddDays(20)
+$t = [TzolkinDate]::new(1, [TzolkinDayName]::Ajaw).AddDays(19)
 #$t = [TzolkinDate]::new(1, [TzolkinDayName]::Imix)
 Write-Output $t
 Write-Output $t.OrdinalDay()
