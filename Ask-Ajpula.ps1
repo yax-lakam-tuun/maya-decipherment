@@ -120,6 +120,12 @@ class TzolkinDate {
         $this.DayName = $DayName
     }
 
+    static [int] $DayCount = 260
+    static [int] $DayNameCount = 20
+    static [int] $TrecenaDayCount = 13
+    static [int] $TrecenaDayMin = 1
+    static [int] $TrecenaDayMax = 13
+
     [string] StandardNotation() {
         $TrecendaDayString = $this.TrecendaDay -As [string]
         $DayNameString = Get-TzolkinDayStandardName -DayName $this.DayName
@@ -127,12 +133,24 @@ class TzolkinDate {
     }
 
     [int] OrdinalDay() {
-        $X = $this.DayName * (-3) * 13 + ($this.TrecendaDay - 1) * 2 * 20
-        return Get-Remainder -Number $X -Divisor 260
+        $TrecenaDay0 = $this.TrecenaDay - [TzolkinDate]::TrecenaDayMin
+        $DayName0  = $this.DayName -As [int]
+        $X = $DayName0 * (-3) * [TzolkinDate]::TrecenaDayCount + 
+             $TrecenaDay0 * 2 * [TzolkinDate]::DayNameCount
+        $Ordinal0 = $(Get-Remainder -Number $X -Divisor $([TzolkinDate]::DayCount))
+        return 1 + $Ordinal0
     }
 
     [TzolkinDate] AddDays([int] $Days) {
-        return [TzolkinDate]::new(
+        $TrecenaDay0 = $this.TrecendaDay - [TzolkinDate]::TrecenaDayMin
+        $DayName0  = $this.DayName -As [int]
+        $NewTrecenaDay0 = Get-Remainder -Number ($TrecenaDay0 + $Days) -Divisor $([TzolkinDate]::TrecenaDayCount)
+        $NewTrecenaDay = [TzolkinDate]::TrecenaDayMin + $NewTrecenaDay0
+        $NewDayName = Get-Remainder -Number ($DayName0 + $Days) -Divisor $([TzolkinDate]::DayNameCount)
+        return [TzolkinDate]::new($NewTrecenaDay, $NewDayName)
+    }
+}
+
             $(Get-Remainder -Number (1 + ($this.TrecendaDay - 1 + $Days)) -Divisor 13),
             $(Get-Remainder -Number ($this.DayName + $Days) -Divisor 20)
         )
@@ -149,10 +167,12 @@ $lc = [LongCountDate]::new([MayaNumber]::new(1412618))
 Write-Output $lc.StandardNotation()
 Write-Output $lc.MayaNumber()
 
+Write-Output $(Get-TzolkinDayStandardName([TzolkinDayName]::Chuwen))
 $t = [TzolkinDate]::new(1, [TzolkinDayName]::Ajaw).AddDays(19)
 #$t = [TzolkinDate]::new(1, [TzolkinDayName]::Imix)
 Write-Output $t
 Write-Output $t.OrdinalDay()
+Write-Output $t.StandardNotation()
 
 
 #poco_uinic_eclipse_long_count = [16, 13, 19, 17, 9]
