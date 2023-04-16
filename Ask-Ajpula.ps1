@@ -151,9 +151,72 @@ class TzolkinDate {
     }
 }
 
-            $(Get-Remainder -Number (1 + ($this.TrecendaDay - 1 + $Days)) -Divisor 13),
-            $(Get-Remainder -Number ($this.DayName + $Days) -Divisor 20)
-        )
+enum HaabMonth {
+    Pop
+    Wo
+    Sip
+    Sotz
+    Sek
+    Xul
+    Yaxkin
+    Mol
+    Chen
+    Yax
+    Sak
+    Keh
+    Mak
+    Kankin
+    Muwan
+    Pax
+    Kayab
+    Kumku
+    Wayeb
+}
+
+function Get-HaabMonthStandardName()
+{
+    param (
+        [HaabMonth] $Month
+    )
+
+    $Months = (
+        "Pop", "Wo'", "Sip", "Sotz'", "Sek", "Xul", "Yaxk'in", "Mol", "Ch'en",
+        "Yax", "Sak'", "Keh", "Mak", "K'ank'in", "Muwan", "Pax", "K'ayab'", "Kumk'u", "Wayeb"
+    )
+    return $Months[$Month]
+}
+
+class HaabDate {
+    static [int] $DayCount = 365
+    static [int] $WinalDayCount = 20
+    static [int] $WayebDayCount = 5
+
+    [ValidateRange(0,19)][int] $Day = 1
+    [HaabMonth] $Month = [HaabMonth]::Pop
+
+    HaabDate([int] $Day, [HaabMonth] $Month) {
+        if ($Month -Eq [HaabMonth]::Wayeb -And $Day -Ge $this::WayebDayCount) {
+            throw "Wayeb month has only days from 0 to 4"
+        }
+        $this.Day = $Day
+        $this.Month = $Month
+    }
+
+    [string] StandardNotation() {
+        $DayString = $this.Day -As [string]
+        $MonthString = Get-HaabMonthStandardName -Month $this.Month
+        return $DayString + " " + $MonthString
+    }
+
+    [int] OrdinalDay() {
+        return 1 + $this::WinalDayCount * $this.Month + $this.Day
+    }
+
+    [HaabDate] AddDays([int] $Days) {
+        $Ordinal0 = Get-Remainder -Number ($this.OrdinalDay() - 1 + $Days) -Divisor $this::DayCount
+        $Day0 = Get-Remainder -Number $Ordinal0 -Divisor $this::WinalDayCount
+        $Month0 = $Ordinal0 / $this::WinalDayCount
+        return [HaabDate]::new($Day0, $Month0 -As [HaabMonth])
     }
 }
 
@@ -168,12 +231,23 @@ Write-Output $lc.StandardNotation()
 Write-Output $lc.MayaNumber()
 
 Write-Output $(Get-TzolkinDayStandardName([TzolkinDayName]::Chuwen))
+Write-Output $(Get-HaabMonthStandardName([HaabMonth]::Kumku))
+
 $t = [TzolkinDate]::new(1, [TzolkinDayName]::Ajaw).AddDays(19)
 #$t = [TzolkinDate]::new(1, [TzolkinDayName]::Imix)
 Write-Output $t
 Write-Output $t.OrdinalDay()
 Write-Output $t.StandardNotation()
 
+$h = [HaabDate]::new(4, [HaabMonth]::Wayeb);
+Write-Output $h
+Write-Output $h.OrdinalDay()
+Write-Output $h.StandardNotation()
+
+$h = [HaabDate]::new(17, [HaabMonth]::Muwan).AddDays(3);
+Write-Output $h
+Write-Output $h.OrdinalDay()
+Write-Output $h.StandardNotation()
 
 #poco_uinic_eclipse_long_count = [16, 13, 19, 17, 9]
 #poco_uinic_eclipse_date = datetime.datetime(790, 7, 20) # julian date 16 July 790
