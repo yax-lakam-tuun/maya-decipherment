@@ -45,21 +45,21 @@ class LongCountDate {
         $NextWeight = 20
         $Result = @()
         
-        while($Days -Ne 0) {
+        while($Days -ne 0) {
             $LowerPart = Get-Remainder -Number $Days -Divisor $NextWeight
             $Result += $LowerPart / $CurrentWeight
 
             $Days = $Days - $LowerPart
             $CurrentWeight = $NextWeight
-            $NextWeight = ($NextWeight -Eq 20) ? 360 : 20 * $NextWeight
+            $NextWeight = ($NextWeight -eq 20) ? 360 : 20 * $NextWeight
         }
         $this.Digits = $Result
     }
 
     [string] StandardNotation() {
-        $StringDigits = $this.Digits -As [string[]]
+        $StringDigits = $this.Digits -as [string[]]
         [array]::Reverse($StringDigits)
-        return $StringDigits -Join "."
+        return $StringDigits -join "."
     }
 
     [MayaNumber] MayaNumber() {
@@ -67,7 +67,7 @@ class LongCountDate {
         $Sum = 0
         foreach($Digit in $this.Digits) {
             $Sum += $Digit * $Weight
-            $Weight = ($Weight -Eq 20) ? 360 : 20 * $Weight
+            $Weight = ($Weight -eq 20) ? 360 : 20 * $Weight
         }
         return [MayaNumber]::new($Sum)
     }
@@ -127,14 +127,14 @@ class TzolkinDate {
     }
 
     [string] StandardNotation() {
-        $TrecendaDayString = $this.TrecendaDay -As [string]
+        $TrecendaDayString = $this.TrecendaDay -as [string]
         $DayNameString = Get-TzolkinDayStandardName -DayName $this.DayName
         return $TrecendaDayString + " " + $DayNameString
     }
 
     [int] OrdinalDay() {
         $TrecenaDay0 = $this.TrecenaDay - $this::TrecenaDayMin
-        $DayName0  = $this.DayName -As [int]
+        $DayName0  = $this.DayName -as [int]
         $X = $DayName0 * (-3) * $this::TrecenaDayCount + 
              $TrecenaDay0 * 2 * $this::DayNameCount
         return 1 + $(Get-Remainder -Number $X -Divisor $($this::DayCount))
@@ -142,11 +142,11 @@ class TzolkinDate {
 
     [TzolkinDate] AddDays([int] $Days) {
         $TrecenaDay0 = $this.TrecendaDay - $this::TrecenaDayMin
-        $DayName0  = $this.DayName -As [int]
+        $DayName0  = $this.DayName -as [int]
         $NewTrecenaDay0 = Get-Remainder -Number ($TrecenaDay0 + $Days) -Divisor $($this::TrecenaDayCount)
         $NewTrecenaDay = $this::TrecenaDayMin + $NewTrecenaDay0
         $NewDayName0 = Get-Remainder -Number ($DayName0 + $Days) -Divisor $($this::DayNameCount)
-        $NewDayName = $NewDayName0 -As [TzolkinDayName]
+        $NewDayName = $NewDayName0 -as [TzolkinDayName]
         return $this::new($NewTrecenaDay, $NewDayName)
     }
 }
@@ -195,7 +195,7 @@ class HaabDate {
     [HaabMonth] $Month = [HaabMonth]::Pop
 
     HaabDate([int] $Day, [HaabMonth] $Month) {
-        if ($Month -Eq [HaabMonth]::Wayeb -And $Day -Ge $this::WayebDayCount) {
+        if ($Month -eq [HaabMonth]::Wayeb -And $Day -ge $this::WayebDayCount) {
             throw "Wayeb month has only days from 0 to 4"
         }
         $this.Day = $Day
@@ -203,7 +203,7 @@ class HaabDate {
     }
 
     [string] StandardNotation() {
-        $DayString = $this.Day -As [string]
+        $DayString = $this.Day -as [string]
         $MonthString = Get-HaabMonthStandardName -Month $this.Month
         return $DayString + " " + $MonthString
     }
@@ -216,7 +216,7 @@ class HaabDate {
         $Ordinal0 = Get-Remainder -Number ($this.OrdinalDay() - 1 + $Days) -Divisor $this::DayCount
         $Day0 = Get-Remainder -Number $Ordinal0 -Divisor $this::WinalDayCount
         $Month0 = $Ordinal0 / $this::WinalDayCount
-        return [HaabDate]::new($Day0, $Month0 -As [HaabMonth])
+        return [HaabDate]::new($Day0, $Month0 -as [HaabMonth])
     }
 }
 
