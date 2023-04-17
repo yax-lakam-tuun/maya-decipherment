@@ -420,9 +420,9 @@ function Assert {
     Exit 1
 }
 
-function Test-Script {
 
-    # HaabDate tests
+
+function Test-HaabDate {
     Assert -Statement ([HaabDate]::new(1, [HaabMonth]::Pop).Ordinal()) -Expected 1
     Assert -Statement ([HaabDate]::new(20, [HaabMonth]::Pop).Ordinal()) -Expected 20
     Assert -Statement ([HaabDate]::new(5, [HaabMonth]::Wayeb).Ordinal()) -Expected 365
@@ -452,7 +452,10 @@ function Test-Script {
     Assert -Statement ([HaabDate]::new(0).StandardNotation($true)) -Expected "1 Pop"
     Assert -Statement ([HaabDate]::new(10).StandardNotation($true)) -Expected "11 Pop"
     Assert -Statement ([HaabDate]::new(300).StandardNotation($true)) -Expected "1 Pax"
+}
 
+function Test-Script {
+    Test-HaabDate
 }
 
 Test-Script
