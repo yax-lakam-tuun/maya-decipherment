@@ -442,6 +442,17 @@ function Test-Script {
     Assert -Statement ([HaabDate]::new(10, [HaabMonth]::Chen).StandardNotation($true)) -Expected "10 Ch'en"
     Assert -Statement ([HaabDate]::new(20, [HaabMonth]::Kankin).StandardNotation($true)) -Expected "Ending of K'ank'in"
     Assert -Statement ([HaabDate]::new(20, [HaabMonth]::Kankin).StandardNotation($false)) -Expected "Seating of Muwan"
+
+    Assert -Statement ([HaabDate]::new(1, [HaabMonth]::Pop).AddDays(10).StandardNotation($true)) -Expected "11 Pop"
+    Assert -Statement ([HaabDate]::new(13, [HaabMonth]::Pop).AddDays(10).StandardNotation($true)) -Expected "3 Wo'"
+    Assert -Statement ([HaabDate]::new(1, [HaabMonth]::Wayeb).AddDays(4).StandardNotation($true)) -Expected "Ending of Wayeb"
+    Assert -Statement ([HaabDate]::new(1, [HaabMonth]::Wayeb).AddDays(5).StandardNotation($true)) -Expected "1 Pop"
+    Assert -Statement ([HaabDate]::new(10, [HaabMonth]::Muwan).AddDays(1000).StandardNotation($true)) -Expected "15 Yax"
+
+    Assert -Statement ([HaabDate]::new(0).StandardNotation($true)) -Expected "1 Pop"
+    Assert -Statement ([HaabDate]::new(10).StandardNotation($true)) -Expected "11 Pop"
+    Assert -Statement ([HaabDate]::new(300).StandardNotation($true)) -Expected "1 Pax"
+
 }
 
 Test-Script
