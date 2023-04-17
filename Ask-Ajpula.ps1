@@ -118,36 +118,40 @@ class TzolkinDate {
     static [int] $TrecenaDayMin = 1
     static [int] $TrecenaDayMax = 13
 
-    [ValidateRange(1,13)][int] $TrecendaDay = 1
-    [TzolkinDayName] $DayName = [TzolkinDayName]::Imix
+    [ValidateRange(0, 259)]
+    hidden [int] $Index = 1
 
-    TzolkinDate( [int] $TrecendaDay, [TzolkinDayName] $DayName) {
-        $this.TrecendaDay = $TrecendaDay
-        $this.DayName = $DayName
+    TzolkinDate([int] $TrecenaDay, [TzolkinDayName] $DayName) {
+        $X = $DayName * (-3) * $this::TrecenaDayCount + 
+             ($TrecenaDay - $this::TrecenaDayMin) * 2 * $this::DayNameCount
+        $this.Index = $(Get-Remainder -Number $X -Divisor $this::DayCount)
+    }
+
+    TzolkinDate([int] $Index) {
+        $this.Index = $Index
+    }
+
+    [int] TrecenaDay() {
+        $Day0 = Get-Remainder -Number $this.Index -Divisor $this::TrecenaDayCount
+        return $this::TrecenaDayMin + $Day0
+    }
+
+    [TzolkinDayName] DayName() {
+        return Get-Remainder -Number $this.Index -Divisor $this::DayNameCount
     }
 
     [string] StandardNotation() {
-        $TrecendaDayString = $this.TrecendaDay -as [string]
-        $DayNameString = Get-TzolkinDayStandardName -DayName $this.DayName
+        $TrecendaDayString = $this.TrecenaDay() -as [string]
+        $DayNameString = Get-TzolkinDayStandardName -DayName $this.DayName()
         return $TrecendaDayString + " " + $DayNameString
     }
 
     [int] OrdinalDay() {
-        $TrecenaDay0 = $this.TrecenaDay - $this::TrecenaDayMin
-        $DayName0  = $this.DayName -as [int]
-        $X = $DayName0 * (-3) * $this::TrecenaDayCount + 
-             $TrecenaDay0 * 2 * $this::DayNameCount
-        return 1 + $(Get-Remainder -Number $X -Divisor $($this::DayCount))
+        return 1 + $this.Index
     }
 
     [TzolkinDate] AddDays([int] $Days) {
-        $TrecenaDay0 = $this.TrecendaDay - $this::TrecenaDayMin
-        $DayName0  = $this.DayName -as [int]
-        $NewTrecenaDay0 = Get-Remainder -Number ($TrecenaDay0 + $Days) -Divisor $($this::TrecenaDayCount)
-        $NewTrecenaDay = $this::TrecenaDayMin + $NewTrecenaDay0
-        $NewDayName0 = Get-Remainder -Number ($DayName0 + $Days) -Divisor $($this::DayNameCount)
-        $NewDayName = $NewDayName0 -as [TzolkinDayName]
-        return $this::new($NewTrecenaDay, $NewDayName)
+        return $this::new($(Get-Remainder -Number ($this.Index + $Days) -Divisor $this::DayCount))
     }
 }
 
