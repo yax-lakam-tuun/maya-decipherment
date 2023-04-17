@@ -227,10 +227,7 @@ class HaabDate {
     }
 
     [HaabDate] AddDays([int] $Days) {
-        $Ordinal0 = Get-Remainder -Number ($this.OrdinalDay() - 1 + $Days) -Divisor $this::DayCount
-        $Day0 = Get-Remainder -Number $Ordinal0 -Divisor $this::WinalDayCount
-        $Month0 = $Ordinal0 / $this::WinalDayCount
-        return [HaabDate]::new($Day0, $Month0 -as [HaabMonth])
+        return $this::new($(Get-Remainder -Number ($this.Index + $Days) -Divisor $this::DayCount))
     }
 }
 
