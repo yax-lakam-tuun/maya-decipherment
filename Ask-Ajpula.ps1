@@ -119,7 +119,7 @@ class TzolkinDate {
     static [int] $TrecenaDayMax = 13
 
     [ValidateRange(0, 259)]
-    hidden [int] $Index = 0
+    [int] $Index = 0
 
     TzolkinDate([int] $TrecenaDay, [TzolkinDayName] $DayName) {
         $X = $DayName * (-3) * $this::TrecenaDayCount + 
