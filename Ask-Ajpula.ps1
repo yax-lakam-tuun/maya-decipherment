@@ -1,11 +1,24 @@
+#!/usr/bin/env pwsh
 
 [CmdletBinding()]
 param (
     [string]
     $IsoDate,
 
-    [bool]
-    $CalendarRound
+    [switch]
+    $CalendarRound,
+
+    [switch]
+    $NoLongCount,
+
+    [switch]
+    $Tzolkin,
+
+    [switch]
+    $Haab,
+
+    [switch]
+    $PreferMonthEnding
 )
 
 function Get-Remainder() {
@@ -150,8 +163,9 @@ class TzolkinDate {
         return 1 + $this.Index
     }
 
-    [TzolkinDate] AddDays([int] $Days) {
-        return $this::new($(Get-Remainder -Number ($this.Index + $Days) -Divisor $this::DayCount))
+    [TzolkinDate] AddDays([DistanceNumber] $Distance) {
+        $NewIndex = Get-Remainder -Number ($this.Index + $Distance.Days) -Divisor $this::DayCount
+        return $this::new($NewIndex)
     }
 }
 
@@ -192,6 +206,7 @@ function Get-HaabMonthStandardName()
 
 class HaabDate {
     static [int] $DayCount = 365
+    static [int] $WinalCount = 19
     static [int] $WinalDayCount = 20
     static [int] $WayebDayCount = 5
 
@@ -209,57 +224,122 @@ class HaabDate {
     }
 
     [int] Day() {
-        return $this.Index / $this::WinalDayCount
-    }
-
-    [HaabMonth] Month() {
         return Get-Remainder -Number $this.Index -Divisor $this::WinalDayCount
     }
 
-    [string] StandardNotation() {
-        $DayString = $this.Day() -as [string]
-        $MonthString = Get-HaabMonthStandardName -Month $this.Month()
-        return $DayString + " " + $MonthString
+    [HaabMonth] Month() {
+        return [Math]::Floor($this.Index / $this::WinalDayCount) -as [int]
+    }
+
+    [string] StandardNotation([bool] $PreferMonthEnding) {
+        $D = $this.Day()
+        $M = $this.Month() -as [int]
+        if ($D -eq 0) {
+            if ($PreferMonthEnding -eq $true) {
+                $M = Get-Remainder -Number ($M - 1) -Divisor $this::WinalCount
+                return "Ending of " + $(Get-HaabMonthStandardName -Month $M)
+            } else {
+                return "Seating of " + $(Get-HaabMonthStandardName -Month $M)
+            }
+        } else {
+            $DayString = $this.Day() -as [string]
+            $MonthString = Get-HaabMonthStandardName -Month $this.Month()
+            return $DayString + " " + $MonthString
+        }
     }
 
     [int] OrdinalDay() {
         return 1 + $this.Index
     }
 
-    [HaabDate] AddDays([int] $Days) {
-        return $this::new($(Get-Remainder -Number ($this.Index + $Days) -Divisor $this::DayCount))
+    [HaabDate] AddDays([DistanceNumber] $Distance) {
+        $NewIndex = Get-Remainder -Number ($this.Index + $Distance.Days) -Divisor $this::DayCount
+        return $this::new($NewIndex)
     }
 }
 
-$PocoUinicDate = [DateTime]::ParseExact("0790-07-20", "yyyy-MM-dd", $null) # julian date 16 July 790
+function Get-TzolkinDateFrom() {
+    [CmdletBinding()]
+    param (
+        [MayaNumber] $MayaNumber
+    )
+
+    $BaseDate = [TzolkinDate]::new(4, [TzolkinDayName]::Ajaw)
+    return $BaseDate.AddDays($MayaNumber.Days)
+}
+
+function Get-HaabDateFrom() {
+    [CmdletBinding()]
+    param (
+        [MayaNumber] $MayaNumber
+    )
+
+    $BaseDate = [HaabDate]::new(8, [HaabMonth]::Kumku)
+    return $BaseDate.AddDays($MayaNumber.Days)
+}
+
+class MartinSkidmoreCorrelation {
+    static [MayaNumber] MayaNumberFrom([DateTime] $Date) {
+        # julian date 16 July 790
+        $PocoUinicDate = [DateTime]::ParseExact("0790-07-20", "yyyy-MM-dd", $null)
+        $PocoUinicMayaNumber = [LongCountDate]::new((16, 13, 19, 17, 9)).MayaNumber()
+
+        $Delta = New-TimeSpan –Start $PocoUinicDate –End $Date
+        return [MayaNumber]::new($PocoUinicMayaNumber.Days + $Delta.Days)
+    }
+}
+
+function Write-Plain {
+    [CmdletBinding()]
+    param (
+        [MayaDate] $MayaDate,
+        [bool] $LongCount = $true,
+        [bool] $Tzolkin = $false,
+        [bool] $Haab = $false,
+        [bool] $PreferMonthEnding = $false
+    )
+
+    $Output = @()
+    
+    if ($LongCount) {
+        $Output += $MayaDate.LongCountDate.StandardNotation()
+    }
+
+    if ($Tzolkin) {
+        $Output += $MayaDate.TzolkinDate.StandardNotation()
+    }
+
+    if ($Haab) {
+        $Output += $MayaDate.HaabDate.StandardNotation($PreferMonthEnding)
+    }
+
+    Write-Output $($Output -join ' ')
+}
+
+class MayaDate {
+    [MayaNumber] $MayaNumber
+    [LongCountDate] $LongCountDate
+    [TzolkinDate] $TzolkinDate
+    [HaabDate] $HaabDate
+
+    MayaDate([MayaNumber] $MayaNumber) {
+        $this.MayaNumber = $MayaNumber
+        $this.LongCountDate = [LongCountDate]::new($MayaNumber)
+        $this.TzolkinDate = Get-TzolkinDateFrom -MayaNumber $MayaNumber
+        $this.HaabDate = Get-HaabDateFrom -MayaNumber $MayaNumber
+    }
+}
+
 $Date = [DateTime]::ParseExact($IsoDate, "yyyy-MM-dd", $null)
-$Delta = New-TimeSpan –Start $PocoUinicDate –End $Date
-Write-Output $Delta
+$MayaNumber = [MartinSkidmoreCorrelation]::MayaNumberFrom($Date)
+$MayaDate = [MayaDate]::new($MayaNumber)
 
-$lc = [LongCountDate]::new((16, 13, 19, 17, 9))
-$lc = [LongCountDate]::new([MayaNumber]::new(1412618))
-Write-Output $lc.StandardNotation()
-Write-Output $lc.MayaNumber()
+$WritePlainParams = @{
+    MayaDate = $MayaDate
+    LongCount = $NoLongCount.IsPresent ? $false : $true
+    Tzolkin = $Tzolkin.IsPresent -or $CalendarRound.IsPresent
+    Haab = $Haab.IsPresent -or $CalendarRound.IsPresent
+    PreferMonthEnding = $PreferMonthEnding.IsPresent
+}
 
-Write-Output $(Get-TzolkinDayStandardName([TzolkinDayName]::Chuwen))
-Write-Output $(Get-HaabMonthStandardName([HaabMonth]::Kumku))
-
-$t = [TzolkinDate]::new(1, [TzolkinDayName]::Ajaw).AddDays(19)
-#$t = [TzolkinDate]::new(1, [TzolkinDayName]::Imix)
-Write-Output $t
-Write-Output $t.OrdinalDay()
-Write-Output $t.StandardNotation()
-
-$h = [HaabDate]::new(4, [HaabMonth]::Wayeb);
-Write-Output $h
-Write-Output $h.OrdinalDay()
-Write-Output $h.StandardNotation()
-
-$h = [HaabDate]::new(17, [HaabMonth]::Muwan).AddDays(3);
-Write-Output $h
-Write-Output $h.OrdinalDay()
-Write-Output $h.StandardNotation()
-
-#poco_uinic_eclipse_long_count = [16, 13, 19, 17, 9]
-#poco_uinic_eclipse_date = datetime.datetime(790, 7, 20) # julian date 16 July 790
-#poco_uinic_eclipse_maya_number = MayaNumber.from_long_count_digits(poco_uinic_eclipse_long_count)
+Write-Plain @WritePlainParams
