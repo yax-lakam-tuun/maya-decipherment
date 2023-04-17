@@ -26,6 +26,7 @@ param (
 )
 
 function Get-Remainder() {
+    [CmdletBinding()]
     param (
         [int] $Number,
         [int] $Divisor
@@ -114,6 +115,7 @@ enum TzolkinDayName {
 }
 
 function Get-TzolkinDayStandardName() {
+    [CmdletBinding()]
     param (
         [TzolkinDayName] $DayName
     )
@@ -197,6 +199,7 @@ enum HaabMonth {
 
 function Get-HaabMonthStandardName()
 {
+    [CmdletBinding()]
     param (
         [HaabMonth] $Month
     )
@@ -414,7 +417,7 @@ switch($Mode) {
     }
     "Json" {
         $Parameters = @{
-            GregorianDate = $GregorianDate
+            GregorianDate = $Date
             MayaDate = $MayaDate
             PreferMonthEnding = $PreferMonthEnding.IsPresent
         }
