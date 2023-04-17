@@ -165,7 +165,7 @@ class TzolkinDate {
         return $TrecendaDayString + " " + $DayNameString
     }
 
-    [int] OrdinalDay() {
+    [int] Ordinal() {
         return 1 + $this.Index
     }
 
@@ -259,7 +259,7 @@ class HaabDate {
         }
     }
 
-    [int] OrdinalDay() {
+    [int] Ordinal() {
         return 1 + $this.Index
     }
 
@@ -345,7 +345,7 @@ function Write-Json {
         trecenaDay = $MayaDate.TzolkinDate.TrecenaDay()
         dayName = Get-TzolkinDayStandardName -DayName $MayaDate.TzolkinDate.DayName()
         dayNameOrdinal = $MayaDate.TzolkinDate.DayName() -as [int]
-        ordinalDay = $MayaDate.TzolkinDate.OrdinalDay()
+        ordinal = $MayaDate.TzolkinDate.Ordinal()
     }
 
     $Haab = [ordered]@{
@@ -353,7 +353,7 @@ function Write-Json {
         day = $MayaDate.HaabDate.Day()
         monthName = $(Get-HaabMonthStandardName -Month $MayaDate.HaabDate.Month())
         month = $MayaDate.HaabDate.Month() -as [int]
-        ordinalDay = $MayaDate.HaabDate.OrdinalDay()
+        ordinal = $MayaDate.HaabDate.Ordinal()
     }
 
     $IsoDate = $(Get-Date $date -Format "yyyy-MM-dd")
