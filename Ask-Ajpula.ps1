@@ -420,7 +420,34 @@ function Assert {
     Exit 1
 }
 
+function Test-TzolkinDate {
+    Assert -Statement ([TzolkinDate]::new(1, [TzolkinDayName]::Imix).Ordinal()) -Expected 1
+    Assert -Statement ([TzolkinDate]::new(2, [TzolkinDayName]::Ik).Ordinal()) -Expected 2
+    Assert -Statement ([TzolkinDate]::new(3, [TzolkinDayName]::Akbal).Ordinal()) -Expected 3
+    Assert -Statement ([TzolkinDate]::new(7, [TzolkinDayName]::Chicchan).Ordinal()) -Expected 85
+    Assert -Statement ([TzolkinDate]::new(13, [TzolkinDayName]::Ajaw).Ordinal()) -Expected 260
 
+    Assert -Statement ([TzolkinDate]::new(1, [TzolkinDayName]::Imix).TrecenaDay()) -Expected 1
+    Assert -Statement ([TzolkinDate]::new(3, [TzolkinDayName]::Ben).TrecenaDay()) -Expected 3
+    Assert -Statement ([TzolkinDate]::new(8, [TzolkinDayName]::Kawak).TrecenaDay()) -Expected 8
+
+    Assert -Statement ([TzolkinDate]::new(1, [TzolkinDayName]::Imix).DayName()) -Expected ([TzolkinDayName]::Imix)
+    Assert -Statement ([TzolkinDate]::new(1, [TzolkinDayName]::Ben).DayName()) -Expected ([TzolkinDayName]::Ben)
+    Assert -Statement ([TzolkinDate]::new(1, [TzolkinDayName]::Kawak).DayName()) -Expected ([TzolkinDayName]::Kawak)
+
+    Assert -Statement ([TzolkinDate]::new(1, [TzolkinDayName]::Imix).StandardNotation()) -Expected "1 Imix"
+    Assert -Statement ([TzolkinDate]::new(2, [TzolkinDayName]::Ik).StandardNotation()) -Expected "2 Ik'"
+    Assert -Statement ([TzolkinDate]::new(3, [TzolkinDayName]::Akbal).StandardNotation()) -Expected "3 Ak'b'al"
+    Assert -Statement ([TzolkinDate]::new(7, [TzolkinDayName]::Chicchan).StandardNotation()) -Expected "7 Chicchan"
+    Assert -Statement ([TzolkinDate]::new(13, [TzolkinDayName]::Ajaw).StandardNotation()) -Expected "13 Ajaw"
+
+    Assert -Statement ([TzolkinDate]::new(1, [TzolkinDayName]::Imix).AddDays(1).StandardNotation()) -Expected "2 Ik'"
+    Assert -Statement ([TzolkinDate]::new(2, [TzolkinDayName]::Ik).AddDays(5).StandardNotation()) -Expected "7 Manik'"
+    Assert -Statement ([TzolkinDate]::new(3, [TzolkinDayName]::Akbal).AddDays(13).StandardNotation()) -Expected "3 Kib'"
+    Assert -Statement ([TzolkinDate]::new(11, [TzolkinDayName]::Akbal).AddDays(20).StandardNotation()) -Expected "5 Ak'b'al"
+    Assert -Statement ([TzolkinDate]::new(11, [TzolkinDayName]::Akbal).AddDays(-1).StandardNotation()) -Expected "10 Ik'"
+    Assert -Statement ([TzolkinDate]::new(11, [TzolkinDayName]::Akbal).AddDays(-260).StandardNotation()) -Expected "11 Ak'b'al"
+}
 
 function Test-HaabDate {
     Assert -Statement ([HaabDate]::new(1, [HaabMonth]::Pop).Ordinal()) -Expected 1
@@ -448,6 +475,7 @@ function Test-HaabDate {
     Assert -Statement ([HaabDate]::new(1, [HaabMonth]::Wayeb).AddDays(4).StandardNotation($true)) -Expected "Ending of Wayeb"
     Assert -Statement ([HaabDate]::new(1, [HaabMonth]::Wayeb).AddDays(5).StandardNotation($true)) -Expected "1 Pop"
     Assert -Statement ([HaabDate]::new(10, [HaabMonth]::Muwan).AddDays(1000).StandardNotation($true)) -Expected "15 Yax"
+    Assert -Statement ([HaabDate]::new(5, [HaabMonth]::Muwan).AddDays(-10).StandardNotation($true)) -Expected "15 K'ank'in"
 
     Assert -Statement ([HaabDate]::new(0).StandardNotation($true)) -Expected "1 Pop"
     Assert -Statement ([HaabDate]::new(10).StandardNotation($true)) -Expected "11 Pop"
@@ -455,6 +483,7 @@ function Test-HaabDate {
 }
 
 function Test-Script {
+    Test-TzolkinDate
     Test-HaabDate
 }
 
