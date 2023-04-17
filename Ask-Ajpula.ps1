@@ -400,6 +400,35 @@ class MayaDate {
     }
 }
 
+function Assert {
+    [CmdletBinding()]
+    param (
+        [string] $Statement,
+        $Expected
+    )
+
+    $Actual = $($Statement)
+
+    if ($Actual -eq $Expected) {
+        return
+    }
+
+    Write-Warning "Test failed."
+    Write-Warning "Actual:   $Actual"
+    Write-Warning "Expected: $Expected"
+    Write-Error "Test failed"
+    Exit 1
+}
+
+function Test-Script {
+
+    Assert -Statement ([HaabDate]::new(1, [HaabMonth]::Pop).Ordinal()) -Expected 1
+    Assert -Statement ([HaabDate]::new(5, [HaabMonth]::Wayeb).Ordinal()) -Expected 365
+
+}
+
+Test-Script
+
 $Date = [DateTime]::ParseExact($IsoDate, "yyyy-MM-dd", $null)
 $MayaNumber = [MartinSkidmoreCorrelation]::MayaNumberFrom($Date)
 $MayaDate = [MayaDate]::new($MayaNumber)
