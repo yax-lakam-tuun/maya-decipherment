@@ -18,7 +18,11 @@ param (
     $Haab,
 
     [switch]
-    $PreferMonthEnding
+    $PreferMonthEnding,
+
+    [ValidateSet('Plain', 'Json', 'Latex')]
+    [string]
+    $Mode = "Plain"
 )
 
 function Get-Remainder() {
@@ -320,6 +324,45 @@ function Write-Plain {
     Write-Output $($Output -join ' ')
 }
 
+function Write-Json() {
+    [CmdletBinding()]
+    param (
+        [DateTime] $GregorianDate,
+        [MayaDate] $MayaDate,
+        [bool] $PreferMonthEnding
+    )
+
+    $LongCount = [ordered]@{
+        standardNotation = $MayaDate.LongCountDate.StandardNotation()
+        digits = $MayaDate.LongCountDate.Digits
+    }
+
+    $Tzolkin = [ordered]@{
+        standardNotation = $MayaDate.TzolkinDate.StandardNotation()
+        trecenaDay = $MayaDate.TzolkinDate.TrecenaDay()
+        dayName = Get-TzolkinDayStandardName -DayName $MayaDate.TzolkinDate.DayName()
+        dayNameOrdinal = $MayaDate.TzolkinDate.DayName() -as [int]
+        ordinalDay = $MayaDate.TzolkinDate.OrdinalDay()
+    }
+
+    $Haab = [ordered]@{
+        standardNotation = $MayaDate.HaabDate.StandardNotation($PreferMonthEnding)
+        day = $MayaDate.HaabDate.Day()
+        monthName = $(Get-HaabMonthStandardName -Month $MayaDate.HaabDate.Month())
+        month = $MayaDate.HaabDate.Month() -as [int]
+        ordinalDay = $MayaDate.HaabDate.OrdinalDay()
+    }
+
+    $IsoDate = $(Get-Date $date -Format "yyyy-MM-dd")
+    $All = [ordered]@{
+        gregorianDate = $IsoDate
+        longCountDate = $LongCount
+        tzolkin = $Tzolkin
+        haab = $Haab
+    }
+    Write-Output $($All | ConvertTo-Json)
+}
+
 class MayaDate {
     [MayaNumber] $MayaNumber
     [LongCountDate] $LongCountDate
@@ -338,12 +381,25 @@ $Date = [DateTime]::ParseExact($IsoDate, "yyyy-MM-dd", $null)
 $MayaNumber = [MartinSkidmoreCorrelation]::MayaNumberFrom($Date)
 $MayaDate = [MayaDate]::new($MayaNumber)
 
-$WritePlainParams = @{
-    MayaDate = $MayaDate
-    LongCount = $NoLongCount.IsPresent ? $false : $true
-    Tzolkin = $Tzolkin.IsPresent -or $CalendarRound.IsPresent
-    Haab = $Haab.IsPresent -or $CalendarRound.IsPresent
-    PreferMonthEnding = $PreferMonthEnding.IsPresent
+
+
+switch($Mode) {
+    "Plain" {
+        $Parameters = @{
+            MayaDate = $MayaDate
+            LongCount = $NoLongCount.IsPresent ? $false : $true
+            Tzolkin = $Tzolkin.IsPresent -or $CalendarRound.IsPresent
+            Haab = $Haab.IsPresent -or $CalendarRound.IsPresent
+            PreferMonthEnding = $PreferMonthEnding.IsPresent
+        }
+        Write-Plain @Parameters
+    }
+    "Json" {
+        $Parameters = @{
+            MayaDate = $MayaDate
+            PreferMonthEnding = $PreferMonthEnding.IsPresent
+        }
+        Write-Json @Parameters
+    }
 }
 
-Write-Plain @WritePlainParams
