@@ -266,7 +266,7 @@ class HaabDate {
     }
 }
 
-function Get-TzolkinDateFrom() {
+function Get-TzolkinDateFrom {
     [CmdletBinding()]
     param (
         [MayaNumber] $MayaNumber
@@ -276,7 +276,7 @@ function Get-TzolkinDateFrom() {
     return $BaseDate.AddDays($MayaNumber.Days)
 }
 
-function Get-HaabDateFrom() {
+function Get-HaabDateFrom {
     [CmdletBinding()]
     param (
         [MayaNumber] $MayaNumber
@@ -324,7 +324,7 @@ function Write-Plain {
     Write-Output $($Output -join ' ')
 }
 
-function Write-Json() {
+function Write-Json {
     [CmdletBinding()]
     param (
         [DateTime] $GregorianDate,
@@ -363,6 +363,26 @@ function Write-Json() {
     Write-Output $($All | ConvertTo-Json)
 }
 
+function Write-Latex {
+    [CmdletBinding()]
+    param (
+        [DateTime] $GregorianDate,
+        [MayaDate] $MayaDate,
+        [bool] $PreferMonthEnding,
+        [string] $Prefix
+    )
+
+    $IsoDate = $(Get-Date $date -Format "yyyy-MM-dd")
+    $LongCount = $MayaDate.LongCountDate.StandardNotation()
+    $Tzolkin = $MayaDate.TzolkinDate.StandardNotation()
+    $Haab = $MayaDate.HaabDate.StandardNotation($PreferMonthEnding)
+
+    Write-Output "\\newcommand{{\$($Prefix)gregoriandate}}{{{$IsoDate}\\xspace}}"
+    Write-Output "\\newcommand{{\$($Prefix)longcount}}{{{$LongCount}\\xspace}}"
+    Write-Output "\\newcommand{{\$($Prefix)tzolkin}}{{{$Tzolkin}\\xspace}}"
+    Write-Output "\\newcommand{{\$($Prefix)haab}}{{{$Haab}\\xspace}}"
+}
+
 class MayaDate {
     [MayaNumber] $MayaNumber
     [LongCountDate] $LongCountDate
@@ -381,8 +401,6 @@ $Date = [DateTime]::ParseExact($IsoDate, "yyyy-MM-dd", $null)
 $MayaNumber = [MartinSkidmoreCorrelation]::MayaNumberFrom($Date)
 $MayaDate = [MayaDate]::new($MayaNumber)
 
-
-
 switch($Mode) {
     "Plain" {
         $Parameters = @{
@@ -396,10 +414,20 @@ switch($Mode) {
     }
     "Json" {
         $Parameters = @{
+            GregorianDate = $GregorianDate
             MayaDate = $MayaDate
             PreferMonthEnding = $PreferMonthEnding.IsPresent
         }
         Write-Json @Parameters
+    }
+    "Latex" {
+        $Parameters = @{
+            GregorianDate = $Date
+            MayaDate = $MayaDate
+            PreferMonthEnding = $PreferMonthEnding.IsPresent
+            Prefix = "documentversion"
+        }
+        Write-Latex @Parameters
     }
 }
 
