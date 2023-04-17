@@ -420,6 +420,16 @@ function Assert {
     Exit 1
 }
 
+function Test-LongCountDate {
+    Assert -Statement ([LongCountDate]::new([MayaNumber]::new(0)).StandardNotation()) -Expected "0.0.0.0.0"
+    Assert -Statement ([LongCountDate]::new([MayaNumber]::new(1)).StandardNotation()) -Expected "0.0.0.0.1"
+    Assert -Statement ([LongCountDate]::new([MayaNumber]::new(19)).StandardNotation()) -Expected "0.0.0.0.19"
+    Assert -Statement ([LongCountDate]::new([MayaNumber]::new(20)).StandardNotation()) -Expected "0.0.0.1.0"
+    Assert -Statement ([LongCountDate]::new([MayaNumber]::new(359)).StandardNotation()) -Expected "0.0.0.17.19"
+    Assert -Statement ([LongCountDate]::new([MayaNumber]::new(360)).StandardNotation()) -Expected "0.0.1.0.0"
+    Assert -Statement ([LongCountDate]::new([MayaNumber]::new(1425516)).StandardNotation()) -Expected "9.17.19.13.16"
+}
+
 function Test-TzolkinDate {
     Assert -Statement ([TzolkinDate]::new(1, [TzolkinDayName]::Imix).Ordinal()) -Expected 1
     Assert -Statement ([TzolkinDate]::new(2, [TzolkinDayName]::Ik).Ordinal()) -Expected 2
@@ -483,6 +493,7 @@ function Test-HaabDate {
 }
 
 function Test-Script {
+    Test-LongCountDate
     Test-TzolkinDate
     Test-HaabDate
 }
