@@ -119,7 +119,7 @@ class TzolkinDate {
     static [int] $TrecenaDayMax = 13
 
     [ValidateRange(0, 259)]
-    hidden [int] $Index = 1
+    hidden [int] $Index = 0
 
     TzolkinDate([int] $TrecenaDay, [TzolkinDayName] $DayName) {
         $X = $DayName * (-3) * $this::TrecenaDayCount + 
@@ -195,25 +195,35 @@ class HaabDate {
     static [int] $WinalDayCount = 20
     static [int] $WayebDayCount = 5
 
-    [ValidateRange(0,19)][int] $Day = 1
-    [HaabMonth] $Month = [HaabMonth]::Pop
+    [ValidateRange(0,364)][int] $Index = 0
 
     HaabDate([int] $Day, [HaabMonth] $Month) {
         if ($Month -eq [HaabMonth]::Wayeb -And $Day -ge $this::WayebDayCount) {
             throw "Wayeb month has only days from 0 to 4"
         }
-        $this.Day = $Day
-        $this.Month = $Month
+        $this.Index = $this::WinalDayCount * $Month + $Day
+    }
+
+    HaabDate([int] $Index) {
+        $this.Index = $Index
+    }
+
+    [int] Day() {
+        return $this.Index / $this::WinalDayCount
+    }
+
+    [HaabMonth] Month() {
+        return Get-Remainder -Number $this.Index -Divisor $this::WinalDayCount
     }
 
     [string] StandardNotation() {
-        $DayString = $this.Day -as [string]
-        $MonthString = Get-HaabMonthStandardName -Month $this.Month
+        $DayString = $this.Day() -as [string]
+        $MonthString = Get-HaabMonthStandardName -Month $this.Month()
         return $DayString + " " + $MonthString
     }
 
     [int] OrdinalDay() {
-        return 1 + $this::WinalDayCount * $this.Month + $this.Day
+        return 1 + $this.Index
     }
 
     [HaabDate] AddDays([int] $Days) {
