@@ -213,10 +213,13 @@ class HaabDate {
     [ValidateRange(0,364)][int] $Index = 0
 
     HaabDate([int] $Day, [HaabMonth] $Month) {
-        if ($Month -eq [HaabMonth]::Wayeb -And $Day -ge $this::WayebDayCount) {
-            throw "Wayeb month has only days from 0 to 4"
+        if ($Month -eq [HaabMonth]::Wayeb -And $Day -gt $this::WayebDayCount) {
+            throw "Wayeb month has only days from 1 to 5"
         }
-        $this.Index = $this::WinalDayCount * $Month + $Day
+        if ($Day -gt $this::WinalDayCount) {
+            throw "A regular month has only days from 1 to 20"
+        }
+        $this.Index = $this::WinalDayCount * $Month + ($Day - 1)
     }
 
     HaabDate([int] $Index) {
@@ -224,7 +227,7 @@ class HaabDate {
     }
 
     [int] Day() {
-        return Get-Remainder -Number $this.Index -Divisor $this::WinalDayCount
+        return 1 + $(Get-Remainder -Number $this.Index -Divisor $this::WinalDayCount)
     }
 
     [HaabMonth] Month() {
@@ -233,17 +236,18 @@ class HaabDate {
 
     [string] StandardNotation([bool] $PreferMonthEnding) {
         $D = $this.Day()
-        $M = $this.Month() -as [int]
-        if ($D -eq 0) {
+        $M = $this.Month()
+        $MaxDays = $M -eq [HaabMonth]::Wayeb ? $this::WayebDayCount : $this::WinalDayCount
+        if ($D -eq $MaxDays) {
             if ($PreferMonthEnding -eq $true) {
-                $M = Get-Remainder -Number ($M - 1) -Divisor $this::WinalCount
                 return "Ending of " + $(Get-HaabMonthStandardName -Month $M)
             } else {
+                $M = Get-Remainder -Number ($M + 1) -Divisor $this::WinalCount
                 return "Seating of " + $(Get-HaabMonthStandardName -Month $M)
             }
         } else {
-            $DayString = $this.Day() -as [string]
-            $MonthString = Get-HaabMonthStandardName -Month $this.Month()
+            $DayString = $D -as [string]
+            $MonthString = Get-HaabMonthStandardName -Month $M
             return $DayString + " " + $MonthString
         }
     }
