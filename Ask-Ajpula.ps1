@@ -238,7 +238,7 @@ class HaabDate {
     }
 
     [HaabMonth] Month() {
-        return [Math]::Floor($this.Index / $this::WinalDayCount) -as [int]
+        return [Math]::Floor($this.Index / $this::WinalDayCount) -as [HaabMonth]
     }
 
     [string] StandardNotation([bool] $PreferMonthEnding) {
@@ -409,7 +409,7 @@ function Assert {
 
     $Actual = $($Statement)
 
-    if ($Actual -eq $Expected) {
+    if ($Actual -eq $($Expected)) {
         return
     }
 
@@ -422,9 +422,26 @@ function Assert {
 
 function Test-Script {
 
+    # HaabDate tests
     Assert -Statement ([HaabDate]::new(1, [HaabMonth]::Pop).Ordinal()) -Expected 1
+    Assert -Statement ([HaabDate]::new(20, [HaabMonth]::Pop).Ordinal()) -Expected 20
     Assert -Statement ([HaabDate]::new(5, [HaabMonth]::Wayeb).Ordinal()) -Expected 365
 
+    Assert -Statement ([HaabDate]::new(1, [HaabMonth]::Pop).Day()) -Expected 1
+    Assert -Statement ([HaabDate]::new(2, [HaabMonth]::Pop).Day()) -Expected 2
+    Assert -Statement ([HaabDate]::new(15, [HaabMonth]::Pop).Day()) -Expected 15
+    Assert -Statement ([HaabDate]::new(15, [HaabMonth]::Kayab).Day()) -Expected 15
+    Assert -Statement ([HaabDate]::new(17, [HaabMonth]::Muwan).Day()) -Expected 17
+
+    Assert -Statement ([HaabDate]::new(1, [HaabMonth]::Pop).Month()) -Expected ([HaabMonth]::Pop)
+    Assert -Statement ([HaabDate]::new(2, [HaabMonth]::Wo).Month()) -Expected ([HaabMonth]::Wo)
+    Assert -Statement ([HaabDate]::new(3, [HaabMonth]::Wayeb).Month()) -Expected ([HaabMonth]::Wayeb)
+
+    Assert -Statement ([HaabDate]::new(1, [HaabMonth]::Pop).StandardNotation($true)) -Expected "1 Pop"
+    Assert -Statement ([HaabDate]::new(5, [HaabMonth]::Yax).StandardNotation($true)) -Expected "5 Yax"
+    Assert -Statement ([HaabDate]::new(10, [HaabMonth]::Chen).StandardNotation($true)) -Expected "10 Ch'en"
+    Assert -Statement ([HaabDate]::new(20, [HaabMonth]::Kankin).StandardNotation($true)) -Expected "Ending of K'ank'in"
+    Assert -Statement ([HaabDate]::new(20, [HaabMonth]::Kankin).StandardNotation($false)) -Expected "Seating of Muwan"
 }
 
 Test-Script
