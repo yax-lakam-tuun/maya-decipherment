@@ -54,6 +54,17 @@ class LongCountDate {
     [int[]] $Digits
 
     LongCountDate([int[]] $Digits) {
+        if ($Digits.Length -lt 5) {
+            throw "A Long Count date consists of at least 5 digits"
+        }
+        if ($Digits[1] -lt 0 -or $Digits[1] -gt 17) {
+            throw "A Long Count Winal digit may range from 0 to 17 only"
+        }
+        foreach($Digit in $Digits) {
+            if ($Digit -lt 0 -or $Digit -gt 19) {
+                throw "A Long Count digit may range from 0 to 19 only"
+            }
+        }
         $this.Digits = $Digits
     }
 
@@ -145,6 +156,10 @@ class TzolkinDate {
     [int] $Index = 0
 
     TzolkinDate([int] $TrecenaDay, [TzolkinDayName] $DayName) {
+        if ($TrecenaDay -lt $this::TrecenaDayMin -or $TrecenaDay -gt $this::TrecenaDayMax) {
+            throw "A trecena has only days from 1 to 13 "
+        }
+
         $X = $DayName * (-3) * $this::TrecenaDayCount + 
              ($TrecenaDay - $this::TrecenaDayMin) * 2 * $this::DayNameCount
         $this.Index = $(Get-Remainder -Number $X -Divisor $this::DayCount)
@@ -224,7 +239,7 @@ class HaabDate {
     [ValidateRange(0,364)][int] $Index = 0
 
     HaabDate([int] $Day, [HaabMonth] $Month) {
-        if ($Month -eq [HaabMonth]::Wayeb -And $Day -gt $this::WayebDayCount) {
+        if ($Month -eq [HaabMonth]::Wayeb -and $Day -gt $this::WayebDayCount) {
             throw "Wayeb month has only days from 1 to 5"
         }
         if ($Day -gt $this::WinalDayCount) {
@@ -424,6 +439,29 @@ function Assert {
     Exit 1
 }
 
+function Assert-Error {
+    [CmdletBinding()]
+    param (
+        [string] $Statement
+    )
+
+    try {
+        (Invoke-Expression -Command $Statement) | Out-Null
+        if ($? -ne 0) {
+            return
+        }
+    }
+    catch {
+        return
+    }
+
+    Write-Warning "Test failed."
+    Write-Warning "Actual:   No Error"
+    Write-Warning "Expected: Error"
+    Write-Error "Test failed"
+    Exit 1
+}
+
 function Test-LongCountDate {
     Assert -Statement ([LongCountDate]::new([MayaNumber]::new(0)).StandardNotation()) -Expected "0.0.0.0.0"
     Assert -Statement ([LongCountDate]::new([MayaNumber]::new(1)).StandardNotation()) -Expected "0.0.0.0.1"
@@ -432,6 +470,22 @@ function Test-LongCountDate {
     Assert -Statement ([LongCountDate]::new([MayaNumber]::new(359)).StandardNotation()) -Expected "0.0.0.17.19"
     Assert -Statement ([LongCountDate]::new([MayaNumber]::new(360)).StandardNotation()) -Expected "0.0.1.0.0"
     Assert -Statement ([LongCountDate]::new([MayaNumber]::new(1425516)).StandardNotation()) -Expected "9.17.19.13.16"
+
+    Assert-Error -Statement "[LongCountDate]::new((1))"
+    Assert-Error -Statement "[LongCountDate]::new((1,2))"
+    Assert-Error -Statement "[LongCountDate]::new((1,2,3))"
+    Assert-Error -Statement "[LongCountDate]::new((1,2,3,4))"
+    Assert-Error -Statement "[LongCountDate]::new((-1,0,0,0,0))"
+    Assert-Error -Statement "[LongCountDate]::new((0,-1,0,0,0))"
+    Assert-Error -Statement "[LongCountDate]::new((0,0,-1,0,0))"
+    Assert-Error -Statement "[LongCountDate]::new((0,0,0,-1,0))"
+    Assert-Error -Statement "[LongCountDate]::new((0,0,0,0,-1))"
+    Assert-Error -Statement "[LongCountDate]::new((20,0,0,0,0))"
+    Assert-Error -Statement "[LongCountDate]::new((0,20,0,0,0))"
+    Assert-Error -Statement "[LongCountDate]::new((0,0,20,0,0))"
+    Assert-Error -Statement "[LongCountDate]::new((0,0,0,20,0))"
+    Assert-Error -Statement "[LongCountDate]::new((0,0,0,0,20))"
+    Assert-Error -Statement "[LongCountDate]::new((1,18,0,0,0))"
 }
 
 function Test-TzolkinDate {
@@ -461,6 +515,16 @@ function Test-TzolkinDate {
     Assert -Statement ([TzolkinDate]::new(11, [TzolkinDayName]::Akbal).AddDays(20).StandardNotation()) -Expected "5 Ak'b'al"
     Assert -Statement ([TzolkinDate]::new(11, [TzolkinDayName]::Akbal).AddDays(-1).StandardNotation()) -Expected "10 Ik'"
     Assert -Statement ([TzolkinDate]::new(11, [TzolkinDayName]::Akbal).AddDays(-260).StandardNotation()) -Expected "11 Ak'b'al"
+
+    Assert -Statement ([TzolkinDate]::new(0).StandardNotation()) -Expected "1 Imix"
+    Assert -Statement ([TzolkinDate]::new(1).StandardNotation()) -Expected "2 Ik'"
+    Assert -Statement ([TzolkinDate]::new(2).StandardNotation()) -Expected "3 Ak'b'al"
+    Assert -Statement ([TzolkinDate]::new(259).StandardNotation()) -Expected "13 Ajaw"
+
+    Assert-Error -Statement "[TzolkinDate]::new(14, [TzolkinDayName]::Imix)"
+    Assert-Error -Statement "[TzolkinDate]::new(0, [TzolkinDayName]::Imix)"
+    Assert-Error -Statement "[TzolkinDate]::new(-1)"
+    Assert-Error -Statement "[TzolkinDate]::new(260)"
 }
 
 function Test-HaabDate {
