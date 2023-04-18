@@ -71,6 +71,10 @@ class LongCountDate {
             $CurrentWeight = $NextWeight
             $NextWeight = ($NextWeight -eq 20) ? 360 : 20 * $NextWeight
         }
+
+        if ($Result.Length -lt 5) {
+            $Result += (0..(5 - $Result.Length - 1)) | ForEach-Object 0
+        }
         $this.Digits = $Result
     }
 
