@@ -3,12 +3,24 @@
 <#
     .SYNOPSIS
     Produce a long count date in the classic notation from given date string.
+    The output format can be controlled by the Mode parameter.
+
+    Plain:
+        Standard scientific notation, e.g. 10.9.15.15.9 4 Muluk 2 Yaxk'in
+
+    Json:
+        All information will be written in Json format.
+        It always includes everthing regardless of the switches Tzolkin, Haab, 
+        CalendarRound and NoLongCount.
+
+    Latex:
+        Long count, Tzolk'in and Haab information will be written in a Latex readable format.
 
     .INPUTS
     None
 
     .OUTPUTS
-    None
+    Long count date, Haab date and/or Tzolk'in date in either plain text, Json or Latex format.
 
     .EXAMPLE
     ./Ask-Ajpula.ps1 -IsoDate 2022-12-30 -CalendarRound
@@ -30,22 +42,23 @@ param (
     $IsoDate = $(Get-Date -Format "yyyy-MM-dd"),
 
     [switch]
-    # Include Tzolk'in and Haab date
+    # Include Tzolk'in and Haab date in plain mode
     $CalendarRound,
 
     [switch]
-    # Exclude Long Count date
+    # Exclude Long Count date in plain mode
     $NoLongCount,
 
     [switch]
-    # Include Tzolk'in date
+    # Include Tzolk'in date in plain mode
     $Tzolkin,
 
     [switch]
-    # Include Haab date
+    # Include Haab date in plain mode
     $Haab,
 
     [switch]
+    # The transition between two months is written as "Ending" instead of "Seating"
     $PreferMonthEnding,
 
     [ValidateSet('Plain', 'Json', 'Latex')]
