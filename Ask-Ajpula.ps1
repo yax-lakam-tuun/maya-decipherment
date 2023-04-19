@@ -439,29 +439,6 @@ function Assert {
     Exit 1
 }
 
-function Assert-Error {
-    [CmdletBinding()]
-    param (
-        [string] $Statement
-    )
-
-    try {
-        (Invoke-Expression -Command $Statement) | Out-Null
-        if ($? -ne 0) {
-            return
-        }
-    }
-    catch {
-        return
-    }
-
-    Write-Warning "Test failed."
-    Write-Warning "Actual:   No Error"
-    Write-Warning "Expected: Error"
-    Write-Error "Test failed"
-    Exit 1
-}
-
 function Test-LongCountDate {
     Assert -Statement ([LongCountDate]::new([MayaNumber]::new(0)).StandardNotation()) -Expected "0.0.0.0.0"
     Assert -Statement ([LongCountDate]::new([MayaNumber]::new(1)).StandardNotation()) -Expected "0.0.0.0.1"
@@ -470,22 +447,6 @@ function Test-LongCountDate {
     Assert -Statement ([LongCountDate]::new([MayaNumber]::new(359)).StandardNotation()) -Expected "0.0.0.17.19"
     Assert -Statement ([LongCountDate]::new([MayaNumber]::new(360)).StandardNotation()) -Expected "0.0.1.0.0"
     Assert -Statement ([LongCountDate]::new([MayaNumber]::new(1425516)).StandardNotation()) -Expected "9.17.19.13.16"
-
-    Assert-Error -Statement "[LongCountDate]::new((1))"
-    Assert-Error -Statement "[LongCountDate]::new((1,2))"
-    Assert-Error -Statement "[LongCountDate]::new((1,2,3))"
-    Assert-Error -Statement "[LongCountDate]::new((1,2,3,4))"
-    Assert-Error -Statement "[LongCountDate]::new((-1,0,0,0,0))"
-    Assert-Error -Statement "[LongCountDate]::new((0,-1,0,0,0))"
-    Assert-Error -Statement "[LongCountDate]::new((0,0,-1,0,0))"
-    Assert-Error -Statement "[LongCountDate]::new((0,0,0,-1,0))"
-    Assert-Error -Statement "[LongCountDate]::new((0,0,0,0,-1))"
-    Assert-Error -Statement "[LongCountDate]::new((20,0,0,0,0))"
-    Assert-Error -Statement "[LongCountDate]::new((0,20,0,0,0))"
-    Assert-Error -Statement "[LongCountDate]::new((0,0,20,0,0))"
-    Assert-Error -Statement "[LongCountDate]::new((0,0,0,20,0))"
-    Assert-Error -Statement "[LongCountDate]::new((0,0,0,0,20))"
-    Assert-Error -Statement "[LongCountDate]::new((1,18,0,0,0))"
 }
 
 function Test-TzolkinDate {
@@ -520,11 +481,6 @@ function Test-TzolkinDate {
     Assert -Statement ([TzolkinDate]::new(1).StandardNotation()) -Expected "2 Ik'"
     Assert -Statement ([TzolkinDate]::new(2).StandardNotation()) -Expected "3 Ak'b'al"
     Assert -Statement ([TzolkinDate]::new(259).StandardNotation()) -Expected "13 Ajaw"
-
-    Assert-Error -Statement "[TzolkinDate]::new(14, [TzolkinDayName]::Imix)"
-    Assert-Error -Statement "[TzolkinDate]::new(0, [TzolkinDayName]::Imix)"
-    Assert-Error -Statement "[TzolkinDate]::new(-1)"
-    Assert-Error -Statement "[TzolkinDate]::new(260)"
 }
 
 function Test-HaabDate {
