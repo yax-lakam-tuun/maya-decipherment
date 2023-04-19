@@ -10,24 +10,39 @@
     .OUTPUTS
     None
 
+    .EXAMPLE
+    ./Ask-Ajpula.ps1 -IsoDate 2022-12-30 -CalendarRound
+
+    13.0.10.2.18 9 Etz'nab' 11 K'ank'in
+
+    .EXAMPLE
+    ./Ask-Ajpula.ps1 -IsoDate 2023-04-03 -CalendarRound -PreferMonthEnding
+
+    13.0.10.7.12 12 Eb' Ending of Wayeb
+
     .LINK
     https://github.com/yax-lakam-tuun/maya-decipherment
 #>
 [CmdletBinding()]
 param (
     [string]
-    $IsoDate,
+    # Gregorian date in ISO format. Current date is used when parameter is omitted.
+    $IsoDate = $(Get-Date -Format "yyyy-MM-dd"),
 
     [switch]
+    # Include Tzolk'in and Haab date
     $CalendarRound,
 
     [switch]
+    # Exclude Long Count date
     $NoLongCount,
 
     [switch]
+    # Include Tzolk'in date
     $Tzolkin,
 
     [switch]
+    # Include Haab date
     $Haab,
 
     [switch]
@@ -35,6 +50,7 @@ param (
 
     [ValidateSet('Plain', 'Json', 'Latex')]
     [string]
+    # Output format. Available modes are Plain, Json and Latex. Default mode is Plain.
     $Mode = "Plain"
 )
 
@@ -577,18 +593,18 @@ function Test-HaabDate {
 }
 
 function Test-Plain {
-    Assert -Statement (Main -IsoDate "0790-07-20") -Expected "9.17.19.13.16"
-    Assert -Statement (Main -IsoDate "2022-12-30") -Expected "13.0.10.2.18"
-    Assert -Statement (Main -CalendarRound 2022-12-30) -Expected "13.0.10.2.18 9 Etz'nab' 11 K'ank'in"
-    Assert -Statement (Main -CalendarRound 2023-01-08) -Expected "13.0.10.3.7 5 Manik' Seating of Muwan"
-    Assert -Statement (Main -CalendarRound 2023-01-08 -PreferMonthEnding) -Expected "13.0.10.3.7 5 Manik' Ending of K'ank'in"
-    Assert -Statement (Main -CalendarRound 2023-04-03) -Expected "13.0.10.7.12 12 Eb' Seating of Pop"
-    Assert -Statement (Main -CalendarRound 2023-04-03 -PreferMonthEnding) -Expected "13.0.10.7.12 12 Eb' Ending of Wayeb"
-    Assert -Statement (Main -NoLongCount -CalendarRound 2022-12-30) -Expected "9 Etz'nab' 11 K'ank'in"
-    Assert -Statement (Main -Tzolkin 2022-12-30) -Expected "13.0.10.2.18 9 Etz'nab'"
+    Assert -Statement (Main -IsoDate 0790-07-20) -Expected "9.17.19.13.16"
+    Assert -Statement (Main -IsoDate 2022-12-30) -Expected "13.0.10.2.18"
+    Assert -Statement (Main -CalendarRound -IsoDate 2022-12-30) -Expected "13.0.10.2.18 9 Etz'nab' 11 K'ank'in"
+    Assert -Statement (Main -CalendarRound -IsoDate 2023-01-08) -Expected "13.0.10.3.7 5 Manik' Seating of Muwan"
+    Assert -Statement (Main -CalendarRound -IsoDate 2023-01-08 -PreferMonthEnding) -Expected "13.0.10.3.7 5 Manik' Ending of K'ank'in"
+    Assert -Statement (Main -CalendarRound -IsoDate 2023-04-03) -Expected "13.0.10.7.12 12 Eb' Seating of Pop"
+    Assert -Statement (Main -CalendarRound -IsoDate 2023-04-03 -PreferMonthEnding) -Expected "13.0.10.7.12 12 Eb' Ending of Wayeb"
+    Assert -Statement (Main -NoLongCount -CalendarRound -IsoDate 2022-12-30) -Expected "9 Etz'nab' 11 K'ank'in"
+    Assert -Statement (Main -Tzolkin -IsoDate 2022-12-30) -Expected "13.0.10.2.18 9 Etz'nab'"
     Assert -Statement (Main -NoLongCount -Tzolkin 2022-12-30) -Expected "9 Etz'nab'"
-    Assert -Statement (Main -Haab 2022-12-30) -Expected "13.0.10.2.18 11 K'ank'in"
-    Assert -Statement (Main -NoLongCount -Haab 2022-12-30) -Expected "11 K'ank'in"
+    Assert -Statement (Main -Haab -IsoDate 2022-12-30) -Expected "13.0.10.2.18 11 K'ank'in"
+    Assert -Statement (Main -NoLongCount -Haab -IsoDate 2022-12-30) -Expected "11 K'ank'in"
 }
 
 function Test-Script {
