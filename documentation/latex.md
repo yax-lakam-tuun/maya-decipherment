@@ -104,8 +104,7 @@ Here's a short summary:
   (see [CI](continuous-integration))
 * [check-document](../check-document.sh): Script to check validity of compiled PDF 
   (see [CI](continuous-integration))
-* [ahpula.py](../ahpula.py): Script which deals with Long Count, Calendar Round and Gregorian dates
-* [check-ahpula.sh](../ahpula.py): Script which tests output of [ahpula.py](../ahpula.py)
+* [Ask-Ajpula.ps1](../Ask-Ajpula.ps1): Script which deals with Long Count, Calendar Round and Gregorian dates
 * [document-version.tex](../document-version.tex): 
   The current version of the document as it is used for a possible release.
 * [update-document-version.sh](../update-document-version.sh): 

@@ -43,13 +43,6 @@ jobs:
           ${{ env.CONTAINER_TAG }} 
           bash -c "\"${{ env.CONTAINER_SOURCE_PATH }}/chktexall.sh\" \"${{ env.CONTAINER_SOURCE_PATH }}\""
 
-      - name: Check ahpula
-        run: >-
-          docker run --rm 
-          -v $GITHUB_WORKSPACE:${{ env.CONTAINER_SOURCE_PATH }}
-          ${{ env.CONTAINER_TAG }} 
-          bash -c "\"${{ env.CONTAINER_SOURCE_PATH }}/check-ahpula.sh\""
-
       - name: Compile document
         run: >-
           docker run --rm 
