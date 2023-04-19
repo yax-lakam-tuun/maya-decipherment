@@ -1,5 +1,18 @@
 #!/usr/bin/env pwsh
 
+<#
+    .SYNOPSIS
+    Produce a long count date in the classic notation from given date string.
+
+    .INPUTS
+    None
+
+    .OUTPUTS
+    None
+
+    .LINK
+    https://github.com/yax-lakam-tuun/maya-decipherment
+#>
 [CmdletBinding()]
 param (
     [string]
@@ -419,6 +432,53 @@ class MayaDate {
     }
 }
 
+function Main {
+    [CmdletBinding()]
+    param (
+        [string] $IsoDate,
+        [switch] $CalendarRound,
+        [switch] $NoLongCount,
+        [switch] $Tzolkin,
+        [switch] $Haab,
+        [switch] $PreferMonthEnding,
+        [ValidateSet('Plain', 'Json', 'Latex')] [string] $Mode = "Plain"
+    )
+
+    $Date = [DateTime]::ParseExact($IsoDate, "yyyy-MM-dd", $null)
+    $MayaNumber = [MartinSkidmoreCorrelation]::MayaNumberFrom($Date)
+    $MayaDate = [MayaDate]::new($MayaNumber)
+
+    switch($Mode) {
+        "Plain" {
+            $Parameters = @{
+                MayaDate = $MayaDate
+                LongCount = $NoLongCount.IsPresent ? $false : $true
+                Tzolkin = $Tzolkin.IsPresent -or $CalendarRound.IsPresent
+                Haab = $Haab.IsPresent -or $CalendarRound.IsPresent
+                PreferMonthEnding = $PreferMonthEnding.IsPresent
+            }
+            Write-Plain @Parameters
+        }
+        "Json" {
+            $Parameters = @{
+                GregorianDate = $Date
+                MayaDate = $MayaDate
+                PreferMonthEnding = $PreferMonthEnding.IsPresent
+            }
+            Write-Json @Parameters
+        }
+        "Latex" {
+            $Parameters = @{
+                GregorianDate = $Date
+                MayaDate = $MayaDate
+                PreferMonthEnding = $PreferMonthEnding.IsPresent
+                Prefix = "documentversion"
+            }
+            Write-Latex @Parameters
+        }
+    }
+}
+
 function Assert {
     [CmdletBinding()]
     param (
@@ -516,45 +576,38 @@ function Test-HaabDate {
     Assert -Statement ([HaabDate]::new(300).StandardNotation($true)) -Expected "1 Pax"
 }
 
+function Test-Plain {
+    Assert -Statement (Main -IsoDate "0790-07-20") -Expected "9.17.19.13.16"
+    Assert -Statement (Main -IsoDate "2022-12-30") -Expected "13.0.10.2.18"
+    Assert -Statement (Main -CalendarRound 2022-12-30) -Expected "13.0.10.2.18 9 Etz'nab' 11 K'ank'in"
+    Assert -Statement (Main -CalendarRound 2023-01-08) -Expected "13.0.10.3.7 5 Manik' Seating of Muwan"
+    Assert -Statement (Main -CalendarRound 2023-01-08 -PreferMonthEnding) -Expected "13.0.10.3.7 5 Manik' Ending of K'ank'in"
+    Assert -Statement (Main -CalendarRound 2023-04-03) -Expected "13.0.10.7.12 12 Eb' Seating of Pop"
+    Assert -Statement (Main -CalendarRound 2023-04-03 -PreferMonthEnding) -Expected "13.0.10.7.12 12 Eb' Ending of Wayeb"
+    Assert -Statement (Main -NoLongCount -CalendarRound 2022-12-30) -Expected "9 Etz'nab' 11 K'ank'in"
+    Assert -Statement (Main -Tzolkin 2022-12-30) -Expected "13.0.10.2.18 9 Etz'nab'"
+    Assert -Statement (Main -NoLongCount -Tzolkin 2022-12-30) -Expected "9 Etz'nab'"
+    Assert -Statement (Main -Haab 2022-12-30) -Expected "13.0.10.2.18 11 K'ank'in"
+    Assert -Statement (Main -NoLongCount -Haab 2022-12-30) -Expected "11 K'ank'in"
+}
+
 function Test-Script {
     Test-LongCountDate
     Test-TzolkinDate
     Test-HaabDate
+    Test-Plain
 }
 
 Test-Script
 
-$Date = [DateTime]::ParseExact($IsoDate, "yyyy-MM-dd", $null)
-$MayaNumber = [MartinSkidmoreCorrelation]::MayaNumberFrom($Date)
-$MayaDate = [MayaDate]::new($MayaNumber)
-
-switch($Mode) {
-    "Plain" {
-        $Parameters = @{
-            MayaDate = $MayaDate
-            LongCount = $NoLongCount.IsPresent ? $false : $true
-            Tzolkin = $Tzolkin.IsPresent -or $CalendarRound.IsPresent
-            Haab = $Haab.IsPresent -or $CalendarRound.IsPresent
-            PreferMonthEnding = $PreferMonthEnding.IsPresent
-        }
-        Write-Plain @Parameters
-    }
-    "Json" {
-        $Parameters = @{
-            GregorianDate = $Date
-            MayaDate = $MayaDate
-            PreferMonthEnding = $PreferMonthEnding.IsPresent
-        }
-        Write-Json @Parameters
-    }
-    "Latex" {
-        $Parameters = @{
-            GregorianDate = $Date
-            MayaDate = $MayaDate
-            PreferMonthEnding = $PreferMonthEnding.IsPresent
-            Prefix = "documentversion"
-        }
-        Write-Latex @Parameters
-    }
+$MainParameter = @{
+    IsoDate = $IsoDate
+    CalendarRound = $CalendarRound
+    NoLongCount = $NoLongCount
+    Tzolkin = $Tzolkin
+    Haab = $Haab
+    PreferMonthEnding = $PreferMonthEnding
+    Mode = $Mode
 }
 
+Main @MainParameter
