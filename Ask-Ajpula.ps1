@@ -41,30 +41,46 @@ param (
     # Gregorian date in ISO format. Current date is used when parameter is omitted.
     $IsoDate = $(Get-Date -Format "yyyy-MM-dd"),
 
+    [Parameter(ParameterSetName="PlainSet")]
     [switch]
     # Include Tzolk'in and Haab date in plain mode
     $CalendarRound,
 
+    [Parameter(ParameterSetName="PlainSet")]
     [switch]
     # Exclude Long Count date in plain mode
     $NoLongCount,
 
+    [Parameter(ParameterSetName="PlainSet")]
     [switch]
     # Include Tzolk'in date in plain mode
     $Tzolkin,
 
+    [Parameter(ParameterSetName="PlainSet")]
     [switch]
     # Include Haab date in plain mode
     $Haab,
 
+    [Parameter(ParameterSetName="PlainSet")]
+    [Parameter(ParameterSetName="JsonSet")]
     [switch]
     # The transition between two months is written as "Ending" instead of "Seating"
     $PreferMonthEnding,
 
-    [ValidateSet('Plain', 'Json', 'Latex')]
-    [string]
-    # Output format. Available modes are Plain, Json and Latex. Default mode is Plain.
-    $Mode = "Plain"
+    [Parameter(ParameterSetName="PlainSet")]
+    [switch]
+    # Use plain mode
+    $Plain,
+
+    [Parameter(ParameterSetName="JsonSet")]
+    [switch]
+    # Use json mode
+    $Json = $false,
+
+    [Parameter(ParameterSetName="LatexSet")]
+    [switch]
+    # Use json mode
+    $Latex = $false
 )
 
 function Get-Remainder() {
@@ -470,41 +486,47 @@ function Main {
         [switch] $Tzolkin,
         [switch] $Haab,
         [switch] $PreferMonthEnding,
-        [ValidateSet('Plain', 'Json', 'Latex')] [string] $Mode = "Plain"
+        [switch] $Plain,
+        [switch] $Json = $false,
+        [switch] $Latex = $false
     )
 
     $Date = [DateTime]::ParseExact($IsoDate, "yyyy-MM-dd", $null)
     $MayaNumber = [MartinSkidmoreCorrelation]::MayaNumberFrom($Date)
     $MayaDate = [MayaDate]::new($MayaNumber)
 
-    switch($Mode) {
-        "Plain" {
-            $Parameters = @{
-                MayaDate = $MayaDate
-                LongCount = $NoLongCount.IsPresent ? $false : $true
-                Tzolkin = $Tzolkin.IsPresent -or $CalendarRound.IsPresent
-                Haab = $Haab.IsPresent -or $CalendarRound.IsPresent
-                PreferMonthEnding = $PreferMonthEnding.IsPresent
-            }
-            Write-Plain @Parameters
+    if (!$Plain -and !$Json -and !$Latex) {
+        $Plain = $true
+    }
+
+    if ($Plain) {
+        $Parameters = @{
+            MayaDate = $MayaDate
+            LongCount = $NoLongCount ? $false : $true
+            Tzolkin = $Tzolkin -or $CalendarRound
+            Haab = $Haab -or $CalendarRound
+            PreferMonthEnding = $PreferMonthEnding
         }
-        "Json" {
-            $Parameters = @{
-                GregorianDate = $Date
-                MayaDate = $MayaDate
-                PreferMonthEnding = $PreferMonthEnding.IsPresent
-            }
-            Write-Json @Parameters
+        Write-Plain @Parameters
+    }
+
+    if ($Json) {
+        $Parameters = @{
+            GregorianDate = $Date
+            MayaDate = $MayaDate
+            PreferMonthEnding = $PreferMonthEnding
         }
-        "Latex" {
-            $Parameters = @{
-                GregorianDate = $Date
-                MayaDate = $MayaDate
-                PreferMonthEnding = $PreferMonthEnding.IsPresent
-                Prefix = "documentversion"
-            }
-            Write-Latex @Parameters
+        Write-Json @Parameters
+    }
+
+    if ($Latex) {
+        $Parameters = @{
+            GregorianDate = $Date
+            MayaDate = $MayaDate
+            PreferMonthEnding = $PreferMonthEnding
+            Prefix = "documentversion"
         }
+        Write-Latex @Parameters
     }
 }
 
@@ -606,18 +628,18 @@ function Test-HaabDate {
 }
 
 function Test-Plain {
-    Assert -Statement (Main -IsoDate 0790-07-20) -Expected "9.17.19.13.16"
-    Assert -Statement (Main -IsoDate 2022-12-30) -Expected "13.0.10.2.18"
-    Assert -Statement (Main -CalendarRound -IsoDate 2022-12-30) -Expected "13.0.10.2.18 9 Etz'nab' 11 K'ank'in"
-    Assert -Statement (Main -CalendarRound -IsoDate 2023-01-08) -Expected "13.0.10.3.7 5 Manik' Seating of Muwan"
-    Assert -Statement (Main -CalendarRound -IsoDate 2023-01-08 -PreferMonthEnding) -Expected "13.0.10.3.7 5 Manik' Ending of K'ank'in"
-    Assert -Statement (Main -CalendarRound -IsoDate 2023-04-03) -Expected "13.0.10.7.12 12 Eb' Seating of Pop"
-    Assert -Statement (Main -CalendarRound -IsoDate 2023-04-03 -PreferMonthEnding) -Expected "13.0.10.7.12 12 Eb' Ending of Wayeb"
-    Assert -Statement (Main -NoLongCount -CalendarRound -IsoDate 2022-12-30) -Expected "9 Etz'nab' 11 K'ank'in"
-    Assert -Statement (Main -Tzolkin -IsoDate 2022-12-30) -Expected "13.0.10.2.18 9 Etz'nab'"
-    Assert -Statement (Main -NoLongCount -Tzolkin 2022-12-30) -Expected "9 Etz'nab'"
-    Assert -Statement (Main -Haab -IsoDate 2022-12-30) -Expected "13.0.10.2.18 11 K'ank'in"
-    Assert -Statement (Main -NoLongCount -Haab -IsoDate 2022-12-30) -Expected "11 K'ank'in"
+    Assert -Statement (Main -Plain -IsoDate 0790-07-20) -Expected "9.17.19.13.16"
+    Assert -Statement (Main -Plain -IsoDate 2022-12-30) -Expected "13.0.10.2.18"
+    Assert -Statement (Main -Plain -CalendarRound -IsoDate 2022-12-30) -Expected "13.0.10.2.18 9 Etz'nab' 11 K'ank'in"
+    Assert -Statement (Main -Plain -CalendarRound -IsoDate 2023-01-08) -Expected "13.0.10.3.7 5 Manik' Seating of Muwan"
+    Assert -Statement (Main -Plain -CalendarRound -IsoDate 2023-01-08 -PreferMonthEnding) -Expected "13.0.10.3.7 5 Manik' Ending of K'ank'in"
+    Assert -Statement (Main -Plain -CalendarRound -IsoDate 2023-04-03) -Expected "13.0.10.7.12 12 Eb' Seating of Pop"
+    Assert -Statement (Main -Plain -CalendarRound -IsoDate 2023-04-03 -PreferMonthEnding) -Expected "13.0.10.7.12 12 Eb' Ending of Wayeb"
+    Assert -Statement (Main -Plain -NoLongCount -CalendarRound -IsoDate 2022-12-30) -Expected "9 Etz'nab' 11 K'ank'in"
+    Assert -Statement (Main -Plain -Tzolkin -IsoDate 2022-12-30) -Expected "13.0.10.2.18 9 Etz'nab'"
+    Assert -Statement (Main -Plain -NoLongCount -Tzolkin 2022-12-30) -Expected "9 Etz'nab'"
+    Assert -Statement (Main -Plain -Haab -IsoDate 2022-12-30) -Expected "13.0.10.2.18 11 K'ank'in"
+    Assert -Statement (Main -Plain -NoLongCount -Haab -IsoDate 2022-12-30) -Expected "11 K'ank'in"
 }
 
 function Test-Script {
@@ -636,7 +658,9 @@ $MainParameter = @{
     Tzolkin = $Tzolkin
     Haab = $Haab
     PreferMonthEnding = $PreferMonthEnding
-    Mode = $Mode
+    Plain = $Plain
+    Json = $Json
+    Latex = $Latex
 }
 
 Main @MainParameter
