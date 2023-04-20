@@ -37,6 +37,7 @@
 #>
 [CmdletBinding()]
 param (
+    [ValidatePattern("\d{4}-\d{2}-\d{2}")]
     [string]
     # Gregorian date in ISO format. Current date is used when parameter is omitted.
     $IsoDate = $(Get-Date -Format "yyyy-MM-dd"),
