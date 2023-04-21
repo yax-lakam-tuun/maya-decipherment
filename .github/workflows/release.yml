@@ -53,11 +53,10 @@ jobs:
           $(docker run --rm 
           -v $GITHUB_WORKSPACE:${{ env.CONTAINER_SOURCE_PATH }}
           ${{ env.CONTAINER_TAG }}
-          pwsh -Command \"\"
-          ${{ env.CONTAINER_SOURCE_PATH }}/Edit-DocumentVersion.ps1 
+          pwsh -Command "${{ env.CONTAINER_SOURCE_PATH }}/Edit-DocumentVersion.ps1 
           -VersionTexPath ${{ env.CONTAINER_SOURCE_PATH }}/document-version.tex 
           -LongCount 
-          \"\")" 
+          ")" 
           >> $GITHUB_ENV
 
       - name: Create tag
