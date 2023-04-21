@@ -41,14 +41,25 @@ jobs:
           -v $GITHUB_WORKSPACE:${{ env.CONTAINER_SOURCE_PATH }}
           -v $GITHUB_WORKSPACE/build:${{ env.CONTAINER_BUILD_PATH }}
           ${{ env.CONTAINER_TAG }}
-          pwsh -Command "\"${{ env.CONTAINER_SOURCE_PATH }}/Compile-Document.ps1\" 
-          --source-path \"${{ env.CONTAINER_SOURCE_PATH }}\" 
-          --build-path \"${{ env.CONTAINER_BUILD_PATH}}\" 
-          --document-name \"${{ env.DOCUMENT_NAME }}\"
-          \"${{ env.CONTAINER_MAIN_PATH }}\""
+          pwsh -Command "\"
+            ${{ env.CONTAINER_SOURCE_PATH }}/Compile-Document.ps1\" 
+              --source-path \"${{ env.CONTAINER_SOURCE_PATH }}\" 
+              --build-path \"${{ env.CONTAINER_BUILD_PATH}}\" 
+              --document-name \"${{ env.DOCUMENT_NAME }}\"
+              \"${{ env.CONTAINER_MAIN_PATH }}\""
 
       - name: Determine version
-        run: echo "RELEASE_VERSION=$(python3 ahpula.py $(python3 document-version.py document-version.tex))" >> $GITHUB_ENV
+        run: >-
+          echo "RELEASE_VERSION=
+            $(docker run --rm 
+              -v $GITHUB_WORKSPACE:${{ env.CONTAINER_SOURCE_PATH }}
+              ${{ env.CONTAINER_TAG }}
+              pwsh -Command \"\"
+                ${{ env.CONTAINER_SOURCE_PATH }}/Edit-DocumentVersion.ps1 
+                  -VersionTexPath ${{ env.CONTAINER_SOURCE_PATH }}/document-version.tex 
+                  -LongCount 
+              \"\")" 
+          >> $GITHUB_ENV
 
       - name: Create tag
         run: |

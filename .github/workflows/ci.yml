@@ -46,14 +46,15 @@ jobs:
       - name: Compile document
         run: >-
           docker run --rm 
-          -v $GITHUB_WORKSPACE:${{ env.CONTAINER_SOURCE_PATH }}
-          -v $GITHUB_WORKSPACE/build:${{ env.CONTAINER_BUILD_PATH }}
-          ${{ env.CONTAINER_TAG }}
-          pwsh -Command "\"${{ env.CONTAINER_SOURCE_PATH }}/Compile-Document.ps1\" 
-          --source-path \"${{ env.CONTAINER_SOURCE_PATH }}\" 
-          --build-path \"${{ env.CONTAINER_BUILD_PATH}}\" 
-          --document-name \"${{ env.DOCUMENT_NAME }}\"
-          \"${{ env.CONTAINER_MAIN_PATH }}\""
+            -v $GITHUB_WORKSPACE:${{ env.CONTAINER_SOURCE_PATH }}
+            -v $GITHUB_WORKSPACE/build:${{ env.CONTAINER_BUILD_PATH }}
+            ${{ env.CONTAINER_TAG }}
+            pwsh -Command "\"
+              ${{ env.CONTAINER_SOURCE_PATH }}/Compile-Document.ps1\" 
+                --source-path \"${{ env.CONTAINER_SOURCE_PATH }}\" 
+                --build-path \"${{ env.CONTAINER_BUILD_PATH}}\" 
+                --document-name \"${{ env.DOCUMENT_NAME }}\"
+                \"${{ env.CONTAINER_MAIN_PATH }}\""
 
       - name: Check document
         run: >-
