@@ -49,8 +49,8 @@ jobs:
           -v $GITHUB_WORKSPACE:${{ env.CONTAINER_SOURCE_PATH }}
           -v $GITHUB_WORKSPACE/build:${{ env.CONTAINER_BUILD_PATH }}
           ${{ env.CONTAINER_TAG }}
-          pwsh -Command "\"${{ env.CONTAINER_SOURCE_PATH }}/Compile-Document.ps1\" -SourcePath 
-          \"${{ env.CONTAINER_SOURCE_PATH }}\" 
+          pwsh -Command "\"${{ env.CONTAINER_SOURCE_PATH }}/Compile-Document.ps1\" 
+          -SourcePath \"${{ env.CONTAINER_SOURCE_PATH }}\" 
           -BuildPath \"${{ env.CONTAINER_BUILD_PATH}}\" 
           -DocumentName \"${{ env.DOCUMENT_NAME }}\" 
           \"${{ env.CONTAINER_MAIN_PATH }}\""
