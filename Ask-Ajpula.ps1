@@ -23,12 +23,12 @@
     Long count date, Haab date and/or Tzolk'in date in either plain text, Json or Latex format.
 
     .EXAMPLE
-    ./Ask-Ajpula.ps1 -IsoDate 2022-12-30 -CalendarRound
+    ./Ask-Ajpula.ps1 -GregorianDate 2022-12-30 -CalendarRound
 
     13.0.10.2.18 9 Etz'nab' 11 K'ank'in
 
     .EXAMPLE
-    ./Ask-Ajpula.ps1 -IsoDate 2023-04-03 -CalendarRound -PreferMonthEnding
+    ./Ask-Ajpula.ps1 -GregorianDate 2023-04-03 -CalendarRound -PreferMonthEnding
 
     13.0.10.7.12 12 Eb' Ending of Wayeb
 
@@ -40,7 +40,7 @@ param (
     [ValidatePattern("\d{4}-\d{2}-\d{2}")]
     [string]
     # Gregorian date in ISO format. Current date is used when parameter is omitted.
-    $IsoDate = $(Get-Date -Format "yyyy-MM-dd"),
+    $GregorianDate = $(Get-Date -Format "yyyy-MM-dd"),
 
     [Parameter(ParameterSetName="PlainSet")]
     [switch]
@@ -434,9 +434,9 @@ function Write-Json {
         ordinal = $MayaDate.HaabDate.Ordinal()
     }
 
-    $IsoDate = $(Get-Date $date -Format "yyyy-MM-dd")
+    $GregorianDate = $(Get-Date $date -Format "yyyy-MM-dd")
     $All = [ordered]@{
-        gregorianDate = $IsoDate
+        gregorianDate = $GregorianDate
         longCountDate = $LongCount
         tzolkin = $Tzolkin
         haab = $Haab
@@ -453,13 +453,13 @@ function Write-Latex {
         [string] $Prefix
     )
 
-    $LatexIsoDate = $(Get-Date $date -Format "yyyy--MM--dd")
+    $LatexGregorianDate = $(Get-Date $date -Format "yyyy--MM--dd")
     $LongCount = $MayaDate.LongCountDate.StandardNotation()
     $Tzolkin = $MayaDate.TzolkinDate.StandardNotation()
     $Haab = $MayaDate.HaabDate.StandardNotation($PreferMonthEnding)
 
     $Lines = @(
-        "\newcommand{\$($Prefix)gregoriandate}{$LatexIsoDate\xspace}",
+        "\newcommand{\$($Prefix)gregoriandate}{$LatexGregorianDate\xspace}",
         "\newcommand{\$($Prefix)longcount}{$LongCount\xspace}",
         "\newcommand{\$($Prefix)tzolkin}{$Tzolkin\xspace}",
         "\newcommand{\$($Prefix)haab}{$Haab\xspace}"
@@ -485,7 +485,7 @@ class MayaDate {
 function Main {
     [CmdletBinding()]
     param (
-        [string] $IsoDate,
+        [string] $GregorianDate,
         [switch] $CalendarRound,
         [switch] $NoLongCount,
         [switch] $Tzolkin,
@@ -496,7 +496,7 @@ function Main {
         [switch] $Latex = $false
     )
 
-    $Date = [DateTime]::ParseExact($IsoDate, "yyyy-MM-dd", $null)
+    $Date = [DateTime]::ParseExact($GregorianDate, "yyyy-MM-dd", $null)
     $MayaNumber = [MartinSkidmoreCorrelation]::MayaNumberFrom($Date)
     $MayaDate = [MayaDate]::new($MayaNumber)
 
@@ -633,18 +633,18 @@ function Test-HaabDate {
 }
 
 function Test-Plain {
-    Assert -Statement (Main -Plain -IsoDate 0790-07-20) -Expected "9.17.19.13.16"
-    Assert -Statement (Main -Plain -IsoDate 2022-12-30) -Expected "13.0.10.2.18"
-    Assert -Statement (Main -Plain -CalendarRound -IsoDate 2022-12-30) -Expected "13.0.10.2.18 9 Etz'nab' 11 K'ank'in"
-    Assert -Statement (Main -Plain -CalendarRound -IsoDate 2023-01-08) -Expected "13.0.10.3.7 5 Manik' Seating of Muwan"
-    Assert -Statement (Main -Plain -CalendarRound -IsoDate 2023-01-08 -PreferMonthEnding) -Expected "13.0.10.3.7 5 Manik' Ending of K'ank'in"
-    Assert -Statement (Main -Plain -CalendarRound -IsoDate 2023-04-03) -Expected "13.0.10.7.12 12 Eb' Seating of Pop"
-    Assert -Statement (Main -Plain -CalendarRound -IsoDate 2023-04-03 -PreferMonthEnding) -Expected "13.0.10.7.12 12 Eb' Ending of Wayeb"
-    Assert -Statement (Main -Plain -NoLongCount -CalendarRound -IsoDate 2022-12-30) -Expected "9 Etz'nab' 11 K'ank'in"
-    Assert -Statement (Main -Plain -Tzolkin -IsoDate 2022-12-30) -Expected "13.0.10.2.18 9 Etz'nab'"
+    Assert -Statement (Main -Plain -GregorianDate 0790-07-20) -Expected "9.17.19.13.16"
+    Assert -Statement (Main -Plain -GregorianDate 2022-12-30) -Expected "13.0.10.2.18"
+    Assert -Statement (Main -Plain -CalendarRound -GregorianDate 2022-12-30) -Expected "13.0.10.2.18 9 Etz'nab' 11 K'ank'in"
+    Assert -Statement (Main -Plain -CalendarRound -GregorianDate 2023-01-08) -Expected "13.0.10.3.7 5 Manik' Seating of Muwan"
+    Assert -Statement (Main -Plain -CalendarRound -GregorianDate 2023-01-08 -PreferMonthEnding) -Expected "13.0.10.3.7 5 Manik' Ending of K'ank'in"
+    Assert -Statement (Main -Plain -CalendarRound -GregorianDate 2023-04-03) -Expected "13.0.10.7.12 12 Eb' Seating of Pop"
+    Assert -Statement (Main -Plain -CalendarRound -GregorianDate 2023-04-03 -PreferMonthEnding) -Expected "13.0.10.7.12 12 Eb' Ending of Wayeb"
+    Assert -Statement (Main -Plain -NoLongCount -CalendarRound -GregorianDate 2022-12-30) -Expected "9 Etz'nab' 11 K'ank'in"
+    Assert -Statement (Main -Plain -Tzolkin -GregorianDate 2022-12-30) -Expected "13.0.10.2.18 9 Etz'nab'"
     Assert -Statement (Main -Plain -NoLongCount -Tzolkin 2022-12-30) -Expected "9 Etz'nab'"
-    Assert -Statement (Main -Plain -Haab -IsoDate 2022-12-30) -Expected "13.0.10.2.18 11 K'ank'in"
-    Assert -Statement (Main -Plain -NoLongCount -Haab -IsoDate 2022-12-30) -Expected "11 K'ank'in"
+    Assert -Statement (Main -Plain -Haab -GregorianDate 2022-12-30) -Expected "13.0.10.2.18 11 K'ank'in"
+    Assert -Statement (Main -Plain -NoLongCount -Haab -GregorianDate 2022-12-30) -Expected "11 K'ank'in"
 }
 
 function Test-Latex {
@@ -654,7 +654,7 @@ function Test-Latex {
 \newcommand{\documentversiontzolkin}{7 Muluk\xspace}
 \newcommand{\documentversionhaab}{2 Muwan\xspace}"
 
-    Assert -Statement (Main -Latex -IsoDate 2023-01-10) -Expected $Nominal
+    Assert -Statement (Main -Latex -GregorianDate 2023-01-10) -Expected $Nominal
 }
 
 function Test-Script {
@@ -668,7 +668,7 @@ function Test-Script {
 Test-Script
 
 $MainParameter = @{
-    IsoDate = $IsoDate
+    GregorianDate = $GregorianDate
     CalendarRound = $CalendarRound
     NoLongCount = $NoLongCount
     Tzolkin = $Tzolkin

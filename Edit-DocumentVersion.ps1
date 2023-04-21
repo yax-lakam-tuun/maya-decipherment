@@ -18,7 +18,7 @@ param (
     [Parameter(Mandatory=$true, ParameterSetName="UpdateSet")]
     [ValidatePattern("\d{4}-\d{2}-\d{2}")]
     [string]
-    $IsoDate
+    $GregorianDate
 )
 
 function Write-DocumentVersion {
@@ -42,10 +42,10 @@ function Update-DocumentVersion {
     [CmdletBinding()]
     param (
         [string] $VersionTexPath,
-        [string] $IsoDate
+        [string] $GregorianDate
     )
 
-    ./Ask-Ajpula.ps1 -Latex -IsoDate $IsoDate | Out-File $VersionTexPath
+    ./Ask-Ajpula.ps1 -Latex -GregorianDate $GregorianDate | Out-File $VersionTexPath
 }
 
 if ($Print.IsPresent) {
@@ -53,5 +53,5 @@ if ($Print.IsPresent) {
 }
 
 if ($Update.IsPresent) {
-    Update-DocumentVersion -VersionTexPath $VersionTexPath -IsoDate $IsoDate
+    Update-DocumentVersion -VersionTexPath $VersionTexPath -GregorianDate $GregorianDate
 }
