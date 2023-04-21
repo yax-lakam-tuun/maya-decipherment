@@ -36,12 +36,13 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
-      - name: Check tex files
+      - name: Test LaTeX files
         run: >-
           docker run --rm 
           -v $GITHUB_WORKSPACE:${{ env.CONTAINER_SOURCE_PATH }}
           ${{ env.CONTAINER_TAG }} 
-          bash -c "\"${{ env.CONTAINER_SOURCE_PATH }}/chktexall.sh\" \"${{ env.CONTAINER_SOURCE_PATH }}\""
+          pwsh -Command "${{ env.CONTAINER_SOURCE_PATH }}/Test-LaTeXFiles.ps1
+          -RootPath \"${{ env.CONTAINER_SOURCE_PATH }}\""
 
       - name: Compile document
         run: >-
@@ -55,7 +56,7 @@ jobs:
           -DocumentName \"${{ env.DOCUMENT_NAME }}\" 
           -TexFile \"${{ env.CONTAINER_MAIN_PATH }}\""
 
-      - name: Check document
+      - name: Test document
         run: >-
           docker run --rm 
           -v $GITHUB_WORKSPACE:${{ env.CONTAINER_SOURCE_PATH }}
