@@ -458,10 +458,14 @@ function Write-Latex {
     $Tzolkin = $MayaDate.TzolkinDate.StandardNotation()
     $Haab = $MayaDate.HaabDate.StandardNotation($PreferMonthEnding)
 
-    Write-Output "\newcommand{\$($Prefix)gregoriandate}{$LatexIsoDate\xspace}"
-    Write-Output "\newcommand{\$($Prefix)longcount}{$LongCount\xspace}"
-    Write-Output "\newcommand{\$($Prefix)tzolkin}{$Tzolkin\xspace}"
-    Write-Output "\newcommand{\$($Prefix)haab}{$Haab\xspace}"
+    $Lines = @(
+        "\newcommand{\$($Prefix)gregoriandate}{$LatexIsoDate\xspace}",
+        "\newcommand{\$($Prefix)longcount}{$LongCount\xspace}",
+        "\newcommand{\$($Prefix)tzolkin}{$Tzolkin\xspace}",
+        "\newcommand{\$($Prefix)haab}{$Haab\xspace}"
+    )
+
+    Write-Output ($Lines -join "`n")
 }
 
 class MayaDate {
@@ -643,11 +647,22 @@ function Test-Plain {
     Assert -Statement (Main -Plain -NoLongCount -Haab -IsoDate 2022-12-30) -Expected "11 K'ank'in"
 }
 
+function Test-Latex {
+    $Nominal = 
+"\newcommand{\documentversiongregoriandate}{2023--01--10\xspace}
+\newcommand{\documentversionlongcount}{13.0.10.3.9\xspace}
+\newcommand{\documentversiontzolkin}{7 Muluk\xspace}
+\newcommand{\documentversionhaab}{2 Muwan\xspace}"
+
+    Assert -Statement (Main -Latex -IsoDate 2023-01-10) -Expected $Nominal
+}
+
 function Test-Script {
     Test-LongCountDate
     Test-TzolkinDate
     Test-HaabDate
     Test-Plain
+    Test-Latex
 }
 
 Test-Script
