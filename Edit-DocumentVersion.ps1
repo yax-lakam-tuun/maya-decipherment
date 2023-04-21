@@ -10,13 +10,13 @@
     ./Edit-DocumentVersion.ps1 -Update -VersionTexPath ./document-version.tex -GregorianDate 0800-11-22
 
     .INPUTS
-    None
+    None. You cannot pipe objects into this script.
 
     .OUTPUTS
-    None
+    Prints information about document version file. Prints nothing in Update mode.
 
     .EXAMPLE
-    Print Long Count date of document version to terminal
+    Print Long Count date of document version to terminal.
 
     ./Edit-DocumentVersion.ps1 -LongCount -VersionTexPath ./document-version.tex
 

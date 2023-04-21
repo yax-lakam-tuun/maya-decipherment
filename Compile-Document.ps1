@@ -14,10 +14,10 @@
     TeX file.
 
     .INPUTS
-    None
+    None. You cannot pipe objects into this script.
 
     .OUTPUTS
-    None
+    None. Don't expect usable output from this script.
 
     .LINK
     https://github.com/yax-lakam-tuun/maya-decipherment

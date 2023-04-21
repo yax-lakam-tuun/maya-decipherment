@@ -17,7 +17,7 @@
         Long count, Tzolk'in and Haab information will be written in a Latex readable format.
 
     .INPUTS
-    None
+    None. You cannot pipe objects into this script.
 
     .OUTPUTS
     Long count date, Haab date and/or Tzolk'in date in either plain text, Json or Latex format.
