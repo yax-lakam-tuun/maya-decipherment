@@ -453,15 +453,15 @@ function Write-Latex {
         [string] $Prefix
     )
 
-    $IsoDate = $(Get-Date $date -Format "yyyy-MM-dd")
+    $LatexIsoDate = $(Get-Date $date -Format "yyyy--MM--dd")
     $LongCount = $MayaDate.LongCountDate.StandardNotation()
     $Tzolkin = $MayaDate.TzolkinDate.StandardNotation()
     $Haab = $MayaDate.HaabDate.StandardNotation($PreferMonthEnding)
 
-    Write-Output "\\newcommand{{\$($Prefix)gregoriandate}}{{{$IsoDate}\\xspace}}"
-    Write-Output "\\newcommand{{\$($Prefix)longcount}}{{{$LongCount}\\xspace}}"
-    Write-Output "\\newcommand{{\$($Prefix)tzolkin}}{{{$Tzolkin}\\xspace}}"
-    Write-Output "\\newcommand{{\$($Prefix)haab}}{{{$Haab}\\xspace}}"
+    Write-Output "\newcommand{\$($Prefix)gregoriandate}{$LatexIsoDate\xspace}"
+    Write-Output "\newcommand{\$($Prefix)longcount}{$LongCount\xspace}"
+    Write-Output "\newcommand{\$($Prefix)tzolkin}{$Tzolkin\xspace}"
+    Write-Output "\newcommand{\$($Prefix)haab}{$Haab\xspace}"
 }
 
 class MayaDate {
