@@ -5,8 +5,8 @@
     Runs tests on each LaTeX file ending with.tex and outputs the result.
 
     .DESCRIPTION
-    This script is responsible to check all LaTeX files (usually files ending with .tex).
-    Currently, only one check is performed.
+    This script is responsible to test all LaTeX files (usually files ending with .tex).
+    Currently, only one test is performed.
     The utility tool 'chktex' reports typographic and other errors in LaTeX.
     The script is used in the contineous integration stage (see workflows/ci.yml) to ensure
     integrity of all LaTeX files.
@@ -62,7 +62,7 @@ function Invoke-Chktex {
     }
 
     if ($ExitCode -ne 0) {
-        Write-Error "At least one file check failed. Please see the log."
+        Write-Error "At least one file test failed. Please see the log."
         Exit $ExitCode
     }
 }
@@ -71,4 +71,4 @@ $TexFiles = Get-ChildItem -Path $RootPath -Filter *.tex -Recurse -ErrorAction Si
 
 Invoke-Chktex -TexFiles $TexFiles
 
-Write-Output "All checks passed."
+Write-Output "All tests passed."
