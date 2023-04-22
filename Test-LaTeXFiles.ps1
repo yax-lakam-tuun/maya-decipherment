@@ -61,15 +61,14 @@ function Invoke-Chktex {
         $PercentCompleted += $Percent
     }
 
-    if ($ExitCode -eq 0) {
-        Write-Output "All checks passed."
-    } else {
-        Write-Output "At least one file check failed. Please see the log."
+    if ($ExitCode -ne 0) {
+        Write-Error "At least one file check failed. Please see the log."
+        Exit $ExitCode
     }
-
-    Exit $ExitCode
 }
 
 $TexFiles = Get-ChildItem -Path $RootPath -Filter *.tex -Recurse -ErrorAction SilentlyContinue -Force
 
 Invoke-Chktex -TexFiles $TexFiles
+
+Write-Output "All checks passed."
