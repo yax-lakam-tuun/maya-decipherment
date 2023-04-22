@@ -61,7 +61,6 @@ jobs:
           docker run --rm 
           -v $GITHUB_WORKSPACE:${{ env.CONTAINER_SOURCE_PATH }}
           ${{ env.CONTAINER_TAG }} 
-          bash -c "\"${{ env.CONTAINER_SOURCE_PATH }}/check-document.sh\" 
-          \"${{ env.CONTAINER_BUILD_PATH }}\" 
-          \"${{ env.DOCUMENT_NAME }}\""
+          pwsh -Command "${{ env.CONTAINER_SOURCE_PATH }}/Test-Document.ps1
+          -DocumentPath \"${{ env.CONTAINER_BUILD_PATH }}/${{ env.DOCUMENT_NAME }}.pdf\""
 
