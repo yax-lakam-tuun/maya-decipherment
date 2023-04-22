@@ -4,6 +4,24 @@
     .SYNOPSIS
     Updates or prints content of given document version file.
 
+    .DESCRIPTION
+    This script is used to manage the current document version.
+    The document version is used to create new releases/Git tags.
+    It is also used to in the LaTeX document itself (e.g. on the cover page) to inform the reader
+    about the document's version.
+    The version is stored in a LaTeX readable format - usally stored in document-version.tex.
+    The file, however, can be specified explicitly using the parameter VersionTexPath.
+    The script fulfills two purposes.
+    1) Updating the document version using a given Gregorian date.
+       The Gregorian date is converted to its Long Count date equivalent which is then used as
+       Release version and Git tag.
+       The Long Count date, the Calendar Round and the Gregorian date is then stored in the 
+       specified file (see parameter VersionTexPath).
+
+    2) Printing the long count (using parameter Long Count).
+       As the Long Count is also used as Git tag, the Release workflow (see workflows/release.yml)
+       needs to extract the information from the LaTeX file.
+
     .EXAMPLE
     Update document version to anno 800 AD.
 

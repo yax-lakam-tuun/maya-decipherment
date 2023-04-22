@@ -1,7 +1,40 @@
 #!/usr/bin/env pwsh
 
+<#
+    .SYNOPSIS
+    Runs tests on each LaTeX file ending with.tex and outputs the result.
+
+    .DESCRIPTION
+    This script is responsible to check all LaTeX files (usually files ending with .tex).
+    Currently, only one check is performed.
+    The utility tool 'chktex' reports typographic and other errors in LaTeX.
+    The script is used in the contineous integration stage (see workflows/ci.yml) to ensure
+    integrity of all LaTeX files.
+
+    .EXAMPLE
+    Search in current directory and below.
+
+    ./Test-LaTexFiles.ps1
+
+    .INPUTS
+    None. You cannot pipe objects into this script.
+
+    .OUTPUTS
+    None. The Output is undefined.
+
+    .EXAMPLE
+    Search in specific folder and below.
+
+    ./Test-LaTexFiles.ps1 -RootPath /opt/source
+
+    .LINK
+    https://github.com/yax-lakam-tuun/maya-decipherment
+
+#>
+
 [CmdletBinding()]
 param (
+    # The starting path to look for Tex files.
     [string] $RootPath = "."
 )
 

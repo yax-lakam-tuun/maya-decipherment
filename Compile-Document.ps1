@@ -17,7 +17,7 @@
     None. You cannot pipe objects into this script.
 
     .OUTPUTS
-    None. Don't expect usable output from this script.
+    None. The Output is undefined.
 
     .LINK
     https://github.com/yax-lakam-tuun/maya-decipherment
