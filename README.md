@@ -36,17 +36,52 @@ Every release contains the source code the document is based on, a changelog wit
 of the all changes which have been made and the final document as PDF.
 Please see the chapter about [releases](documentation/releases.md) for more information.
 
+# Prerequisites
+This project supports all major operating systems: Windows, macOS and Linux.
+In order to generate the PDF document from the source code, one needs these components installed
+on the system:
+* LaTeX (see [LaTeX](#LaTeX) below)
+* PowerShell (see [PowerShell](#PowerShell))
+    * A platform-independent script language (created by Microsoft) which is used at several places 
+    in the code base.
+    * An install guide (from Microsoft) can be found here:
+    https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell?view=powershell-7.3
+* Optional: Inkscape
+    * Tool which supports SVG(Scalable Vector Graphics) and PDF files
+    Only necessary if you'd like to author new graphics, figures etc.
+
+As an alternative, a virtualized envrionment using Docker containers is also provided.
+Please see chapter [Docker](container/Readme.MD) for more information.
+
+## Compiling the document
+If the system is setup, open a PowerShell terminal and execute
+the provided PowerShell script [Compile-Document.ps1](Compile-Document.ps1) in the root directory
+of this project.
+The generated PDF document can be found in the `build` folder named `main.pdf` (`build/main.pdf`).
+
 # LaTeX
 This project is written in LaTeX - a mark-up language which allows creating big scalable documents 
 by writing unformatted text using commands to enrich texts, embed images and tables, cite and 
 reference other sources like papers, books and websites scientifically and so on.
 That means, a LaTeX environment must be available on your system in order to generally compile 
 a PDF document from any given LateX source.
-If you have a LaTeX distribution (e.g. TeX Live) available in your terminal, you can execute
-the provided PowerShell script [Compile-Document.ps1](Compile-Document.ps1) which in turn will 
-generate the document.
 For more information on how to setup and use LaTeX, 
 please have a look at chapter [LaTeX](documentation/latex.md).
+
+# PowerShell
+All scripts are written in PowerShell.
+It's a script language created by Microsoft and open-sourced on GitHub: 
+https://github.com/PowerShell/PowerShell.
+
+Since PowerShell is provided for each major platform (that is Windows, macOS and Linux),
+it is a good way writing small tools and commands.
+Those tools include a straight forword way of compiling documents, managing document versions and
+even quality tests.
+
+Each script in this project provides detailed information how it operates and how it can be used.
+Getting help for each script can be used with this small command in a PowerShell terminal.
+
+    Get-Help -Full -Name <name of the script file>
 
 # Open source
 This document is open source which means everybody can work with it, improve it and give feedback.
@@ -95,7 +130,8 @@ If you would like to know more about VSCode,
 please see the [VSCode](documentation/vscode.md) chapter for more information.
 
 # Docker
-This project utilizes Docker to virtualize the LaTeX environment.
+This project utilizes Docker to virtualize the LaTeX environment and everything which is needed
+to work as a user or author with the project.
 It is used by the infrastructure of the continuous integration process.
 It can also be used as a so-called Dev Container when being combined with VSCode.
 Please see the [Docker](container/README.md) chapter for more information 
