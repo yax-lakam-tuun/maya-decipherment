@@ -22,16 +22,16 @@
        As the Long Count is also used as Git tag, the Release workflow (see workflows/release.yml)
        needs to extract the information from the LaTeX file.
 
-    .EXAMPLE
-    Update document version to anno 800 AD.
-
-    ./Edit-DocumentVersion.ps1 -Update -VersionTexPath ./document-version.tex -GregorianDate 0800-11-22
-
     .INPUTS
     None. You cannot pipe objects into this script.
 
     .OUTPUTS
     Prints information about document version file. Prints nothing in Update mode.
+
+    .EXAMPLE
+    Update document version to anno 800 AD.
+
+    ./Edit-DocumentVersion.ps1 -Update -VersionTexPath ./document-version.tex -GregorianDate 0800-11-22
 
     .EXAMPLE
     Print Long Count date of document version to terminal.
