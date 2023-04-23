@@ -10,14 +10,14 @@
     The script is used in the contineous integration stage (see workflows/ci.yml) to ensure
     integrity of the generated PDF document.
 
-    .EXAMPLE
-    ./Test-Document -DocumentPath "/opt/source/somePdf.pdf"
-
     .INPUTS
     None. You cannot pipe objects into this script.
 
     .OUTPUTS
     None. The output is undefined.
+
+    .EXAMPLE
+    ./Test-Document -DocumentPath "/opt/source/somePdf.pdf"
 
     .LINK
     https://github.com/yax-lakam-tuun/maya-decipherment

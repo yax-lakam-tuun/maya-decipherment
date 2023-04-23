@@ -11,16 +11,16 @@
     The script is used in the contineous integration stage (see workflows/ci.yml) to ensure
     integrity of all LaTeX files.
 
-    .EXAMPLE
-    Search in current directory and below.
-
-    ./Test-LaTexFiles.ps1
-
     .INPUTS
     None. You cannot pipe objects into this script.
 
     .OUTPUTS
     None. The output is undefined.
+
+    .EXAMPLE
+    Search in current directory and below.
+
+    ./Test-LaTexFiles.ps1
 
     .EXAMPLE
     Search in specific folder and below.

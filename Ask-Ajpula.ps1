@@ -2,6 +2,9 @@
 
 <#
     .SYNOPSIS
+    Procudes Maya calendar date information from a given Gregorian date.
+
+    .DESCRIPTION
     Produce a long count date in the classic notation from given date string.
     The output format can be controlled by the Mode parameter.
 
