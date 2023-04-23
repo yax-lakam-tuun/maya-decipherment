@@ -99,17 +99,9 @@ Simple tree structure featuring two chapters namely Introduction and reading ord
 # Files
 There are some files like scripts which have a special function inside the project.
 Here's a short summary:
-* [Compile-Document.ps1](Compile-Document.ps1): Script to compile PDF from given LaTeX source
-* [ConvertFrom-Svg.ps1](../ConvertFrom-Svg.ps1): Utility script to convert a given SVG file to PDF
-* [Test-LaTeXFiles.ps1](../Test-LaTeXFiles.ps1): Script to check for LaTeX errors 
-  (see [CI](continuous-integration))
-* [Test-Document.ps1](../Test-Document.ps1): Script to check validity of compiled PDF file
-  (see [CI](continuous-integration))
-* [Ask-Ajpula.ps1](../Ask-Ajpula.ps1): Script which deals with Long Count, Calendar Round and Gregorian dates
 * [document-version.tex](../document-version.tex): 
   The current version of the document as it is used for a possible release.
-* [Edit-DocumentVersion.ps1](../Edit-DocumentVersion.ps1): 
-  Manages current document version, release version and the next Git tag.
+  Managed by [Edit-DocumentVersion.ps1](Edit-DocumentVersion.ps1).
 * [preamble.sty](../preamble.sty): Entry point for everything LaTeX in this project. 
   Includes used LaTeX libraries and defines some settings used in the document.
 * [maya.sty](../maya.sty): Library for maya specific LateX command (e.g. hieroglyph commands etc.)
