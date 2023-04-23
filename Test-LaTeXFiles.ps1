@@ -20,7 +20,7 @@
     None. You cannot pipe objects into this script.
 
     .OUTPUTS
-    None. The Output is undefined.
+    None. The output is undefined.
 
     .EXAMPLE
     Search in specific folder and below.
@@ -29,7 +29,6 @@
 
     .LINK
     https://github.com/yax-lakam-tuun/maya-decipherment
-
 #>
 
 [CmdletBinding()]
