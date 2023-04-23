@@ -68,7 +68,7 @@ Usage: `ConvertFrom-Svg.ps1 -SvgFiles <path/to/file.svg>`.
 This will produce a PDF named `path/to/file.pdf`.
 Other images like photos and such should be stored as JPG.
 Formats like PNGs are discouraged since there pictures take a lot of space and 
-have to be converted by LaTeX during the compile process which might be very time consuming,
+have to be converted by LaTeX during the compile process which might be very time consuming.
 
 ## References
 This project uses BibLaTeX to organize and display all used sourced and references.
