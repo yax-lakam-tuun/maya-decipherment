@@ -19,7 +19,7 @@ The release version is the long count representation of the document's date
 (see [Releases](releases.md)).
 
 ## Short-lived feature branch
-One or more persons work on a branch branched from `main` over a small periods of time, flowing through pull requests including code-review and build automation before "integrating" 
+One or more persons work on a branch created from `main` over a small period of time, flowing through pull requests including code-review and build automation before "integrating" 
 aka merging into `main`.
 The `main` branch is protected, so the only way for code to get merged, is via pull requests.
 

@@ -26,7 +26,7 @@ See the [project site of LaTeX](https://www.latex-project.org//) for more inform
 There are many guides out there which explain in detail how to install LaTeX on your system.
 LaTeX is usually shipped in so-called distributions.
 MikTex is one of them and is available for Windows, Linux and macOS.
-Fully integrated editors with syntax highlighting and auto completion are also available.
+Fully integrated editors with syntax highlighting and autocompletion are also available.
 (for example TeXstudio or TEXMAKER).
 Integrated Development Editors(IDE) like [VSCode](vscode.md) can be used in conjunction with LaTeX extensions.
 Despite the claims above that LaTeX is written in plain text, there are indeed WYSIWYG editors
@@ -38,27 +38,27 @@ On how to use Docker containers with LaTeX,
 please see chapter [Docker](../container/README.md) and [VSCode](vscode.md).
 
 # Folder structure
-All LateX code is written in files ending with `.tex`.
+All LaTeX code is written in files ending with `.tex`.
 Some code also resides in `.sty` files, but that's just a small portion of LaTeX projects.
 In less complex projects, it can be sufficient to have all the text in one single tex file.
 But for bigger projects, it makes sense to split the content to more files.
 This is useful to keep the context as clean as possible.
 It also makes editing much easier.
-Therefore, this project is also split in many different files.
+Therefore, this project is also split in different files.
 
 ## Chapters
 Every chapter resides in a separate sub folder.
-The chapter's tex file is named after the chapter's title 
+The chapter's TeX file is named after the chapter's title 
 (e.g. introduction.tex for the introduction chapter).
 The advantage is that with this approach every chapter can be compiled separately. 
-This greatly reduces compilation times and it might be useful to ``publish'' 
+This greatly reduces compilation times, and it might be useful to ``publish'' 
 single chapters if necessary.
 Then, the main document [main.tex](../main.tex) combines all chapters by 
 including the according subfolders.
 If necessary, a chapter can also be split into two or more sub folders.
 
 ## Graphics
-Images are put into a separate sub folder named 'img' next to the tex file.
+Images are put into a separate sub folder named 'img' next to the TeX file.
 To ensure proper scaling, drawings like hieroglyphs etc. shall be stored as 
 `Scalable Vector Graphics` (SVG).
 SVGs are not natively supported by LaTeX.
@@ -68,7 +68,7 @@ Usage: `ConvertFrom-Svg.ps1 -SvgFiles <path/to/file.svg>`.
 This will produce a PDF named `path/to/file.pdf`.
 Other images like photos and such should be stored as JPG.
 Formats like PNGs are discouraged since there pictures take a lot of space and 
-have to be converted by LaTeX during the compile process which might be very time consuming.
+have to be converted by LaTeX during the compile process which might be very time-consuming.
 
 ## References
 This project uses BibLaTeX to organize and display all used sourced and references.
@@ -79,9 +79,9 @@ the single file [references.bib](../references.bib).
 The tex files should have a maximum of 100 characters per line.
 Exceptions are allowed if and only if the reading of the code would suffer from wrapping the 
 lines (e.g. when using tables with many columns which exceed the limit).
-Every sentences starts with  new line.
+Every sentence starts in a new line.
 This makes it easier to read the document line by line.
-The real line wrapping etc. is done by LaTeX anyways.
+The real line wrapping etc. is done by LaTeX anyway.
 As always, readability should be the most important criterion when writing the text.
 
 # Example structure
@@ -104,5 +104,5 @@ Here's a short summary:
   Managed by [Edit-DocumentVersion.ps1](Edit-DocumentVersion.ps1).
 * [preamble.sty](../preamble.sty): Entry point for everything LaTeX in this project. 
   Includes used LaTeX libraries and defines some settings used in the document.
-* [maya.sty](../maya.sty): Library for maya specific LateX command (e.g. hieroglyph commands etc.)
+* [maya.sty](../maya.sty): Library for Maya specific LaTeX command (e.g. hieroglyph commands etc.)
 * [references.bib](../references.bib): All references used by BibLaTeX.
