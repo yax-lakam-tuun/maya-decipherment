@@ -1,7 +1,7 @@
 
-# What does it do?
+# Docker container
 A Docker container is a virtual encapsulated environment.
-The so-called host which is usually the computer, note-book or similar, creates and runs the Docker 
+The so-called host which is usually the computer, notebook or similar, creates and runs the Docker 
 containers.
 Unlike the host system, everything which can be installed and executed remains in the container and 
 cannot alter the configuration of the host in any way.
@@ -47,10 +47,11 @@ To run the container, please enter the following line:
 
     docker run -v$(pwd)/:/opt/sources maya-hod
 
+It will create a PDF document called `Maya Hieroglyphs - The History of Decipherment.pdf`.
 In this project, a volume is used to map all files, documents, images etc. into the container.
 The container works directly with the files on the host.
 That means, once the git project is cloned locally, the Docker container can interact with the 
-checked out folder structure and run LaTeX completely independent from the host.
+checked out folder structure and run LaTeX completely independent of the host.
 Everything outside the specified folder (aka volume) cannot be touched (or even be seen) though.
 
 # Usage in continuous integration
