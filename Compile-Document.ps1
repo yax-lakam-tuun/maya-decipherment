@@ -28,7 +28,7 @@ param (
     [string]
     # The TeX file to be compiled.
     [Parameter(HelpMessage="Enter LaTeX file to compile.")]
-    $TexFile = "main.tex",
+    $TexFile = "$(Resolve-Path -Path $PSScriptRoot)/main.tex",
 
     [string]
     # The path to the TeX source files. Usually the root of a TeX project.
@@ -38,7 +38,7 @@ param (
     [string]
     # The path to the output directory. The final document will be placed there, too.
     [Parameter(HelpMessage="Enter path in which output files can be stored.")]
-    $BuildPath="$((Get-Item $TexFile).Directory)/build",
+    $BuildPath="$(Resolve-Path -Path $(Get-Item $TexFile).Directory)/build",
 
     [string]
     # The file name of the PDF document.
