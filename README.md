@@ -50,7 +50,7 @@ on the system:
     * Tool which supports SVG(Scalable Vector Graphics) and PDF files
     Only necessary if you'd like to author new graphics, figures etc.
 
-As an alternative, a virtualized envrionment using Docker containers is also provided.
+As an alternative, a virtualized environment using Docker containers is also provided.
 Please see chapter [Docker](container/Readme.MD) for more information.
 
 ## Compiling the document
@@ -75,7 +75,7 @@ https://github.com/PowerShell/PowerShell.
 
 Since PowerShell is provided for each major platform (that is Windows, macOS and Linux),
 it is a good way writing small tools and commands.
-Those tools include a straight forword way of compiling documents, managing document versions and
+Those tools include a straight forward way of compiling documents, managing document versions and
 even quality tests.
 
 Each script in this project provides detailed information how it operates and how it can be used.
@@ -97,7 +97,7 @@ Some important scripts are:
 
 # Open source
 This document is open source which means everybody can work with it, improve it and give feedback.
-The history of deciperment of Maya hieroglyphs should be readable and understandable to anyone
+The history of decipherment of Maya hieroglyphs should be readable and understandable to anyone
 interested in this manner.
 All texts, images and illustrations are be publicly available, so that the great
 process of decipherment can be shared with everyone around the world. 
