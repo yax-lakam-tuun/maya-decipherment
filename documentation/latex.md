@@ -63,11 +63,12 @@ To ensure proper scaling, drawings like hieroglyphs etc. shall be stored as
 `Scalable Vector Graphics` (SVG).
 SVGs are not natively supported by LaTeX.
 Therefore, they have to be converted.
-The script [svg2pdf.sh](../svg2pdf.sh) can be used to make the conversion.
-Usage: `svg2pdf.sh <path/to/file.svg>`. This will produce a PDF named `path/to/file.pdf`.
+The script [ConvertFrom-Svg.ps1](../ConvertFrom-Svg.ps1) can be used to make the conversion.
+Usage: `ConvertFrom-Svg.ps1 -SvgFiles <path/to/file.svg>`. 
+This will produce a PDF named `path/to/file.pdf`.
 Other images like photos and such should be stored as JPG.
 Formats like PNGs are discouraged since there pictures take a lot of space and 
-have to be converted by LaTeX during the compile process which might be very time consuming,
+have to be converted by LaTeX during the compile process which might be very time consuming.
 
 ## References
 This project uses BibLaTeX to organize and display all used sourced and references.
@@ -98,18 +99,9 @@ Simple tree structure featuring two chapters namely Introduction and reading ord
 # Files
 There are some files like scripts which have a special function inside the project.
 Here's a short summary:
-* [compile.sh](../compile.sh): Script to compile PDF from given LaTeX source
-* [svg2pdf.sh](../svg2pdf.sh): Utility script to convert a given SVG file to PDF
-* [chktexall.sh](../chktexall.sh): Script to check for LaTeX errors 
-  (see [CI](continuous-integration))
-* [check-document](../check-document.sh): Script to check validity of compiled PDF 
-  (see [CI](continuous-integration))
-* [ahpula.py](../ahpula.py): Script which deals with Long Count, Calendar Round and Gregorian dates
-* [check-ahpula.sh](../ahpula.py): Script which tests output of [ahpula.py](../ahpula.py)
 * [document-version.tex](../document-version.tex): 
   The current version of the document as it is used for a possible release.
-* [update-document-version.sh](../update-document-version.sh): 
-  Uses the current date to set the new document version.
+  Managed by [Edit-DocumentVersion.ps1](Edit-DocumentVersion.ps1).
 * [preamble.sty](../preamble.sty): Entry point for everything LaTeX in this project. 
   Includes used LaTeX libraries and defines some settings used in the document.
 * [maya.sty](../maya.sty): Library for maya specific LateX command (e.g. hieroglyph commands etc.)

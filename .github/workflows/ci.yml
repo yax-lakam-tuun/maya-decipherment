@@ -36,19 +36,13 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
-      - name: Check tex files
+      - name: Test LaTeX files
         run: >-
           docker run --rm 
           -v $GITHUB_WORKSPACE:${{ env.CONTAINER_SOURCE_PATH }}
           ${{ env.CONTAINER_TAG }} 
-          bash -c "\"${{ env.CONTAINER_SOURCE_PATH }}/chktexall.sh\" \"${{ env.CONTAINER_SOURCE_PATH }}\""
-
-      - name: Check ahpula
-        run: >-
-          docker run --rm 
-          -v $GITHUB_WORKSPACE:${{ env.CONTAINER_SOURCE_PATH }}
-          ${{ env.CONTAINER_TAG }} 
-          bash -c "\"${{ env.CONTAINER_SOURCE_PATH }}/check-ahpula.sh\""
+          pwsh -Command "${{ env.CONTAINER_SOURCE_PATH }}/Test-LaTeXFiles.ps1
+          -RootPath \"${{ env.CONTAINER_SOURCE_PATH }}\""
 
       - name: Compile document
         run: >-
@@ -56,18 +50,17 @@ jobs:
           -v $GITHUB_WORKSPACE:${{ env.CONTAINER_SOURCE_PATH }}
           -v $GITHUB_WORKSPACE/build:${{ env.CONTAINER_BUILD_PATH }}
           ${{ env.CONTAINER_TAG }}
-          bash -c "\"${{ env.CONTAINER_SOURCE_PATH }}/compile.sh\" 
-          --source-path \"${{ env.CONTAINER_SOURCE_PATH }}\" 
-          --build-path \"${{ env.CONTAINER_BUILD_PATH}}\" 
-          --document-name \"${{ env.DOCUMENT_NAME }}\"
-          \"${{ env.CONTAINER_MAIN_PATH }}\""
+          pwsh -Command "${{ env.CONTAINER_SOURCE_PATH }}/Compile-Document.ps1
+          -SourcePath \"${{ env.CONTAINER_SOURCE_PATH }}\" 
+          -BuildPath \"${{ env.CONTAINER_BUILD_PATH}}\" 
+          -DocumentName \"${{ env.DOCUMENT_NAME }}\" 
+          -TexFile \"${{ env.CONTAINER_MAIN_PATH }}\""
 
-      - name: Check document
+      - name: Test document
         run: >-
           docker run --rm 
           -v $GITHUB_WORKSPACE:${{ env.CONTAINER_SOURCE_PATH }}
           ${{ env.CONTAINER_TAG }} 
-          bash -c "\"${{ env.CONTAINER_SOURCE_PATH }}/check-document.sh\" 
-          \"${{ env.CONTAINER_BUILD_PATH }}\" 
-          \"${{ env.DOCUMENT_NAME }}\""
+          pwsh -Command "${{ env.CONTAINER_SOURCE_PATH }}/Test-Document.ps1
+          -DocumentPath \"${{ env.CONTAINER_BUILD_PATH }}/${{ env.DOCUMENT_NAME }}.pdf\""
 

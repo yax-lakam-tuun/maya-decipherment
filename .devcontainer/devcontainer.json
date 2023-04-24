@@ -2,34 +2,35 @@
 {
 	"name": "Maya Hieroglyphs - The History of Decipherment",
 	"build": {
-		"dockerfile": "../container/Dockerfile"
+		"dockerfile": "../container/Dockerfile",
+		"args": {"user_name": "ajtzib"}
 	},
 	"customizations": {
 		"vscode": {
 			"extensions": [
+				"ms-azuretools.vscode-docker",
 				"mathematic.vscode-latex",
 				"James-Yu.latex-workshop",
 				"valentjn.vscode-ltex",
-				"ms-python.python"
+				"ms-vscode.powershell"
 			],
 			"settings": {
 				"terminal.integrated.profiles.linux": {
+					"PowerShell": {
+						"path": "pwsh"
+					},
 					"bash": {
 						"path": "bash",
 						"icon": "terminal-bash"
-					},
-					"zsh": {
-						"path": "zsh",
-						"args": [
-							"--login"
-						]
 					}
 				},
-				"terminal.integrated.defaultProfile.linux": "zsh"
+				"terminal.integrated.defaultProfile.linux": "PowerShell"
 			}
 		}
 	},
-	// Use command below to sync ssh keys with local keys
-	//"initializeCommand": "find ~/.ssh/ -type f -exec grep -l 'PRIVATE' {} \\; | xargs ssh-add",
+	"mounts": [
+		// Use SSH keys from host
+		{ "source": "${localEnv:HOME}${localEnv:USERPROFILE}/.ssh", "target": "/home/ajtzib/.ssh", "type": "bind" }
+	],
 	"containerUser": "ajtzib"
 }
