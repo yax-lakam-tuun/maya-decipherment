@@ -124,7 +124,7 @@ which allows storing and manage the folder structure and development of the proj
 One way to approach this, is to use a Source Code Management(SCM).
 It is a tool which allows to maintain the project and keeps track of all the changes 
 being applied to it.
-[Github](github.com) uses GIT for that purpose.
+[GitHub](github.com) uses GIT for that purpose.
 If you want to know more, you can look at some introduction of Atlassian: 
 * https://www.atlassian.com/git/tutorials/source-code-management
 * https://www.atlassian.com/git/tutorials/what-is-git
