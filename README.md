@@ -44,7 +44,7 @@ on the system:
 * PowerShell (see [PowerShell](#PowerShell))
     * A platform-independent script language (created by Microsoft) which is used at several places 
     in the code base.
-    * An install guide (from Microsoft) can be found here:
+    * An installation guide (from Microsoft) can be found here:
     https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell?view=powershell-7.3
 * Optional: Inkscape
     * Tool which supports SVG(Scalable Vector Graphics) and PDF files
@@ -54,7 +54,7 @@ As an alternative, a virtualized environment using Docker containers is also pro
 Please see chapter [Docker](container/Readme.MD) for more information.
 
 ## Compiling the document
-If the system is setup, open a PowerShell terminal and execute
+If the system is set up, open a PowerShell terminal and execute
 the provided PowerShell script [Compile-Document.ps1](Compile-Document.ps1) in the root directory
 of this project.
 The generated PDF document can be found in the `build` folder named `main.pdf` (`build/main.pdf`).
@@ -64,8 +64,8 @@ This project is written in LaTeX - a mark-up language which allows creating big 
 by writing unformatted text using commands to enrich texts, embed images and tables, cite and 
 reference other sources like papers, books and websites scientifically and so on.
 That means, a LaTeX environment must be available on your system in order to generally compile 
-a PDF document from any given LateX source.
-For more information on how to setup and use LaTeX, 
+a PDF document from any given LaTeX source.
+For more information on how to set up and use LaTeX, 
 please have a look at chapter [LaTeX](documentation/latex.md).
 
 # PowerShell
@@ -99,7 +99,7 @@ Some important scripts are:
 This document is open source which means everybody can work with it, improve it and give feedback.
 The history of decipherment of Maya hieroglyphs should be readable and understandable to anyone
 interested in this manner.
-All texts, images and illustrations are be publicly available, so that the great
+All texts, images and illustrations should be publicly available, so that the great
 process of decipherment can be shared with everyone around the world. 
 The project uses the [MIT license](LICENSE) which basically allows everyone to use the code, 
 the texts etc. the way they want as long as they credit this project.
@@ -118,8 +118,8 @@ This makes it easier to manage, respond and improve the project incrementally.
 
 # Source control management
 To keep track of all changes being applied to the project, it is useful to have a standard tool 
-which allows to store and manage the folder structure and development of the project.
-One way to approach this, is to use an Source Code Management(SCM).
+which allows storing and manage the folder structure and development of the project.
+One way to approach this, is to use a Source Code Management(SCM).
 It is a tool which allows to maintain the project and keeps track of all the changes 
 being applied to it.
 [Github](github.com) uses GIT for that purpose.
@@ -135,7 +135,7 @@ Please see [CI](documentation/continuous-integration.md) chapter for more inform
 
 # IDE
 VSCode is an Integrated Development Editor(IDE).
-It is one way to work with this this project.
+It is one way to work with this project.
 However, there are many alternatives out there.
 Even a basic text editor is enough.
 If you would like to know more about VSCode, 
