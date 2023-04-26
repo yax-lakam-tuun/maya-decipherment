@@ -15,7 +15,7 @@ to ensure reviews and continuous integration.
 The document itself will never really be completed as the decipherment is an ongoing 
 process with no foreseeable ending.
 Therefore, there will be a continuous stream of releases once in a while.
-Please see chapter [Release](documentation/release.md)
+Please see chapter [Release](documentation/releases.md)
 for some more detailed information.
 
 ## All changes happen through pull requests (PR)
