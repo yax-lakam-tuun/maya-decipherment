@@ -22,7 +22,7 @@ It's even possible to define your own commands which enables one to program and 
 extensive tasks and simplifies the way one writes text.
 See the [project site of LaTeX](https://www.latex-project.org//) for more information.
 
-# Installation
+## Installation
 There are many guides out there which explain in detail how to install LaTeX on your system.
 LaTeX is usually shipped in so-called distributions.
 MikTex is one of them and is available for Windows, Linux and macOS.
@@ -32,12 +32,12 @@ Integrated Development Editors(IDE) like [VSCode](vscode.md) can be used in conj
 Despite the claims above that LaTeX is written in plain text, there are indeed WYSIWYG editors
 available (for example LyX).
 
-## Docker
+### Docker
 LaTeX can also be used in virtualized environments like Docker containers.
 On how to use Docker containers with LaTeX, 
 please see chapter [Docker](../container/README.md) and [VSCode](vscode.md).
 
-# Folder structure
+## Folder structure
 All LaTeX code is written in files ending with `.tex`.
 Some code also resides in `.sty` files, but that's just a small portion of LaTeX projects.
 In less complex projects, it can be sufficient to have all the text in one single tex file.
@@ -46,7 +46,7 @@ This is useful to keep the context as clean as possible.
 It also makes editing much easier.
 Therefore, this project is also split in different files.
 
-## Chapters
+### Chapters
 Every chapter resides in a separate sub folder.
 The chapter's TeX file is named after the chapter's title 
 (e.g. introduction.tex for the introduction chapter).
@@ -57,7 +57,7 @@ Then, the main document [main.tex](../main.tex) combines all chapters by
 including the according subfolders.
 If necessary, a chapter can also be split into two or more sub folders.
 
-## Graphics
+### Graphics
 Images are put into a separate sub folder named 'img' next to the TeX file.
 To ensure proper scaling, drawings like hieroglyphs etc. shall be stored as 
 `Scalable Vector Graphics` (SVG).
@@ -70,12 +70,12 @@ Other images like photos and such should be stored as JPG.
 Formats like PNGs are discouraged since there pictures take a lot of space and 
 have to be converted by LaTeX during the compile process which might be very time-consuming.
 
-## References
+### References
 This project uses BibLaTeX to organize and display all used sourced and references.
 Even though the chapters are split into several files, all referenced are maintained in 
 the single file [references.bib](../references.bib).
 
-# Tex file structure
+## Tex file structure
 The tex files should have a maximum of 100 characters per line.
 Exceptions are allowed if and only if the reading of the code would suffer from wrapping the 
 lines (e.g. when using tables with many columns which exceed the limit).
@@ -84,7 +84,7 @@ This makes it easier to read the document line by line.
 The real line wrapping etc. is done by LaTeX anyway.
 As always, readability should be the most important criterion when writing the text.
 
-# Example structure
+## Example structure
 Simple tree structure featuring two chapters namely Introduction and reading order with image files:
 * introduction
    * introduction.tex
@@ -96,7 +96,7 @@ Simple tree structure featuring two chapters namely Introduction and reading ord
    * img
       * palenque-tablet.svg
 
-# Files
+## Files
 There are some files like scripts which have a special function inside the project.
 Here's a short summary:
 * [document-version.tex](../document-version.tex): 
