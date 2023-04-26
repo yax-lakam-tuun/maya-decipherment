@@ -33,8 +33,16 @@ This project use issues to track public problems/suggestions.
 Report a problem/suggestion by 
 [opening a new issue](https://github.com/yax-lakam-tuun/maya-decipherment/issues).
 It's that easy!
+The project distinguishes between `Bug` and `Suggestion`.
 
-## Write issues for problems or suggestion in detail, with background and sources
+A bug is some kind of infrastructure problem - not related to the content of the document.
+Infrastructure can cover LaTeX specifics or PowerShell problems, automatization or virtualization 
+issues to name a few.
+
+A suggestion addresses the content of the document directly.
+Please use this type to report mistakes, errors, but also improvements, additions etc.
+
+## Write issues for suggestions in detail, with background and sources
 A good report should include the following things:
 
 * A quick summary and/or background
@@ -48,6 +56,7 @@ A good report should include the following things:
     * Images or figures for illustration
 
 People *love* thorough reports. I'm not even kidding.
+Please use the `Suggestion` template for this kind of request when creating a new issue.
 
 ## Consistent coding style
 The codebase has only a few rules with respect to coding styles.
