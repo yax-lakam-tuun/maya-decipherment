@@ -115,6 +115,8 @@ You can also get in touch via academia.edu
 It should be mentioned that it is preferred that every issue should cover a single problem.
 Create issues for each problem separately.
 This makes it easier to manage, respond and improve the project incrementally.
+For more information about how you can contribute, 
+please see the [contribution guidelines](CONTRIBUTING.md).
 
 # Source control management
 To keep track of all changes being applied to the project, it is useful to have a standard tool 
