@@ -101,7 +101,7 @@ There are some files like scripts which have a special function inside the proje
 Here's a short summary:
 * [document-version.tex](../document-version.tex): 
   The current version of the document as it is used for a possible release.
-  Managed by [Edit-DocumentVersion.ps1](Edit-DocumentVersion.ps1).
+  Managed by [Edit-DocumentVersion.ps1](../Edit-DocumentVersion.ps1).
 * [preamble.sty](../preamble.sty): Entry point for everything LaTeX in this project. 
   Includes used LaTeX libraries and defines some settings used in the document.
 * [maya.sty](../maya.sty): Library for Maya specific LaTeX command (e.g. hieroglyph commands etc.)
