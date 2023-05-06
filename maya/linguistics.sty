@@ -1,0 +1,15 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{maya/linguistics}[Package for all kings of linguistics]
+\RequirePackage{xspace}
+
+\newcommand{\syllable}[1]{\textbf{\expandafter\MakeLowercase\expandafter{#1}}}
+\newcommand{\logogram}[1]{\textbf{\expandafter\MakeUppercase\expandafter{#1}}}
+\newcommand{\writing}[3]{\textbf{#1}, \emph{#2}, "#3"}
+\newcommand{\mayan}[1]{\emph{#1}\xspace}
+\newcommand{\english}[1]{\emph{#1}\xspace}
+\newcommand{\spanish}[1]{\emph{#1}\xspace}
+\newcommand{\nahuatl}[1]{\emph{#1}\xspace}
+\newcommand{\nullmorpheme}{$\emptyset$\xspace}
+\newcommand{\thompson}[1]{T#1\xspace}
+\newcommand*\elide{\textup{[\,\dots]}}
+\newcommand{\remark}[1]{\textup{[#1]}}
