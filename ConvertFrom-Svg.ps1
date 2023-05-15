@@ -50,7 +50,7 @@ if ($SvgFiles.Length -eq -0) {
 }
 
 foreach ($Svg in $SvgFiles) {
-    $Pdf = $Svg.ToLower().Replace('.svg', '.pdf')
+    $Pdf = $Svg.Replace('.svg', '.pdf').Replace('.SVG', '.pdf')
 
     # inkscape's exit codes are not reliable so we print everything always
     # (see https://gitlab.com/inkscape/inkscape/-/issues/270)
