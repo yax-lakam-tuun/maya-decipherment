@@ -40,6 +40,7 @@ Both expressions are considered to be equivalent and interchangeable throughout 
 For example, the glyph~\ref{fig:terminology-glyphs-utzapaw} consists of the 
 graphemes \grapheme{u}, \grapheme{tz\glottalstop{}a} and \grapheme{wa} representing the phrase
 \mayan{u tz\glottalstop{}apaw}, ``she/he erects it''.
+% LTeX: enabled=false
 The glyph~\ref{fig:terminology-glyphs-ixwinikhaabajaw} consisting of the 
 graphemes \grapheme{ix}, \grapheme{winikhaab} and \grapheme{ajaw}
 and represents the noble title \mayan{ix winikhaab ajaw}, ``Ruler Lady Winikhaab''.
@@ -60,6 +61,7 @@ and represents the noble title \mayan{ix winikhaab ajaw}, ``Ruler Lady Winikhaab
     \end{subfigure}
     \caption{Sample glyphs: graphemes are distinguished by different colors}
 \end{figure}
+% LTeX: enabled=true
 
 \section{Glyph block and collocation}
 One or more \emph{Glyphs} are usually arranged in regular rectangular shapes called a 
@@ -70,6 +72,58 @@ defined space, or block, in a hieroglyphic text.}
 \textcquote[23]{macrilooper2003}{The rectangular shape of \emph{glyph blocks} results from 
 the arrangement of texts into rows and columns}.
 \todo{Image/drawing which shows rows and columns of glyphs}
+
+\section{Theory in decipherment}
+\textcquote[2]{zender2017}{The type of writing system must be known}.
+
+\subsection{Script typology}
+Writing systems can be classified depending on the number of signs employed in the scripts.
+% LTeX: enabled=false
+Johannes Friedrich observed:
+\blockquote[{\cite[152]{friedrich1957}}]{\elide~the number of the written symbols usually warrants a 
+conclusion as to whether the script is alphabetic, a pure syllabary (as in the Cypriote) or a
+mixture of ideographic word-signs and syllabic signs (like the cuneiform writing or the Hittite
+hieroglyphic script). A script consisting of less than thirty signs will presumably turn out to
+be alphabetic\elide~Scripts containing fifty, a hundred or even several hundred different symbols
+may justifiably be regarded beforehand as more or less complicated syllabic systems of writing,
+perhaps employing also word-signs\elide}.
+% LTeX: enabled=true
+Based on Ignace Gelb (\cite[115]{gelb1963}), Michael Coe (\cite[43]{coe1992}) compiled a list
+of writing systems and compared their type with the number of distinct signs
+(see~\ref{table:terminology-writing-systems-comparison}).
+\begin{table}[!ht]
+    \centering
+    \begin{tabular}{llc}
+        \textbf{Type}                     & \textbf{Writing system} & \textbf{\# of signs} \\
+        \multirow[t]{7}{6em}{Alphabetic}  & English                 & 26 \\
+                                          & Anglo-Saxon             & 31 \\
+                                          & Sanskrit                & 35 \\
+                                          & Etruscan                & 20 \\
+                                          & Russian                 & 36 \\
+                                          & Hebrew                  & 22 \\
+                                          & Arabic                  & 28 \\
+        \multirow[t]{4}{6em}{Syllabic}    & Persian                 & 40 \\
+                                          & Linear B                & 87 \\
+                                          & Cypriot                 & 56 \\
+                                          & Cherokee                & 85 \\
+        \multirow[t]{4}{6em}{Logographic} & Sumerian                & 600+ \\
+                                          & Egyptian                & 2500 \\
+                                          & Hittite Hieroglyphic    & 497 \\
+                                          & Cherokee                & 5000+ \\
+    \end{tabular}
+    \caption{Writing systems, their types and their number of distinct signs 
+             (after~\cite[43]{coe1992})}
+    \label{table:terminology-writing-systems-comparison}
+\end{table}
+
+\subsection{Corpus}
+
+\subsection{Language}
+
+\subsection{Cultural context}
+
+\subsection{Bilingual, biscript, or similar constraint}
+
 
 \section{Cataloging of signs}
 One of the first steps to analyze an unknown writing system, is to identify distinctive graphemes 
@@ -86,7 +140,7 @@ His catalog covers the Maya codices, the monumental inscriptions and other writi
 All catalogs assigned a number to each sign/grapheme.
 To distinguish between the different catalog systems, it is common to use a prefix in 
 conjunction with the number.
-So, for example, all Thompson numbers are labeled with ``T'', e.g. \thompson{510}.
+So, for example, all Thompson numbers are labeled with the prefix ``T'', e.g. \thompson{510}.
 
 In 2003, Martha J. Macri and Matthew G. Looper proposed a new system which assigns all graphemes
 a code consisting of three digits (\cite[21,25]{macrilooper2003}).
@@ -141,6 +195,7 @@ some T-numbers represent more than one grapheme
 (e.g. \thompson{683a} and \thompson{T683b}~\ref{fig:terminology-t683a-t683b}) 
 and some T-numbers are allographs of another 
 (e.g. \thompson{589} and \thompson{T607}~\ref{fig:terminology-t589-t607}).
+% LTeX: enabled=false
 \begin{figure}
     \centering
     \begin{subfigure}[b]{0.49\textwidth}
@@ -158,6 +213,7 @@ and some T-numbers are allographs of another
     \end{subfigure}
     \caption{Wrong T-number assignment in Thompson's catalog (after Kelley)}
 \end{figure}
+% LTeX: enabled=true
 Despite merging unrelated graphs or separating allographs which actually belong to each other,
 the Maya writing system also utilizes graphemes which consist of two or more subgraphemic 
 components.
@@ -174,6 +230,7 @@ grapheme \grapheme{pas} with its phoneme and meaning.
 This grapheme doesn't show up in Thompson's sign catalog.
 Later revisions and new catalogs like Macri and Looper (\cite{macrilooper2003}) added it as
 separate grapheme and assigned it the code ZX2.
+% LTeX: enabled=false
 \begin{figure}
     \centering
     \begin{subfigure}[b]{0.24\textwidth}
@@ -205,5 +262,6 @@ separate grapheme and assigned it the code ZX2.
              it represents a self-contained grapheme with separate phonetic and meaning 
              (\cite[139]{prager2018}).}
 \end{figure}
+% LTeX: enabled=true
 
 \end{document}
