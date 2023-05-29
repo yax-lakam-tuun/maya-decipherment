@@ -97,27 +97,42 @@ of writing systems and compared their type with the number of distinct signs
 \begin{table}[!ht]
     \centering
     \begin{tabular}{llc}
-        \textbf{Type}                     & \textbf{Writing system} & \textbf{\# of signs} \\
-        \multirow[t]{7}{6em}{Alphabetic}  & English                 & 26 \\
-                                          & Anglo-Saxon             & 31 \\
-                                          & Sanskrit                & 35 \\
-                                          & Etruscan                & 20 \\
-                                          & Russian                 & 36 \\
-                                          & Hebrew                  & 22 \\
-                                          & Arabic                  & 28 \\
-        \multirow[t]{4}{6em}{Syllabic}    & Persian                 & 40 \\
-                                          & Linear B                & 87 \\
-                                          & Cypriot                 & 56 \\
-                                          & Cherokee                & 85 \\
-        \multirow[t]{4}{6em}{Logographic} & Sumerian                & 600+ \\
-                                          & Egyptian                & 2500 \\
-                                          & Hittite Hieroglyphic    & 497 \\
-                                          & Chinese                 & 5000+ \\
+        \textbf{Type}                                                     & \textbf{Writing system} & \textbf{\# of signs} \\
+        \multirow[t]{4}{20em}{\textbf{Logographic and Logosyllabic}\\
+        Assigns a morpheme/word to each grapheme\\
+        Logograms are either used for their semantic of syllabic values}  & Sumerian                & 600+ \\
+                                                                          & Egyptian                & 2500 \\
+                                                                          & Hittite Hieroglyphic    & 497 \\
+                                                                          & Chinese                 & 5000+ \\
+        \\
+        \multirow[t]{4}{20em}{\textbf{Syllabic}\\
+        Assigns a syllable to each grapheme}                              & Persian                 & 40 \\
+                                                                          & Linear B                & 87 \\
+                                                                          & Cypriot                 & 56 \\
+                                                                          & Cherokee                & 85 \\
+        \\
+        \multirow[t]{3}{20em}{\textbf{(Augmented) Abjad}\\
+        Assigns a consonant to each grapheme\\
+        In augmented abjad some voxels are added} \\
+                                                                          & Phoenician              & 22 \\
+                                                                          & Ugaritic                & 30 \\
+        \\                                                                 
+        \multirow[t]{7}{20em}{\textbf{(Augmented) Alphabet}\\
+        Assigns a vowel or consonant to each grapheme}                    & English                 & 26 \\
+                                                                          & Anglo-Saxon             & 31 \\
+                                                                          & Sanskrit                & 35 \\
+                                                                          & Etruscan                & 20 \\
+                                                                          & Russian                 & 36 \\
+                                                                          & Hebrew                  & 22 \\
+                                                                          & Arabic                  & 28 \\
     \end{tabular}
     \caption{Writing systems, their types and their number of distinct signs 
-             (after~\cite[43]{coe1992})}
+             (after~\cite[43]{coe1992},~\cite[730]{daniels1990},~\cite[88]{coulmas1991}
+             and~\cite{ritner1996})}
     \label{table:terminology-writing-systems-comparison}
 \end{table}
+
+
 Michael Coe missed several mixed writing systems
 
 \subsection{Corpus}
@@ -212,7 +227,7 @@ and some T-numbers are allographs of another
     \begin{subfigure}[b]{0.49\textwidth}
         \centering
         \includegraphics[height=\glyphblockheight]{img/T589-T607}
-        \caption{\grapheme{jo} assigned to \thompson{589} and \thompson{607}}
+        \caption{\grapheme{ho} assigned to \thompson{589} and \thompson{607}}
         \label{fig:terminology-t589-t607}
     \end{subfigure}
     \caption{Wrong T-number assignment in Thompson's catalog (after Kelley)}

@@ -53,3 +53,10 @@ Ignace
 Gelb
 Coe
 Logographic
+Logosyllabography
+Logosyllabic
+logograms
+Logograms
+Abjad
+Ugaritic
+abjad
