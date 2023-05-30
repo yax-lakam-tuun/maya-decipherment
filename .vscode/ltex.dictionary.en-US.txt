@@ -60,3 +60,6 @@ Logograms
 Abjad
 Ugaritic
 abjad
+Syllabary
+Abugida
+Ethiopic
