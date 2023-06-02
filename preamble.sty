@@ -59,5 +59,17 @@
 }
 \makeatother
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Translation support
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% {<page in reference>}{<reference key>}{<original text>}{<translated text>}
+\newcommand{\quotemytranslated}[4][]{%
+    \begin{quote}
+        #4
+        \footnote{My translation from (\cite[#1]{#2}): #3}
+    \end{quote}
+}
+
 % get document version
 \input{document-version.tex}
