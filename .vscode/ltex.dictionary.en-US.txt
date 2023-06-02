@@ -63,3 +63,4 @@ abjad
 Syllabary
 Abugida
 Ethiopic
+Zender
