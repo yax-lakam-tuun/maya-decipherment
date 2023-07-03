@@ -2,7 +2,8 @@
 \ProvidesPackage{maya/linguistics}[Package for all kinds of linguistics]
 \RequirePackage{xspace}
 
-\newcommand{\syllable}[1]{\textbf{\expandafter\MakeLowercase\expandafter{#1}}}
+\newcommand{\transliteration}[1]{\textbf{#1}}
+\newcommand{\syllabogram}[1]{\textbf{\expandafter\MakeLowercase\expandafter{#1}}}
 \newcommand{\logogram}[1]{\textbf{\expandafter\MakeUppercase\expandafter{#1}}}
 \newcommand{\grapheme}[1]{$\langle\textrm{\expandafter{#1}}\rangle$}
 \newcommand{\glottalstop}{’}
