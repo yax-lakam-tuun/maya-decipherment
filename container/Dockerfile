@@ -20,10 +20,7 @@ RUN apt-get -qq install \
         git git-lfs \
         inkscape vim \
         curl wget \
-        openjdk-18-jre \
         apt-transport-https software-properties-common
-
-ENV JAVA_HOME "/usr"
 
 # Install PowerShell
 ARG TARGETPLATFORM
