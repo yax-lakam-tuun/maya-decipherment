@@ -1,8 +1,9 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{preamble}[Things which are needed for literally all tex files in this project]
 
-% creates links in table of contents
-\RequirePackage{hyperref}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Standard LaTeX settings
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % for pictures etc.
 \RequirePackage{graphicx}
@@ -16,11 +17,18 @@
 % quoting and bibliography
 \RequirePackage[backend=biber,style=alphabetic]{biblatex}
 \RequirePackage{csquotes}
+\emergencystretch=1em  % avoid warnings overfull hbox in cite commands
+
+% Multiple rows in tables
+\usepackage{multirow}
 
 % figures/subfigures
 % hypcap=false disables non-useful warning "Warning: The option hypcap=true will be ignored for this"
 \RequirePackage[hypcap=false]{caption}
-\RequirePackage{subcaption} 
+\RequirePackage[subrefformat=parens]{subfig}
+
+% todonodes: ability to add short annotations for things that still have to be done
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
 
 % our own stuff everything maya located maya.sty
 \RequirePackage{maya}                                     % 
@@ -29,7 +37,7 @@
 \pdfsuppresswarningpagegroup=1
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% stuff for headline and footer
+% Headline and footer
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \RequirePackage{scrlayer-scrpage}
 \pagestyle{scrheadings}
@@ -52,6 +60,31 @@
  \org@subfile{#1}%
 }
 \makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% References
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\RequirePackage{hyperref} % creates links in table of contents
+\RequirePackage[noabbrev]{cleveref}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Translation support
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% {<page in reference>}{<reference key>}{<original text>}{<translated text>}
+\newcommand{\quotemytranslated}[4][]{%
+    \begin{quote}
+        #4
+        \footnote{My translation from (\cite[#1]{#2}): #3}
+    \end{quote}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Document related
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% note for drawings created by me
+\newcommand{\authordrawings}{drawings by Sebastian Bauer}
 
 % get document version
 \input{document-version.tex}

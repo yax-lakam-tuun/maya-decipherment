@@ -1,2 +1,2 @@
 # Disable warnings about spaces
-CmdLine { -n 1 -n 24 }
+CmdLine { -n 1 -n 24 -n 36 }
