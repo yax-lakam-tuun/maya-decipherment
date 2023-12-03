@@ -20,11 +20,14 @@ RUN apt-get -qq install \
         git git-lfs \
         inkscape vim \
         curl wget \
+        openjdk-18-jre \
         apt-transport-https software-properties-common
+
+ENV JAVA_HOME "/usr"
 
 # Install PowerShell
 ARG TARGETPLATFORM
-RUN curl -L -o /tmp/powershell.tar.gz https://github.com/PowerShell/PowerShell/releases/download/v7.3.9/powershell-7.3.9-$(echo "$TARGETPLATFORM" | sed 's/amd64/x64/g' | sed 's/\//-/g').tar.gz && \
+RUN curl -L -o /tmp/powershell.tar.gz https://github.com/PowerShell/PowerShell/releases/download/v7.4.0/powershell-7.4.0-$(echo "$TARGETPLATFORM" | sed 's/amd64/x64/g' | sed 's/\//-/g').tar.gz && \
     mkdir -p /opt/microsoft/powershell/7 && \
     tar zxf /tmp/powershell.tar.gz -C /opt/microsoft/powershell/7 && \
     chmod +x /opt/microsoft/powershell/7/pwsh && \
