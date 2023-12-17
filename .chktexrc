@@ -1,2 +1,3 @@
 # Disable warnings about spaces
-CmdLine { -n 1 -n 24 -n 36 }
+# Disable warnings about 'User Regex'
+CmdLine { -n 1 -n 24 -n 36 -n 44 }

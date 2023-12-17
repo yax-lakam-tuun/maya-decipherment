@@ -451,15 +451,118 @@ separate grapheme and assigned it the code ZX2.
 \end{figure}
 % LTeX: enabled=true
 
-\section{Transcription of Maya signs}
-This work uses the long-standing convention for transcribing Maya signs (\cite{jamesjusteson1984}).
+\section{Classic Mayan}
+The Maya texts are written in a language which Mayanists call ``Classic Mayan''.
+\textcquote{lawstuart2017}{
+    Classic Mayan was a predicate-initial language. 
+    A variety of word types could be used as predicates, including intransitive verbs, 
+    transitive verbs, and, in stative constructions, nouns.
+}
+
+\subsection{Word order}
+The word order in Classic Mayan for transitive clauses usually follows the 
+verb-object-subject (VOS) pattern.
+Example:
+\begin{center}
+    % LTeX: enabled=false
+    \mayan{u k'ahl tuun k\glottalstop{}elen hix}
+    % LTeX: enabled=true
+    The ``crouching jaguar'' binds the stone.
+\end{center}
+
+\subsection{Pronouns}
+There are two sorts of pronouns namely ergative pronouns and absolutive pronouns.
+Ergative pronouns are morphemes prefixed to a word whereas and absolutive pronouns are morphemes 
+suffixed to the word.
+Table \Cref{table:terminology-classic-mayan-pronouns} gives all pronouns in all possible 
+configurations.
+In Classic Mayan the events are usually described in third person without any distinction 
+between masculine and feminine.
+Please note, that for ergative pronominal affixes the pronoun depends on whether the word
+starts with a consonant or a vowel.
+For instance, the third-person pronoun is in Classic Maya \mayan{u} for words with consonants 
+(e.g.\mayan{u tzapaw}), for words with vowels, the pronoun is \mayan{y} (e.g.\mayan{y-ok}).
+% LTeX: enabled=false
+\begin{table}[!h]
+    \centering
+    \begin{tabular}{ccc|c}
+        \hline
+               & \multicolumn{2}{c|}{Ergative pronominal affixes} & Absolutive pronominal affixes \\
+        \hline
+        Before & Consonant   & Vowel                           & ---                              \\
+        \hline         
+        1S     & \mayan{in-} & \mayan{ni-}                     & \mayan{-en/-een}                 \\
+        2S     & \mayan{a-}  & \mayan{aw-}                     & \mayan{-at/-et}                  \\
+        3S     & \mayan{u-}  & \mayan{y-}                      & \mayan{-\nullmorpheme}           \\
+        \hline                         
+        1P     & \mayan{ka-} & \mayan{ka-}                     & \mayan{-on/-o’n}                 \\
+        2P     & \mayan{i}   & \mayan{iw-}                     & \mayan{-?/-*ox}                  \\
+        3P     & \mayan{u}   & \mayan{y-}                      & \mayan{-ob/-o’b}                 \\
+        \hline
+    \end{tabular}
+    \caption{Classic Mayan ergative and absolutive pronominal affixes 
+             (after~\cites[28]{kettunenhelmke2020}[16]{lawstuart2017}) S=Singular, P=Plural} 
+    \label{table:terminology-classic-mayan-pronouns}
+\end{table}
+% LTeX: enabled=true
+
+\subsection{Verbs}
+
+\subsubsection{Transitive verbs}
+\subsubsection{Positional verbs}
+\subsubsection{Intransitive verbs}
+
+\subsubsection{Active}
+\subsubsection{Passive}
+\subsubsection{Mediopassive}
+\subsubsection{Antipassive}
+
+
+\subsection{Nouns}
+\subsubsection{Underived nouns and derivations}
+\subsubsection{Nouns derived from transitive verbs}
+\subsubsection{Nouns derived from intransitive verbs}
+\subsubsection{Abstractivized nouns}
+\subsection{Adjectives}
+
+\subsection{Prepositions}
+ta, tu, TAN
+
+\subsection{Classifiers}
+
+TE'
+ta
+
+\subsection{Negation}
+
+\subsection{Complex vowels}
+In Maya literature, a \emph{complex voxel} is a vowel \emph{V} in one of the following 
+configurations:
+% LTeX: enabled=false
 \begin{itemize}
-    \item Transcriptions of logograms are written in uppercase, bold letters 
+    \item VV\@: long vowels 
+          (e.g. \mayan{tuun} --- \english{stone}, \mayan{muuch} --- \english{toad})
+    \item Vh: aspirated vowel 
+          (e.g. \mayan{nahb} --- \english{lake}, e.g. \mayan{ahk} --- \english{turtle})
+    \item V\glottalstop: glottalized vowel
+          (e.g. \mayan{k\glottalstop{}in} --- \english{sun}, 
+           e.g. \mayan{ch'\glottalstop{}ok} --- \english{youngster})
+    \item V\glottalstop{}V rearticulated glottalized vowel
+          (e.g. \mayan{bu\glottalstop{}ul} --- \english{bean}, 
+           e.g. \mayan{ha\glottalstop{}al} --- \english{waterlike})
+\end{itemize}
+% LTeX: enabled=true
+
+\section{Transliteration of Maya signs}
+This work uses the long-standing convention for transliterate Maya signs (\cite{jamesjusteson1984}).
+\begin{itemize}
+    \item Transliterations of logograms are written in uppercase, bold letters 
           (e.g. \cref{fig:terminology-chak-balam}).
     \item Graphemes which represent syllables aka syllabograms are represented in 
           lowercase, bold letters (e.g. \cref{fig:terminology-pa-ka-la}).
     \item Roman parenthesis enclose parts of a sign's transliteration which are not pronounced.
-          For example, the name \emph{Pakal} when written with syllabograms only would be transliterated
+          For example, the name \emph{Pakal} when written with syllabograms only would be 
+          transliterated
           % LTeX: enabled=false
           \syllabogram{pa}-\syllabogram{ka}-\syllabogram{l(a)} (\cref{fig:terminology-pa-ka-la}).
           % LTeX: enabled=true
@@ -471,11 +574,13 @@ This work uses the long-standing convention for transcribing Maya signs (\cite{j
           (e.g. \cref{fig:terminology-ta-ix-ajaw-wa}).
     \item Fused signs are written in their-order of reading.
     \item Signs with infixed graphemes are written in their-order of reading and the infix is placed
-          in square brackets.
+          in square brackets 
+          % LTeX: enabled=false
+          (e.g. \syllabogram{ch\glottalstop{}o}\syllabogram{[ko]}).
+          % LTeX: enabled=true
     \item Signs of unknown value are either represented by Thompson codes or codes of the 
-          revised version of Macri and Looper (\cite{macrilooper2003}) and 
-          Macri and Vail (\cite{macrivail2009}) or by catalog codes from 
-          ``Text Database and Dictionary of Classic Mayan'' (TWKM).
+          revised version of Macri and Looper/Vail (\cites{macrilooper2003}{macrivail2009}) 
+          or by catalog codes from ``Text Database and Dictionary of Classic Mayan'' (TWKM).
 \end{itemize}
 % LTeX: enabled=false
 \begin{figure}[ht]
@@ -508,10 +613,14 @@ This work uses the long-standing convention for transcribing Maya signs (\cite{j
 \end{figure}
 % LTeX: enabled=true
 
-\subsection{Complex vowels}
-\todo{Introduction to complex vowels}
+\section{Transcribing of Maya texts}
+For transcribing Maya texts, the following conventions are used:
+\begin{itemize}
+    \item Transcriptions are represented in italics.
+    \item Long vowels and glottal sounds are indicated without [square brackets]
+    \item Reconstructed sounds based on historical, internal, or paleographic evidence are 
+          represented in [square brackets]
+\end{itemize}
 
-\subsection{Narrow versus broad transcription}
-\todo{Describe narrow versus broad transcription and their advantages / disadvantages}
 
 \end{document}
