@@ -95,3 +95,6 @@ ergative
 absolutive
 Ergative
 Absolutive
+Epigraphers
+Preclassic
+Postclassic
