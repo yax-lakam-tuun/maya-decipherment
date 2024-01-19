@@ -98,3 +98,9 @@ Absolutive
 Epigraphers
 Preclassic
 Postclassic
+Glottalized
+glottalized
+rearticulated
+VV
+Vh
+aa
