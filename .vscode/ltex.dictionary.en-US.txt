@@ -106,3 +106,5 @@ Vh
 aa
 Underspelling
 disharmonic
+overspelling
+polyvalent
