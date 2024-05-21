@@ -91,7 +91,7 @@ Some important scripts are:
   (see [CI](continuous-integration))
 * [Test-Document.ps1](Test-Document.ps1): Script to check validity of compiled PDF file
   (see [CI](continuous-integration))
-* [Ask-Ajpula.ps1](Ask-Ajpula.ps1): Script which deals with Long Count, Calendar Round and Gregorian dates
+* [Ask-Ajkin.ps1](Ask-Ajkin.ps1): Script which deals with Long Count, Calendar Round and Gregorian dates
 * [Edit-DocumentVersion.ps1](Edit-DocumentVersion.ps1): 
   Manages current document version, release version and the next Git tag.
   See also [document-version.tex](document-version.tex).
