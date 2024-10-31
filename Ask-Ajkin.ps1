@@ -40,61 +40,68 @@
 #>
 [CmdletBinding(DefaultParametersetName="default")]
 param (
+    [Parameter(ParameterSetName="default")]
+    [Parameter(ParameterSetName="Plain")]
+    [Parameter(ParameterSetName="Json")]
+    [Parameter(ParameterSetName="Latex")]
     [ValidatePattern("^\d{4}-\d{2}-\d{2}$")]
     [AllowNull()]
     [string]
     # Gregorian date in ISO format. Current date is used when parameter is omitted.
     $GregorianDate = $null,
 
+    [Parameter(ParameterSetName="default")]
+    [Parameter(ParameterSetName="Plain")]
+    [Parameter(ParameterSetName="Json")]
+    [Parameter(ParameterSetName="Latex")]
     [ValidatePattern("^\d{1,2}.\d{1,2}.\d{1,2}.\d{1,2}.\d{1,2}$")]
     [AllowNull()]
     [string]
     # Long count. 5 digits separated by dots.
     $LongCountDate = $null,
 
-    [Parameter(ParameterSetName="PlainSet")]
+    [Parameter(ParameterSetName="Plain")]
     [switch]
     # Include Tzolk'in and Haab date in plain mode
     $CalendarRound,
 
-    [Parameter(ParameterSetName="PlainSet")]
+    [Parameter(ParameterSetName="Plain")]
     [switch]
     # Include Long Count date in plain mode
     $LongCount,
 
-    [Parameter(ParameterSetName="PlainSet")]
+    [Parameter(ParameterSetName="Plain")]
     [switch]
     # Include Tzolk'in date in plain mode
     $Tzolkin,
 
-    [Parameter(ParameterSetName="PlainSet")]
+    [Parameter(ParameterSetName="Plain")]
     [switch]
     # Include Haab date in plain mode
     $Haab,
 
-    [Parameter(ParameterSetName="PlainSet")]
-    [Parameter(ParameterSetName="JsonSet")]
+    [Parameter(ParameterSetName="Plain")]
+    [Parameter(ParameterSetName="Json")]
     [switch]
     # The transition between two months is written as "Ending" instead of "Seating"
     $PreferMonthEnding = $false,
 
-    [Parameter(ParameterSetName="PlainSet")]
-    [Parameter(ParameterSetName="JsonSet")]
+    [Parameter(ParameterSetName="Plain")]
     [switch]
     # Show gregorian date in brackets
     $IncludeGregorianDate = $false,
 
-    [Parameter(ParameterSetName="PlainSet")]
+    [Parameter(ParameterSetName="Plain")]
     [switch]
     # Use plain mode
     $Plain = $false,
 
-    [Parameter(ParameterSetName="JsonSet")]
+    [Parameter(ParameterSetName="Json")]
     [switch]
     # Use json mode
     $Json = $false,
 
-    [Parameter(ParameterSetName="LatexSet")]
+    [Parameter(ParameterSetName="Latex")]
     [switch]
     # Use json mode
     $Latex = $false
