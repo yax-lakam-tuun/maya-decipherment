@@ -128,8 +128,48 @@ class JulianDay {
         $this.Days = $Days
     }
 
-    static [JulianDay] FromIsoDate([string] $IsoDate) {
-        $IsoDate -match "^(?<Year>-*\d{4})-(?<Month>\d{2})-(?<Day>\d{2})$"
+    [JulianDay] AddDays([int] $Days) {
+        return [JulianDay]::new($this.Days + $Days)
+    }
+
+    [string] GregorianDate([string] $Delimiter) {
+        $Z = [Math]::Floor($this.Days + 0.5)
+        $F = $this.Days + 0.5 - $Z
+        $Alpha = [Math]::Floor(($Z - 1867216.25)/36524.25)
+        $A = $Z + 1 + $Alpha - [Math]::Floor($Alpha/4)
+         
+        $B = $A + 1524
+        $C = [Math]::Floor(($B - 122.1)/365.25)
+        $D = [Math]::Floor(365.25 * $C)
+        $E = [Math]::Floor(($B - $D)/30.6001)
+         
+        $Day = [Math]::Floor($B - $D - [Math]::Floor(30.6001 * $E) + $F)
+
+        if ($E -le 13) {
+            $Month = $E - 1
+            $Year = $C - 4716
+        } else {
+            $Month = $E - 13
+            $Year = $C - 4715
+        }
+        return "{0}{1}{2}{3}{4}" -f 
+            ([string]$Year).PadLeft(4,'0'),
+            $Delimiter,
+            ([string]$Month).PadLeft(2,'0'), 
+            $Delimiter,
+            ([string]$Day).PadLeft(2,'0')
+    }
+
+    [string] GregorianDate() {
+        return $this.GregorianDate("-")
+    }
+
+    static [JulianDay] FromGregorianDate([string] $IsoDate) {
+        $Success = $IsoDate -match "^(?<Year>-*\d{4})-(?<Month>\d{2})-(?<Day>\d{2})$"
+        if (-not $Success) {
+            throw "Invalid date format: must be YYYY-MM-DD"
+        }
+
         $Day = ($Matches.Day -as [float]) + 0.5
         $Month = $Matches.Month -as [int]
         $Year = $Matches.Year -as [int]
@@ -430,22 +470,22 @@ class HaabDate {
 }
 
 class MartinSkidmoreCorrelation {
-    # julian date 16 July 790
-    static [DateTime] $PocoUinicDate = [DateTime]::ParseExact("0790-07-20", "yyyy-MM-dd", $null)
+    # Julian date 16 July 790
+    static [JulianDay] $PocoUinicJulianDay = [JulianDay]::FromGregorianDate("0790-07-20")
     static [MayanDay] $PocoUinicMayanDay = [LongCountDate]::new((16, 13, 19, 17, 9)).MayanDay()
 
-    static [DateTime] GregorianDateFrom([LongCountDate] $Date) {
-        $BaseDate = [MartinSkidmoreCorrelation]::PocoUinicDate
-        $BaseDay = [MartinSkidmoreCorrelation]::PocoUinicMayanDay
-        $Delta = $Date.MayanDay().Days - $BaseDay.Days
-        return $BaseDate.AddDays($Delta)
+    static [JulianDay] JulianDayFrom([LongCountDate] $LongCountDate) {
+        $BaseJulianDay = [MartinSkidmoreCorrelation]::PocoUinicJulianDay
+        $BaseMayanDay = [MartinSkidmoreCorrelation]::PocoUinicMayanDay
+        $Delta = $LongCountDate.MayanDay().Days - $BaseMayanDay.Days
+        return $BaseJulianDay.AddDays($Delta)
     }
 
-    static [MayanDay] MayanDayFrom([DateTime] $Date) {
-        $BaseDate = [MartinSkidmoreCorrelation]::PocoUinicDate
-        $BaseDay = [MartinSkidmoreCorrelation]::PocoUinicMayanDay
-        $Delta = New-TimeSpan –Start $BaseDate –End $Date
-        return [MayanDay]::new($BaseDay.Days + $Delta.Days)
+    static [MayanDay] MayanDayFrom([JulianDay] $JulianDay) {
+        $BaseJulianDay = [MartinSkidmoreCorrelation]::PocoUinicJulianDay
+        $BaseMayanDay = [MartinSkidmoreCorrelation]::PocoUinicMayanDay
+        $Delta = $JulianDay.Days - $BaseJulianDay.Days
+        return [MayanDay]::new($BaseMayanDay.Days + $Delta)
     }
 }
 
@@ -483,7 +523,7 @@ class MayaDate : System.IFormattable {
 function Get-Plain {
     [CmdletBinding()]
     param (
-        [DateTime] $GregorianDate,
+        [JulianDay] $JulianDay,
         [MayaDate] $MayaDate,
         [bool] $LongCount,
         [bool] $Tzolkin,
@@ -507,7 +547,7 @@ function Get-Plain {
     }
 
     if ($IncludeGregorianDate) {
-        $Output += "(" + $(Get-Date -Date $GregorianDate -UFormat "%F") + ")"
+        $Output += "(" + $JulianDay.GregorianDate() + ")"
     }
 
     return $Output -join ' '
@@ -516,7 +556,7 @@ function Get-Plain {
 function Get-Json {
     [CmdletBinding()]
     param (
-        [DateTime] $GregorianDate,
+        [JulianDay] $JulianDay,
         [MayaDate] $MayaDate,
         [bool] $PreferMonthEnding
     )
@@ -542,7 +582,7 @@ function Get-Json {
         ordinal = $MayaDate.HaabDate.Ordinal()
     }
 
-    $GregorianDate = $(Get-Date $date -Format "yyyy-MM-dd")
+    $GregorianDate = $JulianDay.GregorianDate()
     $All = [ordered]@{
         gregorianDate = $GregorianDate
         longCountDate = $LongCount
@@ -555,13 +595,13 @@ function Get-Json {
 function Get-Latex {
     [CmdletBinding()]
     param (
-        [DateTime] $GregorianDate,
+        [JulianDay] $JulianDay,
         [MayaDate] $MayaDate,
         [bool] $PreferMonthEnding,
         [string] $Prefix
     )
 
-    $LatexGregorianDate = $(Get-Date $date -Format "yyyy--MM--dd")
+    $LatexGregorianDate = $JulianDay.GregorianDate("--")
     $LongCount = $MayaDate.LongCountDate.StandardNotation()
     $Tzolkin = $MayaDate.TzolkinDate.StandardNotation()
     $Haab = $MayaDate.HaabDate.StandardNotation($PreferMonthEnding)
@@ -600,14 +640,18 @@ function Main {
         $GregorianDate = $(Get-Date -Format "yyyy-MM-dd")
     }
 
+    if ($LongCount -or $Tzolkin -or $Haab -or $IncludeGregorianDate -or $PreferMonthEnding) {
+        $Plain = $true
+    }
+
     $Correlation = [MartinSkidmoreCorrelation]
 
     if ($GregorianDate) {
-        $Date = [DateTime]::ParseExact($GregorianDate, "yyyy-MM-dd", $null)
-        $MayanDay = $Correlation::MayanDayFrom($Date)
+        $JulianDay = [JulianDay]::FromGregorianDate($GregorianDate)
+        $MayanDay = $Correlation::MayanDayFrom($JulianDay)
     } else {
         $LC = [LongCountDate]::ParseExact($LongCountDate)
-        $Date = $Correlation::GregorianDateFrom($LC)
+        $JulianDay = $Correlation::JulianDayFrom($LC)
         $MayanDay = $LC.MayanDay()
     }
 
@@ -619,7 +663,7 @@ function Main {
             $CalendarRound = $true
         }
         $Parameters = @{
-            GregorianDate = $Date
+            JulianDay = $JulianDay
             MayaDate = $MayaDate
             LongCount = $LongCount
             Tzolkin = $Tzolkin -or $CalendarRound
@@ -632,7 +676,7 @@ function Main {
 
     if ($Json) {
         $Parameters = @{
-            GregorianDate = $Date
+            JulianDay = $JulianDay
             MayaDate = $MayaDate
             PreferMonthEnding = $PreferMonthEnding
         }
@@ -641,7 +685,7 @@ function Main {
 
     if ($Latex) {
         $Parameters = @{
-            GregorianDate = $Date
+            JulianDay = $JulianDay
             MayaDate = $MayaDate
             PreferMonthEnding = $PreferMonthEnding
             Prefix = "documentversion"
@@ -782,7 +826,7 @@ function Test-Latex {
 function Test-Json {
     $Nominal = 
 "{
-  `"gregorianDate`": `"2024-05-20T00:00:00`",
+  `"gregorianDate`": `"2024-05-20`",
   `"longCountDate`": {
     `"standardNotation`": `"13.0.11.10.5`",
     `"digits`": [
