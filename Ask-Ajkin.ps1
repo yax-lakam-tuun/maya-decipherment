@@ -26,12 +26,12 @@
     Long count date, Haab date and/or Tzolk'in date in either plain text, Json or Latex format.
 
     .EXAMPLE
-    ./Ask-Ajkin.ps1 -GregorianDate 2022-12-30 -CalendarRound
+    ./Ask-Ajkin.ps1 -GregorianDate 2022-12-30 -CalendarRound -Plain
 
-    13.0.10.2.18 9 Etz'nab' 11 K'ank'in
+    9 Etz'nab' 11 K'ank'in
 
     .EXAMPLE
-    ./Ask-Ajkin.ps1 -GregorianDate 2023-04-03 -CalendarRound -PreferMonthEnding
+    ./Ask-Ajkin.ps1 -GregorianDate 2023-04-03 -LongCount -CalendarRound -PreferMonthEnding -Plain
 
     13.0.10.7.12 12 Eb' Ending of Wayeb
 
