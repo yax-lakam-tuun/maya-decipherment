@@ -121,13 +121,6 @@ class DistanceNumber {
     }
 }
 
-#A = Y/100
-#B = A/4
-#C = 2-A+B
-#E = 365.25x(Y+4716)
-#F = 30.6001x(M+1)
-#JD= C+D+E+F-1524.5
-
 class JulianDay {
     [int] $Days = 0
 
@@ -843,9 +836,5 @@ $MainParameter = @{
     Json = $Json
     Latex = $Latex
 }
-
-$a = [JulianDay]::FromIsoDate("-0476-05-22").Days
-Write-Host "BBBBBBBBB $a"
-
 
 Main @MainParameter
