@@ -1,7 +1,14 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{maya/linguistics}[Package for all kinds of linguistics]
+
+% for spaces in commands
 \RequirePackage{xspace}
+
+% for international phonetic alphabet (IPA)
 \RequirePackage{tipa}
+
+% for adjust line spacing in enumerations
+\RequirePackage{enumitem}
 
 \newcommand{\transliteration}[1]{\textbf{#1}}
 \newcommand{\syllabogram}[1]{\textbf{\expandafter\MakeLowercase\expandafter{#1}}}
