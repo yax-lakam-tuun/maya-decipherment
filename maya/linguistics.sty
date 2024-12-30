@@ -11,6 +11,10 @@
 \RequirePackage{enumitem}
 
 \newcommand{\transliteration}[1]{\textbf{#1}}
+\newcommand{\transcription}[1]{\emph{#1}}
+\newcommand{\translation}[1]{``#1''}
+\newcommand{\morphsegmentation}[1]{#1}
+\newcommand{\morphanalysis}[1]{#1}
 \newcommand{\syllabogram}[1]{\textbf{\expandafter\MakeLowercase\expandafter{#1}}}
 \newcommand{\logogram}[1]{\textbf{\expandafter\MakeUppercase\expandafter{#1}}}
 \newcommand{\grapheme}[1]{$\langle\textrm{\expandafter{#1}}\rangle$}
@@ -30,3 +34,16 @@
 \newcommand{\texticon}[1]{\includegraphics[height=1em,keepaspectratio]{#1}}
 
 \newcommand{\glyphwriting}[3]{\textbf{#1}, \emph{#2}, "#3"}
+\newcommand{\glyphanalysis}[6]{
+    \begin{tabular}{l}
+        \includegraphics[height=\glyphblockheight,keepaspectratio]{#1}
+    \end{tabular} 
+    %\hfill
+    \begin{tabular}{l}
+        \transliteration{#2}\\
+        \transcription{#3}\\
+        \morphsegmentation{#4}\\
+        \morphanalysis{#5}\\
+        \translation{#6}
+    \end{tabular}
+}
