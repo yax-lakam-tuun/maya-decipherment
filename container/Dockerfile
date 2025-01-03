@@ -1,4 +1,4 @@
-FROM ubuntu:22.04
+FROM ubuntu:24.04
 
 # Disable Debian front-end during installations
 ARG DEBIAN_FRONTEND="noninteractive"
