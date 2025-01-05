@@ -113,3 +113,4 @@ jukub
 ni
 tuun
 al
+olan
