@@ -114,3 +114,5 @@ ni
 tuun
 al
 olan
+ahk
+biiy
