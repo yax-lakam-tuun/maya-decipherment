@@ -10,6 +10,9 @@
 % for adjust line spacing in enumerations
 \RequirePackage{enumitem}
 
+% necessary to support fixed width in tabular environments
+\RequirePackage{array}
+
 \newcommand{\transliteration}[1]{\textbf{#1}}
 \newcommand{\transcription}[1]{\emph{#1}}
 \newcommand{\translation}[1]{``#1''}
@@ -35,7 +38,7 @@
 
 \newcommand{\glyphwriting}[3]{\textbf{#1}, \emph{#2}, "#3"}
 \newcommand{\glyphanalysis}[7]{
-    \begin{tabular}{l}
+    \begin{tabular}{p{6cm}}
         \includegraphics[height=\glyphblockheight,keepaspectratio]{#1}
     \end{tabular} 
     \begin{tabular}{l}
@@ -46,5 +49,6 @@
         \translation{#6}\\
         #7
     \end{tabular}
-    \newline
+    \vspace{1em}	
+    \newline 
 }
