@@ -37,18 +37,19 @@
 \newcommand{\texticon}[1]{\includegraphics[height=1em,keepaspectratio]{#1}}
 
 \newcommand{\glyphwriting}[3]{\textbf{#1}, \emph{#2}, "#3"}
-\newcommand{\glyphanalysis}[7]{
-    \begin{tabular}{p{6cm}}
-        \includegraphics[height=\glyphblockheight,keepaspectratio]{#1}
-    \end{tabular} 
-    \begin{tabular}{l}
-        \transliteration{#2}\\
-        \transcription{#3}\\
-        \morphsegmentation{#4}\\
-        \morphanalysis{#5}\\
-        \translation{#6}\\
-        #7
-    \end{tabular}
-    \vspace{1em}	
-    \newline 
+\newcommand{\glyphanalysis}[8]{
+    \begin{figure}[h!]
+        \begin{tabular}{p{6cm}}
+            \includegraphics[height=\glyphblockheight,keepaspectratio]{#1}
+        \end{tabular} 
+        \begin{tabular}{l}
+            \transliteration{#2}\\
+            \transcription{#3}\\
+            \morphsegmentation{#4}\\
+            \morphanalysis{#5}\\
+            \translation{#6}\\
+        \end{tabular}
+        \caption{#7}
+        \label{#8}
+    \end{figure}
 }
