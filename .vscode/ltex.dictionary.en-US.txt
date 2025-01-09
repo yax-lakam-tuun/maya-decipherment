@@ -4,6 +4,8 @@ Abjad
 absolutive
 Absolutive
 Abugida
+Ask-Ajkin
+Ask-Ajpula
 Balam
 BibLaTeX
 biscript
@@ -85,6 +87,7 @@ Roys
 stela
 Stela
 stelae
+subfiles
 syllabary
 Syllabary
 syllabogram
