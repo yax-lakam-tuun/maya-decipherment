@@ -1,5 +1,18 @@
 {
     "latex-workshop.latex.outDir": "%DIR%/build/",
+    "ltex.latex.commands": {
+        "\\mayan{}": "ignore",
+        "\\japanese{}": "ignore",
+        "\\subfile{}": "ignore",
+        "\\subref{}": "ignore",
+        "\\textcquote{}{}": "ignore",
+        "\\blockquote[]{}": "ignore",
+        "\\grapheme{}": "ignore",
+        "\\syllabogram{}": "ignore",
+        "\\logogram{}": "ignore",
+        "\\textipa{}": "ignore",
+        "\\texticon{}":"ignore"
+    },
     "editor.rulers": [
         {
             "column": 100,
