@@ -1,8 +1,23 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{maya/linguistics}[Package for all kinds of linguistics]
+
+% for spaces in commands
 \RequirePackage{xspace}
 
+% for international phonetic alphabet (IPA)
+\RequirePackage{tipa}
+
+% for adjust line spacing in enumerations
+\RequirePackage{enumitem}
+
+% necessary to support fixed width in tabular environments
+\RequirePackage{array}
+
 \newcommand{\transliteration}[1]{\textbf{#1}}
+\newcommand{\transcription}[1]{\emph{#1}}
+\newcommand{\translation}[1]{``#1''}
+\newcommand{\morphsegmentation}[1]{#1}
+\newcommand{\morphanalysis}[1]{#1}
 \newcommand{\syllabogram}[1]{\textbf{\expandafter\MakeLowercase\expandafter{#1}}}
 \newcommand{\logogram}[1]{\textbf{\expandafter\MakeUppercase\expandafter{#1}}}
 \newcommand{\grapheme}[1]{$\langle\textrm{\expandafter{#1}}\rangle$}
@@ -10,12 +25,31 @@
 \newcommand{\narrowtranscription}[1]{/#1/}
 \newcommand{\widetranscription}[1]{\lbrack\expandafter{#1}\rbrack}
 \newcommand{\glyphblockheight}{2.5cm}
-\newcommand{\writing}[3]{\textbf{#1}, \emph{#2}, "#3"}
 \newcommand{\mayan}[1]{\emph{#1}\xspace}
 \newcommand{\english}[1]{\emph{#1}\xspace}
 \newcommand{\spanish}[1]{\emph{#1}\xspace}
 \newcommand{\nahuatl}[1]{\emph{#1}\xspace}
-\newcommand{\nullmorpheme}{$\emptyset$\xspace}
+\newcommand{\japanese}[1]{\emph{#1}\xspace}
+\newcommand{\zeromorpheme}{$\emptyset$\xspace}
 \newcommand{\thompson}[1]{T#1\xspace}
 \newcommand*\elide{\textup{[\,\dots]}}
 \newcommand{\remark}[1]{\textup{[#1]}}
+\newcommand{\texticon}[1]{\includegraphics[height=1em,keepaspectratio]{#1}}
+
+\newcommand{\glyphwriting}[3]{\textbf{#1}, \emph{#2}, "#3"}
+\newcommand{\glyphanalysis}[8]{
+    \begin{figure}[h]
+        \begin{tabular}{p{6cm}}
+            \includegraphics[height=\glyphblockheight,keepaspectratio]{#1}
+        \end{tabular} 
+        \begin{tabular}{l}
+            \transliteration{#2}\\
+            \transcription{#3}\\
+            \morphsegmentation{#4}\\
+            \morphanalysis{#5}\\
+            \translation{#6}\\
+        \end{tabular}
+        \caption{#7}
+        \label{#8}
+    \end{figure}
+}

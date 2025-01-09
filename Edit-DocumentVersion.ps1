@@ -91,7 +91,7 @@ function Update-DocumentVersion {
         [string] $GregorianDate
     )
 
-    ./Ask-Ajpula.ps1 -Latex -GregorianDate $GregorianDate | Out-File $VersionTexPath
+    ./Ask-Ajkin.ps1 -Latex -GregorianDate $GregorianDate | Out-File $VersionTexPath
 }
 
 if ($LongCount.IsPresent) {

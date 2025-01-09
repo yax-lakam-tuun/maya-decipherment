@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="9.7033463mm"
+   height="14.65476mm"
+   viewBox="0 0 9.7033463 14.65476"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25)"
+   sodipodi:docname="japanese-hon.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="0.96479377"
+     inkscape:cx="310.42904"
+     inkscape:cy="360.1806"
+     inkscape:window-width="2560"
+     inkscape:window-height="1296"
+     inkscape:window-x="1440"
+     inkscape:window-y="25"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-6.8680508,-4.9446809)">
+    <g
+       id="g2"
+       transform="translate(-46.219766,-147.57114)">
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+         x="52.653736"
+         y="166.46262"
+         id="text4"><tspan
+           sodipodi:role="line"
+           id="tspan4"
+           x="52.653736"
+           y="166.46262"
+           style="stroke-width:0.264583">本</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:5.29167px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+         x="52.706501"
+         y="156.63185"
+         id="text5"><tspan
+           sodipodi:role="line"
+           id="tspan5"
+           x="52.706501"
+           y="156.63185"
+           style="font-size:5.29167px;stroke-width:0.264583">ほん</tspan></text>
+    </g>
+  </g>
+</svg>

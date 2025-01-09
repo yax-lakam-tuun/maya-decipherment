@@ -2,7 +2,11 @@
 \graphicspath{{\currfiledir}}
 \begin{document}
 \chapter{Terminology}
-\todo{Write intro here. Purpose etc.}
+This chapter focuses on terms and definitions.
+It is important to avoid confusion and ambiguity.
+Different experts sometimes use difference nuances when using certain terms and expressions.
+So, this chapter clarifies when what term and definition is used to reduce the risk of
+misunderstandings.
 
 \section{Grapheme}
 \textcquote[204]{crystal2010}{Graphemes are the smallest units in a writing system capable of 
@@ -41,10 +45,9 @@ Both expressions are considered to be equivalent and interchangeable throughout 
 For example, the glyph (\Cref{fig:terminology-glyph-utzapaw}) consists of the 
 graphemes \grapheme{u}, \grapheme{tz\glottalstop{}a} and \grapheme{wa} representing the phrase
 \mayan{u tz\glottalstop{}apaw}, ``she/he erects it''.
-% LTeX: enabled=false
-The glyph (\Cref{fig:terminology-glyph-ixwinikhaabajaw}) consisting of the 
-graphemes \grapheme{ix}, \grapheme{winikhaab} and \grapheme{ajaw}
-and represents the noble title \mayan{ix winikhaab ajaw}, ``Ruler Lady Winikhaab''.
+The glyph (\Cref{fig:terminology-glyph-ixwinikhaabajaw}) consists of the 
+graphemes \grapheme{ix}, \grapheme{winikhaab} and \grapheme{ajaw} representing
+the noble title \mayan{ix winikhaab ajaw}, ``Ruler Lady Winikhaab''.
 \begin{figure}
     \centering
     \subfloat[][]{
@@ -62,21 +65,59 @@ and represents the noble title \mayan{ix winikhaab ajaw}, ``Ruler Lady Winikhaab
             \subref{fig:terminology-glyph-ixwinikhaabajaw} \mayan{ix winikhaab ajaw} 
             (\authordrawings).}
 \end{figure}
-% LTeX: enabled=true
 
 \section{Glyph block and collocation}
-One or more \emph{Glyphs} are usually arranged in regular rectangular shapes called a 
+One or more \emph{glyphs} are usually arranged in regular rectangular shapes called a 
 \emph{glyph block}.
 Sometimes they are also called \emph{collocation}.
 \textcquote[1]{bricker1986}{A ``collocation'' is a group of signs that occupies a 
 defined space, or block, in a hieroglyphic text.}
 \textcquote[23]{macrilooper2003}{The rectangular shape of \emph{glyph blocks} results from 
 the arrangement of texts into rows and columns}.
-\todo{Image/drawing which shows rows and columns of glyphs}
+For example, Tonina monument 159 incoperates glyphs in rows and columns around tied up captive 
+(\Cref{fig:terminology-glyphs-in-rows-and-columns}).
+\begin{center}
+    \includegraphics[width=\textwidth,keepaspectratio]{img/tonina-monument-159}
+    \captionof{figure}{
+        Glyph blocks arranged rows and columns. 
+        Tonina monument 159 (Drawing by Guido Krempel, courtesy Coordinaci\'{o}n Nacional de 
+        Conservaci\'{o}n del Patrimonio Cultural (CNCPC-INAH))}
+    \label{fig:terminology-glyphs-in-rows-and-columns}
+\end{center}
 
 \section{Logogram and syllabogram}
-A logogram is a sign which represents a word whereas a syllabogram is a sign which 
-represents a syllable.
+A \emph{logogram} is a sign which represents a word whereas a \emph{syllabogram} is 
+a sign which represents a syllable.
+
+\subsection{Logogram}
+\textcquote[289]{crystal2008}{[A logogram is a] written or printed symbol
+which represents a word (or morpheme) in a language \elide{}}.
+Even alphabetic writing systems can include logograms.
+Well-known logograms nowadays are, numerals (like 1,2,3) or mathematical and 
+scientific symbols (e.g. \$ or \%).
+Many logograms in the Maya script follow the CVC or CVCVC pattern 
+where V represents a (complex) vowel and C a consonant (see \cref{sec:terminology-phonology}).
+Sample CVC logograms are \mayan{tun} for English \english{stone} or 
+\mayan{witz} for English \english{mountain} (\mayan{tz} is a single consonant),
+CVCVC logograms could be \mayan{lakam} for English \english{banner} or
+\mayan{muyal} for English \english{cloud}.
+However, logograms following the pattern CV or VC are also common 
+(e.g. \mayan{te\glottalstop{}} for English \english{tree} or 
+\mayan{uk/uch\glottalstop{}} for English \english{drink}).
+
+\subsection{Syllabogram and syllable}
+A \emph{syllable} represents a unit of pronunciation typically larger than a single sound, 
+but usually smaller than a word.
+Syllables can roughly be segmented into three parts (\cite[467,468]{crystal2008}):
+\begin{itemize}
+    \item The opening segment of a syllable is called \emph{onset}.
+    \item The central segment is called \emph{nucleus}.
+    \item The \emph{coda} is the final sound group of a syllable and is the part of the 
+          syllable that follows the nucleus.
+\end{itemize}
+The Maya script utilizes phonetic signs aka \emph{phonograms} or \emph{syllabograms} representing 
+syllables consisting of one or two sounds, usually CV or V 
+(e.g. \mayan{ka} or \mayan{o}, see \cref{sec:terminology-phonology}).
 
 \section{Theory in decipherment}
 \textcquote[2]{zender2017}{The type of writing system must be known}.
@@ -91,7 +132,6 @@ For successful decipherment process, it is crucial to know the fundamental struc
 The type of the script can either be alphabetic, syllabic, logographic or a combination of them.
 In order to classify an unknown writing system, the number of signs employed in the scripts
 can hint what type of writing system one deals with.
-% LTeX: enabled=false
 Johannes Friedrich observed:
 \blockquote[{\cite[152]{friedrich1957}}]{\elide~the number of the written symbols usually warrants a 
 conclusion as to whether the script is alphabetic, a pure syllabary (as in the Cypriote) or a
@@ -100,11 +140,10 @@ hieroglyphic script). A script consisting of less than thirty signs will presuma
 be alphabetic\elide~Scripts containing fifty, a hundred or even several hundred different symbols
 may justifiably be regarded beforehand as more or less complicated syllabic systems of writing,
 perhaps employing also word-signs\elide}.
-% LTeX: enabled=true
 Based on Ignace Gelb (\cite[115]{gelb1963}), Michael Coe (\cite[43]{coe1992}) compiled a list
 of writing systems and compared their type with the number of distinct signs
 (\Cref{table:terminology-writing-systems-comparison}).
-\begin{table}[!ht]
+\begin{table}[ht!]
     \centering
     \begin{tabular}{llc}
         \textbf{Type}                                                     & \textbf{Writing system} & \textbf{\# of signs} \\
@@ -132,14 +171,13 @@ of writing systems and compared their type with the number of distinct signs
         \\
         \multirow[t]{3}{20em}{\textbf{(Augmented) Abjad}\\
         Assigns a consonant to each grapheme\\
-        In augmented abjad some voxels are added} \\
+        In augmented abjad some vowels are added} \\
                                                                           & Phoenician              & 22 \\
                                                                           & Ugaritic                & 30 \\
         \\                                                                 
         \multirow[t]{8}{20em}{\textbf{(Augmented) Alphabet}\\
         Assigns a vowel or consonant to each grapheme}                    \\
                                                                           & English                 & 26 \\
-                                                                          & Anglo-Saxon             & 31 \\
                                                                           & Sanskrit                & 35 \\
                                                                           & Etruscan                & 20 \\
                                                                           & Russian                 & 36 \\
@@ -248,7 +286,6 @@ inscriptions in \chichenitza is doubtful, reading a Maya ruler's phonetically an
 both figures lived in the same region of \chichenitza encouraged the phonetic approach 
 in the decipherment of Maya hieroglyphs.
 
-% LTeX: enabled=false
 \begin{figure}
     \centering
     \subfloat[][]{
@@ -264,12 +301,11 @@ in the decipherment of Maya hieroglyphs.
     \caption[\kakupakal in the colonial sources and inscriptions]
              {The name \kakupakal in the colonial sources and 
              in the inscriptions of \chichenitza.
-             \subref{fig:terminology-chilam-balam-kakupakal} page 43r from the book of 
+             \subref{fig:terminology-chilam-balam-kakupakal} Page 43r from the book of 
              Chilam Balam of Chumayel.
              \subref{fig:terminology-chichen-itza-monjas-lintel-2-kakupakal}
              Hieroglyphic writing from \chichenitza Monjas Lintel 2 (B1) (\authordrawings).}
 \end{figure}
-% LTeX: enabled=true
 
 \subsection{Bilingual, biscript, or similar constraint}
 Any clue as to what the content of the text might be is very important in deciphering an 
@@ -327,7 +363,6 @@ sequencing the different graphemes.
 The project ``Text Database and Dictionary of Classic Mayan'' (abbr. TWKM) (\cite{twkm2014}) lead by 
 Prof.\ Dr.\ Nikolai Grube of the Department of Anthropology of the Americas at the University of 
 Bonn is currently compiling an updated and revisited version of Thompson's sign catalog.
-% LTeX: enabled=false
 Christian Prager states, \textcquote{prager2020}{we are currently evaluating and revising Eric 
 Thompson’s Catalog of Maya Hieroglyphs (1962). 
 We are critically scrutinizing his system with the help of his original grey cards and 
@@ -336,7 +371,6 @@ Despite its known shortcomings and incompleteness, his catalogue is still regard
 standard work for Maya epigraphers, which is why we adopt Thompson’s nomenclature while 
 removing misclassifications and duplicates, merging graph variants under a common nomenclature, 
 and adding new signs or allographs to the sign index in sequence, starting with the number 1500.}
-% LTeX: enabled=true
 
 \subsection{Problems and limitations}
 Having all these sign catalogs are a huge help to systematically analyze any writing system.
@@ -370,7 +404,6 @@ some T-numbers represent more than one grapheme and some T-numbers are allograph
 For example \thompson{683a} and \thompson{T683b} (\Cref{fig:terminology-t683a-t683b}) are
 distinct graphemes whereas \thompson{589} and \thompson{T607} (\Cref{fig:terminology-t589-t607})
 represent the same grapheme.
-% LTeX: enabled=false
 \begin{figure}
     \centering
     \subfloat[][]{
@@ -385,14 +418,13 @@ represent the same grapheme.
     }
     \caption[Questionable T-number assignment in Thompson's catalog]{Questionable T-number 
             assignment in Thompson's catalog (after Kelley).
-            \subref{fig:terminology-t683a-t683b} \grapheme{winik} and \grapheme{ja} 
+            \subref{fig:terminology-t683a-t683b} Signs \grapheme{winik} and \grapheme{ja} 
             assigned to \thompson{683};
-            \subref{fig:terminology-t589-t607} \grapheme{ho} assigned to \thompson{589} and 
+            \subref{fig:terminology-t589-t607} Sign \grapheme{ho} assigned to \thompson{589} and 
             \thompson{607} (\authordrawings).}
 \end{figure}
-% LTeX: enabled=true
 Despite merging unrelated graphs or separating allographs which actually belong to each other,
-the Maya writing system also utilizes graphemes which consist of two or more subgraphemic 
+the Maya writing system also utilizes graphemes which consist of two or more sub-graphemic 
 components.
 Those complex graphemes might not be recognized and therefore only its components are registered
 as graphemes.
@@ -407,7 +439,6 @@ grapheme \grapheme{pas} with its own phonetic value and meaning.
 This grapheme doesn't show up in Thompson's sign catalog.
 Later revisions and new catalogs like Macri and Looper (\cite{macrilooper2003}) added it as
 separate grapheme and assigned it the code ZX2.
-% LTeX: enabled=false
 \begin{figure}
     \centering
     \subfloat[][]{
@@ -432,26 +463,153 @@ separate grapheme and assigned it the code ZX2.
     }
     \caption[Grapheme \grapheme{pas}]{Grapheme \grapheme{pas}. Even though it consists of three 
              other graphemes, it represents a self-contained grapheme with separate phonetic and 
-             meaning (\cite[139]{prager2018}).
+             meaning (\cite[139]{prager2018});
              \subref{fig:terminology-glyph-pas} \grapheme{pas} ``dawn'';
              \subref{fig:terminology-glyph-chan} \grapheme{chan} ``sky'';
              \subref{fig:terminology-glyph-kin} \grapheme{k\glottalstop{}in} ``sun'';
              \subref{fig:terminology-glyph-kab} \grapheme{kab} ``earth'' (\authordrawings).}
 \end{figure}
+
+\pagebreak
+\section{Mesoamerican chronology}
+Researchers divide the history pre-Columbian Mesoamerica into several time periods 
+(\cite{mendoza2001}):
+
+\begin{itemize}
+    \item The Paleo-Indian (first human habitation until 3500 BCE),
+    \item the Archaic (before 2600 BCE),
+    \item the Preclassic or Formative (2500 BCE --- 250 CE),
+    \item the Classic (250 --- 900 CE)
+    \item the Postclassic (900 --- 1521 CE)
+    \item and the Colonial Period (1521 --- 1821)
+\end{itemize}
+The periodization of Mesoamerica is based on archaeological and architectural observations,
+as well as on studies of the material culture and art.
+Originally, it was not anchored to an absolute chronology.
+It was rather based on the relative associations of cultural materials that had presumed or 
+even known age.
+The Classic period was eventually defined once the Maya calendar could be associated 
+with Gregorian calendar.
+The earliest monuments in the Classic appear around 300 CE and the latest ones around 900 CE framing
+the period span of the Classic period between 300 CE and 900 CE\@.
+Maya civilization before 300 CE has been coined Preclassic whereas Maya civilization
+after 900 CE until the arrival of the first Spaniards is called Postclassic.
+The Colonial period ended with the Mexican independence in 1821 ((\cite{mendoza2001})).
+
+\section{The language of Maya Hieroglyphs}
+The language of the Maya hieroglyphs is called ``Classic Mayan''.
+The term ``Classic Mayan'' refers to the language used in inscriptions and writings
+spanning from the early Preclassic until the time of the Spanish conquest.
+After decades of close collaboration of many Epigraphers, linguists, art historians and 
+archeologists it became possible to develop a deeper understanding of the language in the Maya 
+texts and to analysis its grammar, syntax and general structure (\cite{lawstuart2017}).
+Mayanists came to the conclusion that the Maya texts are written in
+cohesive and consistent form suggesting that the language of these texts are based on
+a common language.
+This section gives just a short introduction.
+For a more detailed explanation, please refer to the chapter ``Classic Mayan'' 
+(\Cref{chap:classic-mayan}).
+
+\subsection{Basic structure}
+Classic Mayan and modern Mayan languages alike have a word other which usually follows
+the verb-object-subject structure (\cite[24]{kettunenhelmke2020}).
+In non-transitive sentences the pattern is verb-subject.
+When a date is involved, the date comes first like so: date-verb-(object-)subject
+
+\subsection{Phonology} \label{sec:terminology-phonology}
+In Classic Maya, there are five different vowels and twenty distinct consonants.
+The vowels are: \mayan{a}, \mayan{e}, \mayan{i}, \mayan{o} and \mayan{u}.
+The consonants consist of values with and without glottal stop (\glottalstop{}):
+\mayan{b}, \mayan{ch}, \mayan{ch\glottalstop{}}, \mayan{h}, \mayan{j}, 
+\mayan{k}, \mayan{k\glottalstop{}}, \mayan{l}, \mayan{m}, \mayan{n}, 
+\mayan{p}, \mayan{p\glottalstop{}}, \mayan{s}, \mayan{t}, \mayan{t\glottalstop{}},
+\mayan{tz}, \mayan{tz\glottalstop{}}, \mayan{w}, \mayan{x}, and \mayan{y}.
+\Cref{table:terminology-phonemes-vowels} and  \cref{table:terminology-phonemes-consonants} 
+describe the phonetic values as-well as the orthography used throughout this work.
+The writing conventions are based on the orthography proposed by 
+Academia de Lenguas Mayas de Guatemala (\cite{instituto1988}).
+% LTeX: enabled=false
+\begin{table}[ht!]
+    \centering
+    \begin{tabular}{cc|cc|cc}
+        Notation & IPA           & Notation & IPA            & Notation & IPA \\
+        \hline
+        a        & \textipa{[a]} & aa       & \textipa{[a:]} & \"a      & \textipa{[5]}\\
+        e        & \textipa{[e]} & ee       & \textipa{[e:]} & \"e      & \textipa{[E]}\\
+        i        & \textipa{[i]} & ii       & \textipa{[i:]} & \"{\i}   & \textipa{[I]}\\
+        o        & \textipa{[o]} & oo       & \textipa{[o:]} & \"o      & \textipa{[\textlowering{7]}}\\
+        u        & \textipa{[u]} & uu       & \textipa{[u:]} & \"u      & \textipa{[U]}
+    \end{tabular}
+    \caption{Orthography and phonemes for vowels} 
+    \label{table:terminology-phonemes-vowels}
+\end{table}
+% LTeX: enabled=true
+% LTeX: enabled=false
+\begin{table}[ht!]
+    \centering
+    \begin{tabular}{cc|cc|cc|cc|cc}
+        Symbol & IPA                & Symbol           & IPA                              & Symbol           & IPA                                        & Symbol & IPA           & Symbol          & IPA \\
+        \hline     
+        b      & \textipa{[b]}      & ch               & \textipa{[\t{\textteshlig}]}     & ch\glottalstop{} & \textipa{[\t{\textteshlig}\glottalstop{}]} & h      & \textipa{[h]} & j               & \textipa{[X]}\\
+        k      & \textipa{[k]}      & k\glottalstop{}  & \textipa{[k\glottalstop{}]}      & l                & \textipa{[l]}                              & m      & \textipa{[m]} & n               & \textipa{[n]}\\
+        p      & \textipa{[p]}      & p\glottalstop{}  & \textipa{[p\glottalstop{}]}      & s                & \textipa{[s]}                              & t      & \textipa{[t]} & t\glottalstop{} & \textipa{[t\glottalstop{}]}\\
+        tz     & \textipa{[\t{ts}]} & tz\glottalstop{} & \textipa{[\t{ts}\glottalstop{}]} & w                & \textipa{[w]}                              & x      & \textipa{[S]} & y               & \textipa{[j]}\\
+        \multicolumn{10}{l}{Glottal stop: \glottalstop{} \textipa{[P]}}
+    \end{tabular}
+    \caption{Orthography and phonemes for consonants} 
+    \label{table:terminology-phonemes-consonants}
+\end{table}
 % LTeX: enabled=true
 
-\section{Transcription of Maya signs}
-This work uses the long-standing convention for transcribing Maya signs (\cite{jamesjusteson1984}).
+Vowels are usually abbreviated with \emph{V}, whereas consonants are abbreviated with \emph{C}.
+Long vowels are usually written with a double vowel VV (e.g. \mayan{aa}).
+Aspirated vowels have an affixed \mayan{h} which forms Vh.
+Glottalized vowels are written as V\glottalstop{} and rearticulated glottalized vowels 
+as V\glottalstop{}V.
+
+In Maya literature, configurations like VV, Vh, V\glottalstop{}, V\glottalstop{}V are 
+usually called \emph{complex voxels} (\cite[276]{houstonstuartrobertson1998}):
 \begin{itemize}
-    \item Transcriptions of logograms are written in uppercase, bold letters 
+    \item VV\@: long vowels 
+          (e.g. \mayan{tuun} --- \english{stone}, \mayan{muuch} --- \english{toad})
+    \item Vh: aspirated vowel 
+          (e.g. \mayan{nahb} --- \english{lake}, e.g. \mayan{ahk} --- \english{turtle})
+    \item V\glottalstop: glottalized vowel
+          (e.g. \mayan{k\glottalstop{}in} --- \english{sun}, 
+           e.g. \mayan{ch\glottalstop{}ok} --- \english{youngster})
+    \item V\glottalstop{}V rearticulated glottalized vowel
+          (e.g. \mayan{bu\glottalstop{}ul} --- \english{bean}, 
+           e.g. \mayan{ha\glottalstop{}al} --- \english{water-like})
+\end{itemize}
+
+\section{Analysis of hieroglyphic texts}
+Analyzing hieroglyphic texts can be divided roughly in three steps:
+\begin{enumerate}
+    \item Transliteration: Conversion of Maya writing into the Latin alphabet
+    \item Transcription: Closer to written speech (e.g. by using IPA)
+    \item Morphological segmentation and analysis: Split writing into morphemes and classify them
+\end{enumerate}
+All steps are described in more detail in the following sections.
+
+\subsection{Transliteration of Maya signs}
+In the study of writing systems, transliteration describes the conversion of one 
+writing system into another (\cite[494]{crystal2008}).
+Transliteration in Maya studies refers to the conversion of Maya writing into the Latin alphabet.
+The type of sign (logogram/syllabogram) and in some cases the way of drawing is also encoded.
+Every sign is converted separately.
+Signs belong contextually to the same compound are connected via hyphens. 
+This work uses the long-standing convention for transliterating 
+Maya signs (\cite{jamesjusteson1984}):
+\begin{itemize}
+    \item Transliterations of logograms are written in uppercase, bold letters 
           (e.g. \cref{fig:terminology-chak-balam}).
     \item Graphemes which represent syllables aka syllabograms are represented in 
           lowercase, bold letters (e.g. \cref{fig:terminology-pa-ka-la}).
     \item Roman parenthesis enclose parts of a sign's transliteration which are not pronounced.
-          For example, the name \emph{Pakal} when written with syllabograms only would be transliterated
-          % LTeX: enabled=false
-          \syllabogram{pa}-\syllabogram{ka}-\syllabogram{l(a)} (\cref{fig:terminology-pa-ka-la}).
-          % LTeX: enabled=true
+          For example, the name \emph{Pakal} when written with syllabograms only would be 
+          transliterated.
+          \transliteration{\syllabogram{pa}-\syllabogram{ka}-\syllabogram{l(a)}}
+          (\cref{fig:terminology-pa-ka-la}).
     \item Question marks are placed after a transliterated syllabogram or a 
           logogram when the reading is questionable or uncertain 
           (e.g. \cref{fig:terminology-ta-ix-ajaw-wa}).
@@ -460,14 +618,13 @@ This work uses the long-standing convention for transcribing Maya signs (\cite{j
           (e.g. \cref{fig:terminology-ta-ix-ajaw-wa}).
     \item Fused signs are written in their-order of reading.
     \item Signs with infixed graphemes are written in their-order of reading and the infix is placed
-          in square brackets.
+          in square brackets 
+          (e.g. \transliteration{\syllabogram{ch\glottalstop{}o}\syllabogram{[ko]}}).
     \item Signs of unknown value are either represented by Thompson codes or codes of the 
-          revised version of Macri and Looper (\cite{macrilooper2003}) and 
-          Macri and Vail (\cite{macrivail2009}) or by catalog codes from 
-          ``Text Database and Dictionary of Classic Mayan'' (TWKM).
+          revised version of Macri and Looper/Vail (\cites{macrilooper2003}{macrivail2009}) 
+          or by catalog codes from ``Text Database and Dictionary of Classic Mayan'' (TWKM).
 \end{itemize}
-% LTeX: enabled=false
-\begin{figure}[h]
+\begin{figure}[ht]
     \centering
     \subfloat[][]{
         \centering
@@ -488,19 +645,321 @@ This work uses the long-standing convention for transcribing Maya signs (\cite{j
             \subref{fig:terminology-pa-ka-la} Syllabograms: 
             \transliteration{\syllabogram{pa}-\syllabogram{ka}-\syllabogram{l(a)}} 
             (Maya ruler \mayan{Pakal});
-            \subref{fig:terminology-chak-balam} Logograms: 
-            \transliteration{\logogram{CHAK}-\logogram{BALAM}} (\english{puma});
-            \subref{fig:terminology-ta-ix-ajaw-wa} Uncertain reading of 
-            \logogram{IX} (\english{Lady}) and reconstructed \logogram{AJAW} (\english{Ruler}): 
+            \subref{fig:terminology-chak-balam} logograms: 
+            \transliteration{\logogram{CHAK}-\logogram{BALAM}} for \english{puma};
+            \subref{fig:terminology-ta-ix-ajaw-wa} uncertain reading of 
+            \logogram{IX} (\english{Lady}) and reconstructed \logogram{AJAW} (\english{Ruler})
             \transliteration{\syllabogram{ta}-\logogram{IX}?-*\logogram{AJAW}-\syllabogram{wa} }
             (\authordrawings).}
 \end{figure}
+
+\subsection{Transcription of Maya texts}
+Transcription describes the systematic and consistent method of writing down the sounds of speech.
+For transcribing Maya texts, the following conventions are used (\cite[14]{kettunenhelmke2020}):
+\begin{itemize}
+    \item Transcriptions are represented in italics.
+    \item Long vowels and glottal sounds are indicated without [square brackets]
+    \item Reconstructed sounds based on historical, internal, or paleographic evidence are 
+          represented in [square brackets]
+\end{itemize}
+
+\subsubsection{Narrow and broad transcriptions}
+Transcriptions which are detailed and include a lot of features like aspiration or 
+slight nasalization of the vowel are called \emph{narrow transcriptions}.
+Narrow transcriptions can represent the exact pronunciation of a speaker, even small pronunciation 
+details like dialect or accent. 
+If transcriptions is less detailed, 
+they are called \emph{broad transcriptions} (\cite[490]{crystal2008}).
+
+For example, a narrow transcription of the English word \english{seat} would be 
+\narrowtranscription{\textipa{si:t}}.
+The broad transcription \widetranscription{\textipa{sit}} doesn't include 
+the long vowel indicator \textipa{:}.
+
+\subsubsection{Reconstruction of sounds}
+Reconstructed sounds are based on historical, internal, or paleographic evidence.
+Reconstructions by applying rules of (complex) orthography are not taken into account.
+That implies that proposals like the disharmony hypothesis proposed by 
+Houston et al. (\cites{lacadena2004}{houstonstuartrobertson1998}) do not contribute to the
+phonetic reconstruction process.
+The main reason is, that those hypotheses can not guarantee a certain reading and phonetic
+assignment, and as such are challenged by Mayanists (\cite[7]{boot2009}).
+For instance, complex vowels sometimes derived from disharmonic spellings in the script are
+accepted if and only if those vowels can be reconstructed by means of other linguistic methods.
+
+\subsubsection{Syncope}
+Syncope refers to the process of deleting an inner vowel within a word (\cite[469]{crystal2008}).
+In Ch\glottalstop{}olan languages, the penultimate vowel for stems with more than two syllables 
+is lost, provided that the loss does not result in an impermissible 
+consonant cluster (\cite[86]{kaufman1984}).
+
+For example, the mid-vowel \mayan{o} or \mayan{u} in the Mayan noun 
+\mayan{ahk\glottalstop{}ot?/ahk\glottalstop{}ut} 
+for the English word \english{dance} gets elided when the noun is verbalized.
+The intransitive verb \mayan{ahk\glottalstop{}taj} for \english{he/she danced} derived from the 
+noun \mayan{ahk\glottalstop{}ot?/ahk\glottalstop{}ut} doesn't contain the inner vowel anymore.
+The phoneme has been syncopated.
+
+\subsubsection{Underspelling}
+Underspelling describes the possibility to omit the coda of one or more syllables when 
+recording text.
+The reader knows implicitly (by context) how to read the word.
+In the Maya corpus, especially consonants like n, l, y, w, j, or h are elided 
+in the hieroglyphic texts (\cite[143-144]{lawstuart2017}).
+\Cref{fig:terminology-underspelling-example} shows the under spelling of \mayan{ulakamtuun[il]}.
+The coda \mayan{il} of \mayan{tuunil} gets elided.
+\begin{figure}[ht!]
+    \centering
+    \subfloat[][]{
+        \centering
+        \includegraphics[height=\glyphblockheight]{img/u-lakam-tun-ni-li}
+        \label{fig:terminology-u-lakam-tun-ni-li}
+    }
+    \subfloat[][]{
+        \centering
+        \includegraphics[height=\glyphblockheight]{img/u-lakam-tun-ni}
+        \label{fig:terminology-u-lakam-tun-ni}
+    }
+    \caption[Underspelling]{Underspelling or consonant deletion respectively of 
+            \mayan{ulakamtuunil} for \english{his/her stela}.
+            \subref{fig:terminology-u-lakam-tun-ni-li} Full spelling \transliteration{
+                \syllabogram{u}-\logogram{LAKAM}-\logogram{TUN}-\syllabogram{ni}-\syllabogram{li}
+            } (Tikal Stela 26 zB02);
+            \subref{fig:terminology-u-lakam-tun-ni} under spelling \transliteration{
+                \syllabogram{u}-\logogram{LAKAM}-\logogram{TUN}-\syllabogram{ni}
+            } (Itzimte-Sacluk Stela 7 E03) (\authordrawings)}
+    \label{fig:terminology-underspelling-example}
+\end{figure}
+
+\subsubsection{Phonetic complements and phonetic indicators}
+Logo-syllabic writing systems can make use of phonetic complements and phonetic indicators to
+add information on how signs should be read.
+This is especially useful for signs having more than one phonetic or logographic meaning or value.
+Such signs are called \emph{polyvalent} signs.
+
+A phonetic indicator is one or more additional signs placed next to a polyvalent sign to
+indicate which phonetic or logographic value is intended (\cite[56-57]{whittaker2009}).
+Japanese, for example, borrowed the Chinese logographic writing system to record Japanese.
+Since the phonetic value of logograms in Chinese is often quite different from Japanese, 
+syllabic signs acting as phonetic indicators can be placed next to it to hint the phonetic reading.
+In \Cref{fig:terminology-japanese-hon} the word \japanese{hon} is written with syllabic signs 
+\texticon{img/japanese-ho} (\japanese{ho}) and \texticon{img/japanese-n} (\japanese{n})
+placed on top.
+Combined it helps the reader to read the word as \japanese{hon}.
+\begin{figure}[h!]
+    \centering
+    \subfloat[][]{
+        \centering
+        \includegraphics{img/japanese-hon}
+        \label{fig:terminology-japanese-hon}
+    }
+    \subfloat[][]{
+        \centering
+        \includegraphics{img/japanese-ho}
+        \label{fig:terminology-japanese-ho}
+    }
+    \subfloat[][]{
+        \centering
+        \includegraphics{img/japanese-n}
+        \label{fig:terminology-japanese-n}
+    }
+    \caption[Japanese phonetic indicators]{Phonetic indicators helping to read the 
+             logographic sign \subref{fig:terminology-japanese-hon} as \japanese{hon}.\\
+            Syllabic sign \japanese{ho} \subref{fig:terminology-japanese-ho} and 
+            syllabic sign \japanese{n} \subref{fig:terminology-japanese-n} indicate the reading.}
+\end{figure}
+A phonetic complement extends the phonetic reading of word or phrase around a polyvalent sign.
+It, therefore, doesn't only indicate a phonetic or logographic reading, but also prefixes or
+suffixes the polyvalent sign (\cite[56-57]{whittaker2009}).
+For instance, several signs in Japanese have polyvalent properties.
+The sign \texticon{img/japanese-sei} has several phonetic values.
+It can stand for \japanese{sei}, \japanese{o} and \japanese{u} among others.
+\begin{figure}[ht!]
+    \centering
+    \subfloat[][]{
+        \centering
+        \includegraphics{img/japanese-sei}
+        \label{fig:terminology-japanese-sei}
+    }
+    \subfloat[][]{
+        \centering
+        \includegraphics{img/japanese-u}
+        \label{fig:terminology-japanese-u}
+    }
+    \subfloat[][]{
+        \centering
+        \includegraphics{img/japanese-mu}
+        \label{fig:terminology-japanese-mu}
+    }
+    \subfloat[][]{
+        \centering
+        \includegraphics{img/japanese-umu}
+        \label{fig:terminology-japanese-umu}
+    }
+    \subfloat[][]{
+        \centering
+        \includegraphics{img/japanese-ou}
+        \label{fig:terminology-japanese-ou}
+    }
+    \caption[Japanese phonetic complements]{Phonetic complements in Japanese.
+            \subref{fig:terminology-japanese-sei} Polyvalent sign \japanese{sei};
+            \subref{fig:terminology-japanese-u} syllabic sign \japanese{u}; 
+            \subref{fig:terminology-japanese-mu} syllabic sign \japanese{mu};
+            \subref{fig:terminology-japanese-ou} \japanese{ou} indicated by syllable \japanese{u}; 
+            \subref{fig:terminology-japanese-umu} 
+            \japanese{umu} indicated by syllable \japanese{mu}}
+\end{figure}
+Signs can also be both, a phonetic indicator and a phonetic complement at the same time either
+prefixing of suffixing the sign in question.
+
+In the Maya writing system, additional signs related a polyvalent sign function 
+as phonetic indicators and in most cases also as phonetic complements.
+However, in Maya literature, those signs are way usually just called phonetic complements.
+This work will also use the term phonetic complement as this commonly used in Maya research.
+For instance, the polyvalent sign \thompson{528} can represent the syllable \syllabogram{ku} or the
+logogram \logogram{TUN}.
+For instance, in \cref{fig:terminology-jukub} \thompson{528} is read as \syllabogram{ku} to form
+the Classic Mayan term \mayan{jukub} for English \english{canoe}.
+By adding the syllable \syllabogram{ni}, a scribe could indicate that the polyvalent sign
+should be read as the logogram \logogram{TUN}.
+\Cref{fig:terminology-ut-k'al-tun-ni} shows how the Classic Mayan term \mayan{k'altuun} 
+can be written with \thompson{528} functioning as 
+logogram \logogram{TUN}.
+The text reads \mayan{i uht k\glottalstop{}altuun} for 
+English \english{then it happened the stone binding}.
+\begin{figure}[ht]
+    \centering
+    \subfloat[][]{
+        \centering
+        \includegraphics[height=\glyphblockheight]{img/logogram-TUN}
+        \label{fig:terminology-logogram-tun}
+    }
+    \subfloat[][]{
+        \centering
+        \includegraphics[height=\glyphblockheight]{img/jukub}
+        \label{fig:terminology-jukub}
+    }
+    \subfloat[][]{
+        \centering
+        \includegraphics[height=\glyphblockheight]{img/i-ut-k'al-tun-ni}
+        \label{fig:terminology-ut-k'al-tun-ni}
+    }
+    \caption[Polyvalent sign \thompson{528}]{Polyvalent sign \thompson{528}.
+            Here, it can be read either as syllabogram \syllabogram{ku} or 
+            as logogram \logogram{TUN}.
+            \subref{fig:terminology-logogram-tun}
+            Standardized form for \thompson{528}
+            (Drawings from https://classicmayan.org/zeichenkatalog);
+            \subref{fig:terminology-jukub}
+            \transliteration{\syllabogram{ju}-\syllabogram{ku}-\syllabogram{b(i)}}:
+            \mayan{jukub} for English \english{canoe}
+            (Piedras Negras Panel 2 hieroglyph A'3);
+            \subref{fig:terminology-ut-k'al-tun-ni} 
+            \transliteration{
+                \syllabogram{i}-\syllabogram{u}-\syllabogram{t(i)} 
+                \logogram{K\glottalstop{}AL}-\logogram{TUN}-\syllabogram{n(i)}}:
+            \mayan{i uht k\glottalstop{}altuun} for 
+            English \english{then it happened the stone binding} 
+            (Puerto Barrios altar hieroglyph G3) (\authordrawings)}
+\end{figure}
+
+\subsubsection{Logograms as phonetic components}
+In rare cases, logograms are used purely for phonetic purposes (\cite{stuart2020}).
+For example, in \cref{fig:terminology-ak'-bi-ya-hu-li-ya}
+logogram \logogram{AK\glottalstop{}} for \english{turkey} is used to form the 
+word \mayan{ahk\glottalstop{}ab} or the adverb \mayan{ahk\glottalstop{}biiy} for 
+\english{yesterday} respectively even though the adverb \mayan{ahk\glottalstop{}biiy} 
+has nothing to do with \english{turkeys}.
+% LTeX: enabled=false
+\glyphanalysis
+    {img/ak'-bi-ya-hu-li-ya}
+    {\logogram{AK\glottalstop{}}[\syllabogram{bi}]-\syllabogram{ya} 
+    \syllabogram{hu}-\syllabogram{li}-\syllabogram{ya}}
+    {ahk\glottalstop{}biiy huliiy}
+    {ahk\glottalstop{}b-iiy hul-iiy}
+    {night-PST arrive-PST}
+    {yesterday it arrived}
+    {Quirigua Stela F Monument 06 B06 (\authordrawings)}
+    {fig:terminology-ak'-bi-ya-hu-li-ya}
 % LTeX: enabled=true
 
-\subsection{Complex vowels}
-\todo{Introduction to complex vowels}
+\subsection{Morphological segmentation and analysis}
+Morphological segmentation describes the process of dividing the (reconstructed) transcriptions into
+morphemes.
+Glossing or morphological analysis classifies the string of morphemes into morpheme categories 
+and types.
+The following examples show how a given hieroglyphic block or text is transliterated, transcribed,
+morphological segmented and classified.
+\newline
+Examples:
+% LTeX: enabled=false
+\glyphanalysis
+    {img/u-tz'a-pa-wa-tun-ni}
+    {\syllabogram{u}-\syllabogram{tz\glottalstop{}a}[\syllabogram{pa}]-\syllabogram{wa} 
+    \logogram{TUN}-\syllabogram{ni}}
+    {utz\glottalstop{}a[h]paw tuun}
+    {u-tz\glottalstop{}a[h]p-aw-\zeromorpheme tuun}
+    {3SE-erect-THM-3SA stone}
+    {(s)he erected the stone}
+    {Quirigua Monument 16 Ballcourt Plaza Q'02 (\authordrawings)}
+    {fig:terminology-u-tz'a-pa-wa-tun-ni}
+% LTeX: enabled=true
+% LTeX: enabled=false
+\glyphanalysis
+    {img/ch'ak-ka-ja-u-k'ab}
+    {\logogram{CH\glottalstop{}AK}-\syllabogram{ka}-\syllabogram{ja}
+    \syllabogram{u}-\logogram{K\glottalstop{}AB}}
+    {ch\glottalstop{}a[h]kaj uk\glottalstop{}ab}
+    {ch\glottalstop{}a[h]k-aj-\zeromorpheme uk\glottalstop{}ab}
+    {chop[PAS]-THM-3SA 3SE-hand}
+    {his/her arm has been chopped off}
+    {TNA Stucco Mural (\authordrawings)}
+    {fig:terminology-ch'ak-ka-ja-u-k'ab}
+% LTeX: enabled=true
 
-\subsection{Narrow versus broad transcription}
-\todo{Describe narrow versus broad transcription and their advantages / disadvantages}
+Every morpheme can be categorized and characterized by a set of (brief) explanations in terms 
+of grammatical significance. 
+Usually, those attributes are shortened and abbreviated using a standardized list of 
+glossing abbreviations.
+A list of glossing abbreviations used throughout this work can be found in 
+\cref{table:terminology-glossing-abbreviations}
+% LTeX: enabled=false
+\begin{table}[ht!]
+    \centering
+    \begin{tabular}{llll}
+        \textbf{Gloss} & \textbf{Meaning}                                 & \textbf{Gloss} & \textbf{Meaning} \\
+        \\
+        ---            & Morpheme boundary                                & EG             & Emblem Glyph \\
+        \zeromorpheme  & Zero morpheme                                    & FCL            & Feminine classifier \\               
+                       &                                                  & INC            & Inchoative voice \\                                
+        1SE            & 1\textsuperscript{st} person singular ergative   & INS            & Instrumental suffix \\                   
+        2SE            & 2\textsuperscript{nd} person singular ergative   & IS             & Initial series \\ 
+        3SE            & 3\textsuperscript{rd} person singular ergative   & ISIG           & Initial series introductory glyph \\
+        1PE            & 1\textsuperscript{st} person plural ergative     & IV             & Intransitive verb \\                     
+        2PE            & 2\textsuperscript{nd} person plural ergative     & IVD            & Intransitive verb, derived \\            
+        3PE            & 3\textsuperscript{rd} person plural ergative     & LC             & Long count calendar \\ 
+                       &                                                  & LOC            & Locative suffix \\                     
+        1SA            & 1\textsuperscript{st} person singular absolutive & MCL            & Masculine classifier \\                 
+        2SA            & 2\textsuperscript{nd} person singular absolutive & N              & Noun \\                                 
+        3SA            & 3\textsuperscript{rd} person singular absolutive & NCL            & Numerical classifier \\                 
+        1PA            & 1\textsuperscript{st} person plural absolutive   & NUM            & Numeral \\                              
+        2PA            & 2\textsuperscript{nd} person plural absolutive   & PAS            & Passive voice \\                        
+        3PA            & 3\textsuperscript{rd} person plural absolutive   & PDI            & Posterior date indicator \\
+                       &                                                  & PE             & Period ending \\
+        ADI            & Anterior Date Indicator                          & PS             & Primary standard sequence \\
+        ADJ            & Adjective                                        & PST            & Past tense \\
+        ADV            & Adverb                                           & PV             & Positional verb \\         
+        AFT            & Affective                                        & REL            & Relational suffix \\             
+        APAS           & Anti-passive voice                               & SUF            & Suffix (for unidentified suffixes) \\
+        CLT            & Clitic                                           & THM            & Thematic suffix \\        
+        CR             & Calendar round                                   & TV             & Transitive verb \\     
+        DEM            & Demonstrative pronoun                            & *              & Reconstructed word or morpheme \\
+        DN             & Distance number                                  & C              & Consonant \\
+        DNIG           & Distance number intro glyph                      & V              & Vowel \\
+    \end{tabular} 
+    \caption{Glossing abbreviations used in morphological segmentation and morphological analysis}
+    \label{table:terminology-glossing-abbreviations}
+\end{table}
+% LTeX: enabled=true
 
 \end{document}
