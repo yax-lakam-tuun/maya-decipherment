@@ -4,6 +4,7 @@
 \usepackage{silence}
 \WarningFilter{latex}{You have requested package `..//preamble',}
 \WarningFilter{latex}{You have requested package `..//maya',}
+\WarningFilter{latex}{`h' float specifier changed to `ht'}
 
 % import preamble file (preamble.sty)
 \usepackage{preamble}
@@ -32,13 +33,12 @@
 }
 
 % actual beginning of document
-% LTeX: enabled=false
 \begin{document}
 	\pagenumbering{Alph}	
 	\begin{titlepage}	
 		\subfile{title/title}
 	\end{titlepage}
-	
+
 	% table of contents
 	\pagenumbering{roman}
 	\tableofcontents
@@ -50,4 +50,5 @@
 	% chapters
 	\subfile{introduction/introduction}
 	\subfile{terminology/terminology}
+	\subfile{classic-mayan/classic-mayan}
 \end{document}
