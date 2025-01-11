@@ -20,6 +20,7 @@ RUN apt-get -qq install \
         git git-lfs \
         inkscape vim \
         curl wget \
+        openjdk-21-jre \
         apt-transport-https software-properties-common
 
 # Install PowerShell
