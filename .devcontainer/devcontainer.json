@@ -24,7 +24,8 @@
 						"icon": "terminal-bash"
 					}
 				},
-				"terminal.integrated.defaultProfile.linux": "PowerShell"
+				"terminal.integrated.defaultProfile.linux": "PowerShell",
+				"ltex.java.path": "/usr"
 			}
 		}
 	},
